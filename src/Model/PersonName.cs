@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Common;
 using Common.Coding;
 using Common.Enumerable;
 
@@ -13,9 +14,16 @@ namespace Model {
             _components = components.ToList().AsReadOnly();
         }
 
-        public override string ToString() {
-            return _components.OrderBy(c => c.Type).Select(c => c.Text).ToArray().Join();
+        public ReadOnlyCollection<NameComponent> Components {
+            get { return _components; }
         }
+
+        public override string ToString() {
+            return Components.OrderBy(c => c.Type).Select(c => c.Text).ToArray().Join();
+        }
+
+        public Maybe<string> Given {get { return _components.FirstMaybe(c => c.Type == NameType.Given).Convert(c => c.Text); }}
+        public Maybe<string> Family {get { return _components.FirstMaybe(c => c.Type == NameType.Family).Convert(c => c.Text); }}
     }
 
     [ValueObject]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 
 namespace Common.Enumerable
 {
@@ -30,6 +31,17 @@ namespace Common.Enumerable
 
         public static string Join(this IEnumerable<string> self) {
             return string.Join(" ", self);
+        }
+
+        public static void AddRange<T>(this ICollection<T> self, IEnumerable<T> items) {
+            foreach (var item in items) {
+                self.Add(item);
+            }
+        }
+
+        public static Maybe<T> FirstMaybe<T>(this IEnumerable<T> self, Func<T, bool> predicate) {
+            var item = self.FirstOrDefault<T>(predicate);
+            return Maybe.From(item);
         }
     }
 }

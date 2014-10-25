@@ -47,6 +47,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowPresentation.cs" />
+    <Compile Include="PersonListPresentation.cs" />
+    <Compile Include="PersonPresentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -71,6 +74,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{B0CE43FC-F6DB-46D6-95F2-B09A9EEDB245}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{ce08b7a7-69f3-496a-884d-6566c471d356}</Project>
       <Name>Model</Name>
