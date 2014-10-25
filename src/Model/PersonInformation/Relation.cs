@@ -1,4 +1,4 @@
-using Model.Coding;
+using Infrastructure.Coding;
 
 namespace Model.PersonInformation {
 

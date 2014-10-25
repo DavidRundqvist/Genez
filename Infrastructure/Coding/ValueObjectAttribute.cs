@@ -1,6 +1,6 @@
 using System;
 
-namespace Model.Coding
+namespace Infrastructure.Coding
 {
     /// <summary>
     /// Instances represent values, that are interchangeable.

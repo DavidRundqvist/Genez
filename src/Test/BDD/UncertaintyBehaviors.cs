@@ -10,21 +10,20 @@ using Moq;
 namespace Test.BDD {
     /*
      * 
-     * When no source has been found
-     * Then the person's file contains no characteristics
+     * When nothing is known about a person
+     * Then the person's file contains no information
      * 
      * 
      * When conflicting sources have been found
-     * Then the person's contains several statements where Reliability = Unreliable
+     * Then the person's file contains several information items where Reliability = Unreliable
      * 
      * 
      * When source is difficult to interpret
-     * Then the statement has Reliability = Unreliable
-     * 
+     * Then the information has Reliability = Unreliable
      * 
      *  
      * When source can't be trusted
-     * Then the statement has Reliability = Unreliable     
+     * Then the information has Reliability = Unreliable     
      * * 
      */
 

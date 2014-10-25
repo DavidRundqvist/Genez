@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace Model.Coding
+namespace Infrastructure
 {
 
     public class Maybe
@@ -335,7 +334,7 @@ namespace Model.Coding
         {
             if (self.HasValue)
                 return self.Value;
-            return Enumerable.Empty<T>();
+            return System.Linq.Enumerable.Empty<T>();
         }
         public static T[] GetValueOrEmpty<T>(this Maybe<T[]> self)
         {

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Runtime.Serialization;
 
-namespace Model.Coding.Exceptions
+namespace Model.Exceptions
 {
     /// <summary>
     /// This exception represents impossible family combinations, such as a person having several biological (certain) mothers

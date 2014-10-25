@@ -1,5 +1,5 @@
 using System;
-using Model.Coding;
+using Infrastructure.Coding;
 
 namespace Model
 {
