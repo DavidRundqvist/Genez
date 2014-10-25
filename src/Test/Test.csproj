@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BDD\UncertaintyBehaviors.cs" />
+    <Compile Include="Infrastructure\Data\GedcomRepositoryTest.cs" />
     <Compile Include="Model\Coding\HashSetTest.cs" />
     <Compile Include="Model\Constraints\ParentGenderConstraintTest.cs" />
     <Compile Include="Model\Constraints\SingularRelativeConstraintTest.cs" />
@@ -73,6 +74,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj">
+      <Project>{D0DB9A35-ECDA-4B66-9A1E-87DEF2747414}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Presentation\Presentation.csproj">
       <Project>{4b0f8f40-3865-45a8-8576-60f84b73a320}</Project>
       <Name>Presentation</Name>
@@ -88,6 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Presentation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\2009-01-04.ged">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

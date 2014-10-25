@@ -1,6 +1,6 @@
 using System;
 
-namespace Infrastructure.Coding
+namespace Common.Coding
 {
     /// <summary>
     /// Instances represent individual objects, that have identities.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Infrastructure.Enumerable
+namespace Common.Enumerable
 {
     public static class IEnumerableExtensions
     {

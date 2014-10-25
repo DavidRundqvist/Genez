@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Infrastructure.Coding;
-using Infrastructure.Enumerable;
+using Common.Coding;
+using Common.Enumerable;
 
 namespace Model {
 
@@ -25,6 +25,10 @@ namespace Model {
         public NameComponent(string text, NameType type) {
             Text = text;
             Type = type;
+        }
+
+        public override string ToString() {
+            return string.Format("{0}: {1}", Type, Text);
         }
     }
 

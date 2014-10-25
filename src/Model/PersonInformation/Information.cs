@@ -1,5 +1,5 @@
 using System;
-using Infrastructure.Coding;
+using Common.Coding;
 
 namespace Model.PersonInformation {
     [ValueObject]

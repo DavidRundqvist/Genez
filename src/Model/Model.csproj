@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPersonRepository.cs" />
     <Compile Include="PersonInformation\Father.cs" />
     <Compile Include="PersonInformation\Gender.cs" />
     <Compile Include="PersonInformation\Event.cs" />
@@ -68,9 +69,9 @@
     <Compile Include="Source.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj">
-      <Project>{d0db9a35-ecda-4b66-9a1e-87def2747414}</Project>
-      <Name>Infrastructure</Name>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{b0ce43fc-f6db-46d6-95f2-b09a9eedb245}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

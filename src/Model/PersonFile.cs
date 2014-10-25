@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Infrastructure.Coding;
+using Common;
+using Common.Coding;
 using Model.PersonInformation;
 
 
@@ -92,6 +93,17 @@ namespace Model {
             get { return Facts.OfType<Name>().Select(n => n.TheName); }
         }
 
+        public Maybe<PersonName> ReliableName {
+            get {
+                return ReliableNames.Count() == 1 
+                    ? Maybe.From(ReliableNames.First()) 
+                    : Maybe.Empty;
+            }
+        }
+
+        public override string ToString() {
+            return ReliableName.Convert(name => name.ToString()).GetValueOrDefault("Unknown name");
+        }
 
         #endregion
     }
