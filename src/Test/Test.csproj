@@ -71,7 +71,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssertExtensions.cs" />
     <Compile Include="BDD\UncertaintyBehaviors.cs" />
+    <Compile Include="Common\EventCollectionTest.cs" />
     <Compile Include="Infrastructure\Data\GedcomRepositoryTest.cs" />
     <Compile Include="Launch\ContainerTest.cs" />
     <Compile Include="Model\Coding\HashSetTest.cs" />

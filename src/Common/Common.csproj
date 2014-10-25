@@ -46,8 +46,13 @@
     <Compile Include="Coding\EntityAttribute.cs" />
     <Compile Include="Coding\ValueObjectAttribute.cs" />
     <Compile Include="DependencyInjection\ContainerExtensions.cs" />
+    <Compile Include="Enumerable\CollectionBinding.cs" />
+    <Compile Include="Enumerable\CollectionEventArgs.cs" />
+    <Compile Include="Enumerable\CollectionEventHandler.cs" />
+    <Compile Include="Enumerable\EventCollection.cs" />
     <Compile Include="Enumerable\IEnumerableExtensions.cs" />
     <Compile Include="DependencyInjection\IModule.cs" />
+    <Compile Include="Enumerable\IEventCollection.cs" />
     <Compile Include="Maybe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

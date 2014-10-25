@@ -8,9 +8,9 @@ using Presentation;
 
 namespace View.DesignPresentation {
     public class DesignPersonListPresentation : PersonListPresentation {
-        public DesignPersonListPresentation() : base(new ObservableCollection<PersonPresentation>()) {
+        public DesignPersonListPresentation() : base(new PersonRegistry()) {
             var designPeople = CreateDesignPeople();
-            base._people.AddRange(designPeople.Select(p => new PersonPresentation(p)));
+            _registry.Add(designPeople.ToArray());
         }
 
         private IEnumerable<PersonFile> CreateDesignPeople() {

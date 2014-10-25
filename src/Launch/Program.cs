@@ -11,6 +11,7 @@ using Common.DependencyInjection;
 using Common.Enumerable;
 using Infrastructure.Data;
 using Microsoft.Practices.Unity;
+using Model;
 using Presentation;
 using View;
 
@@ -30,13 +31,8 @@ namespace Launch {
 
         private static void AddTestDatabase(IUnityContainer unityContainer) {
             var repo = GedcomRepository.Parse(new FileInfo(@"..\..\..\Test\TestData\2009-01-04.ged"));
-            var people = unityContainer.Resolve<ObservableCollection<PersonPresentation>>();
-            people.AddRange(repo.GetAllPeople().Select(pf => new PersonPresentation(pf)));
+            var people = unityContainer.Resolve<PersonRegistry>();
+            people.Add(repo.GetAllPeople().ToArray());
         }
-
-
-
-
-
     }
 }

@@ -11,7 +11,6 @@ namespace Presentation {
         public void Register(IUnityContainer container) {
             container.RegisterType<MainWindowPresentation>(new ContainerControlledLifetimeManager());
             container.RegisterType<PersonListPresentation>(new ContainerControlledLifetimeManager());
-            container.RegisterFactory(c => new ObservableCollection<PersonPresentation>(), new ContainerControlledLifetimeManager());
         }
     }
 }

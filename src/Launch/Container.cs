@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Net.Configuration;
+using System.Runtime.Remoting.Messaging;
 using Common.DependencyInjection;
 using Microsoft.Practices.Unity;
 
@@ -10,7 +12,8 @@ namespace Launch {
             var modules = new IModule[] {
                                             new Launch.Module(), 
                                             new Presentation.Module(), 
-                                            new View.Module()
+                                            new View.Module(),
+                                            new Model.Module()
                                         };
 
             foreach (var module in modules) {
