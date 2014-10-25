@@ -69,7 +69,7 @@
     <Compile Include="Source.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{b0ce43fc-f6db-46d6-95f2-b09a9eedb245}</Project>
       <Name>Common</Name>
     </ProjectReference>

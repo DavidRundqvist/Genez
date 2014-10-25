@@ -56,7 +56,7 @@
       <Project>{b0ce43fc-f6db-46d6-95f2-b09a9eedb245}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\Model\Model.csproj">
+    <ProjectReference Include="..\Model\Model.csproj">
       <Project>{ce08b7a7-69f3-496a-884d-6566c471d356}</Project>
       <Name>Model</Name>
     </ProjectReference>

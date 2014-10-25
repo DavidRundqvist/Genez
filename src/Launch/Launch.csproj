@@ -90,7 +90,7 @@
       <Project>{4b0f8f40-3865-45a8-8576-60f84b73a320}</Project>
       <Name>Presentation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\Model\Model.csproj">
+    <ProjectReference Include="..\Model\Model.csproj">
       <Project>{ce08b7a7-69f3-496a-884d-6566c471d356}</Project>
       <Name>Model</Name>
     </ProjectReference>

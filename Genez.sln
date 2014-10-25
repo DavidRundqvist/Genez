@@ -7,15 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "src\Model\Model.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "src\Test\Test.csproj", "{6163A5CE-32CC-4580-B7FE-B06244782833}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{D00B729D-5B66-4052-8F1E-96736BC61EA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "src\View\View.csproj", "{D00B729D-5B66-4052-8F1E-96736BC61EA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{4B0F8F40-3865-45A8-8576-60F84B73A320}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Presentation\Presentation.csproj", "{4B0F8F40-3865-45A8-8576-60F84B73A320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launch", "Launch\Launch.csproj", "{709B8E62-3A5D-4E41-A7BF-81284B6EAA9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launch", "src\Launch\Launch.csproj", "{709B8E62-3A5D-4E41-A7BF-81284B6EAA9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D0DB9A35-ECDA-4B66-9A1E-87DEF2747414}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{D0DB9A35-ECDA-4B66-9A1E-87DEF2747414}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{B0CE43FC-F6DB-46D6-95F2-B09A9EEDB245}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "src\Common\Common.csproj", "{B0CE43FC-F6DB-46D6-95F2-B09A9EEDB245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

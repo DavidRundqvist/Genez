@@ -74,15 +74,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj">
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{D0DB9A35-ECDA-4B66-9A1E-87DEF2747414}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Presentation\Presentation.csproj">
+    <ProjectReference Include="..\Presentation\Presentation.csproj">
       <Project>{4b0f8f40-3865-45a8-8576-60f84b73a320}</Project>
       <Name>Presentation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\View\View.csproj">
+    <ProjectReference Include="..\View\View.csproj">
       <Project>{d00b729d-5b66-4052-8f1e-96736bc61ea7}</Project>
       <Name>View</Name>
     </ProjectReference>
