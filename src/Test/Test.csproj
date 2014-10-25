@@ -34,6 +34,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.315.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\lib\Moq\NET40\Moq.dll</HintPath>
     </Reference>
@@ -55,17 +59,21 @@
     <Reference Include="nunit.util">
       <HintPath>..\..\lib\nunit\nunit.util.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BDD\UncertaintyBehaviors.cs" />
     <Compile Include="Infrastructure\Data\GedcomRepositoryTest.cs" />
+    <Compile Include="Launch\ContainerTest.cs" />
     <Compile Include="Model\Coding\HashSetTest.cs" />
     <Compile Include="Model\Constraints\ParentGenderConstraintTest.cs" />
     <Compile Include="Model\Constraints\SingularRelativeConstraintTest.cs" />
@@ -74,9 +82,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{b0ce43fc-f6db-46d6-95f2-b09a9eedb245}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{D0DB9A35-ECDA-4B66-9A1E-87DEF2747414}</Project>
       <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Launch\Launch.csproj">
+      <Project>{709b8e62-3a5d-4e41-a7bf-81284b6eaa9e}</Project>
+      <Name>Launch</Name>
     </ProjectReference>
     <ProjectReference Include="..\Presentation\Presentation.csproj">
       <Project>{4b0f8f40-3865-45a8-8576-60f84b73a320}</Project>
@@ -92,6 +108,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Infrastructure\DependencyInjection\" />
     <Folder Include="Presentation\" />
   </ItemGroup>
   <ItemGroup>
