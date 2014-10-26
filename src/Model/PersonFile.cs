@@ -105,6 +105,17 @@ namespace Model {
             return ReliableName.Convert(name => name.ToString()).GetValueOrDefault("Unknown name");
         }
 
+        public IEnumerable<PersonFile> Ancestors {
+            get {
+                var parents = Mothers.Concat(Fathers).ToList();
+                var result = parents.Concat(parents.SelectMany(p => p.Ancestors));
+                return result;
+            }
+        }
+
+        private IEnumerable<PersonFile> Mothers { get { return Information.OfType<Mother>().Select(m => m.Relative); }}
+        private IEnumerable<PersonFile> Fathers { get { return Information.OfType<Father>().Select(m => m.Relative); }}
+
         #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GraphX;
+using GraphX.GraphSharp.Algorithms.OverlapRemoval;
 using QuickGraph;
 
 namespace View.AncestryGraph {
@@ -9,6 +10,16 @@ namespace View.AncestryGraph {
     /// It is also provides many global preferences and methods that makes GraphX so customizable and user-friendly.
     /// </summary>
     public class AncestryGraphArea : GraphArea<PersonVertex, RelationEdge, BidirectionalGraph<PersonVertex, RelationEdge>> {
+        public AncestryGraphArea() {
+            this.LogicCore = new AncestryGraphLogics();
+        }
 
+
+        public void ShowGraph() {
+            GenerateGraph(Presentation);
+            GenerateAllEdges();            
+        }
+
+        private AncestryGraphPresentation Presentation { get { return DataContext as AncestryGraphPresentation; } }
     }
 }

@@ -7,8 +7,11 @@ namespace View {
 
     public class DesignPersonRegistry : PersonRegistry {
         public DesignPersonRegistry() {
-            var designPeople = CreateDesignPeople();
-            Add(designPeople.ToArray());            
+            var designPeople = CreateDesignPeople().ToArray();
+
+            designPeople[0].AddFather(designPeople[2], new Source());
+
+            Add(designPeople);            
         }
 
         private IEnumerable<PersonFile> CreateDesignPeople() {

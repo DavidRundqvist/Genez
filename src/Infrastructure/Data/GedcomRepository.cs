@@ -66,22 +66,24 @@ namespace Infrastructure.Data {
 
 
         public IEnumerable<PersonFile> GetAllPeople() {
-            return _gedcomDatabase.Individuals.Select(ToPerson);
+            var people = _gedcomDatabase.Individuals.ToDictionary(ind => ind, ToPerson);
 
 
-/*
-            foreach (GedcomFamilyRecord family in reader.Database.Families)
+
+            foreach (GedcomFamilyRecord family in _gedcomDatabase.Families)
             {
-                GedcomIndividualRecord mother = family.Wife != null ? reader.Database[family.Wife] as GedcomIndividualRecord : null;
-                GedcomIndividualRecord father = family.Husband != null ? reader.Database[family.Husband] as GedcomIndividualRecord : null;
+                var mother = family.Wife != null ? _gedcomDatabase[family.Wife] as GedcomIndividualRecord : null;
+                var father = family.Husband != null ? _gedcomDatabase[family.Husband] as GedcomIndividualRecord : null;
                 foreach (string childID in family.Children)
                 {
-                    GedcomIndividualRecord child = reader.Database[childID] as GedcomIndividualRecord;
-                    if (father != null) people[child].Father = people[father];
-                    if (mother != null) people[child].Mother = people[mother];
+                    var child = _gedcomDatabase[childID] as GedcomIndividualRecord;
+                    if (father != null) people[child].AddFather(people[father], new Source());
+                    if (mother != null) people[child].AddMother(people[mother], new Source());
                 }
             }
- */
+ 
+
+            return people.Values;
         }
 
 

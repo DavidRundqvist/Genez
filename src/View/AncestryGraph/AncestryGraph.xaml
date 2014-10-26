@@ -5,9 +5,105 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:GraphX.Controls;assembly=GraphX.Controls"
              xmlns:ancestryGraph="clr-namespace:View.AncestryGraph"
+             xmlns:gxl="clr-namespace:GraphX;assembly=GraphX.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600">    
-    <controls:ZoomControl x:Name="_zoomControl">
-        <ancestryGraph:AncestryGraphArea x:Name="_graphArea"></ancestryGraph:AncestryGraphArea>
-    </controls:ZoomControl>    
+             d:DesignHeight="400" d:DesignWidth="600">  
+    <UserControl.Resources>
+
+        <!-- VERTEX CONTROL -->
+        <Style TargetType="{x:Type gxl:VertexControl}">
+            <!-- Set background color through attached property -->
+
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Width" Value="100"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type gxl:VertexControl}">
+                        <ControlTemplate.Resources>
+
+                        </ControlTemplate.Resources>
+
+                        <Grid>
+                            <Border x:Name="BackgroundNorm" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5"  BorderBrush="{TemplateBinding BorderBrush}"/>
+                            <TextBlock Text="{Binding Name}" Margin="3"   />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+
+            </Setter>
+
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" UseLayoutRounding="True">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Additional person info:" Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
+                            <StackPanel Orientation="Horizontal" Margin="3">
+                                <TextBlock MinWidth="70" Text="Name: " VerticalAlignment="Center"/>
+                                <TextBlock FontWeight="Bold" Text="{Binding Name}" Margin="3" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Setter.Value>
+            </Setter>
+
+            <!-- VERTEX DRAGGING CONTROL -->
+            <Setter Property="gxl:DragBehaviour.IsDragEnabled" Value="False" />
+            <Setter Property="gxl:DragBehaviour.UpdateEdgesOnMove" Value="True" />
+
+            <Style.Triggers>
+                <Trigger Property="gxl:HighlightBehaviour.Highlighted" Value="True">
+                    <Setter Property="BorderBrush" Value="Gold"/>
+                    <Setter Property="BorderThickness" Value="7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+
+
+        <!-- EDGE CONTROL -->
+        <Style TargetType="{x:Type gxl:EdgeControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type gxl:EdgeControl}">
+                        <Grid>
+                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="2" MinWidth="1" MinHeight="1" ToolTip="{TemplateBinding ToolTip}" x:Name="PART_edgePath"/>
+                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="2" MinWidth="1" MinHeight="1" x:Name="PART_edgeArrowPath"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="MinWidth" Value="1" />
+            <Setter Property="MinHeight" Value="1" />
+            <Setter Property="Background" Value="Red" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Opacity" Value="1" />
+
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2"  UseLayoutRounding="True">
+                        <StackPanel Orientation="Vertical" Margin="2">
+                            <TextBlock FontWeight="Bold" Text="Solid link: " Margin="3"/>
+                            <TextBlock FontWeight="Bold" Foreground="LightGreen" Text="{Binding ToolTipText}" Margin="3"/>
+                        </StackPanel>
+                    </Border>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <DockPanel>
+        <ancestryGraph:GraphControls DockPanel.Dock="Top"></ancestryGraph:GraphControls>
+        <controls:ZoomControl x:Name="_zoomControl" MinZoom="0.1">
+            <ancestryGraph:AncestryGraphArea DataContext="{Binding}" x:Name="_graphArea"></ancestryGraph:AncestryGraphArea>
+        </controls:ZoomControl>
+    </DockPanel>
 </UserControl>
