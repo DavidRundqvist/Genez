@@ -14,10 +14,8 @@ namespace View.AncestryGraph {
             this.LogicCore = new AncestryGraphLogics();
         }
 
-
         public void ShowGraph() {
-            GenerateGraph(Presentation);
-            GenerateAllEdges();            
+            GenerateGraph(Presentation, true, true, true);
         }
 
         private AncestryGraphPresentation Presentation { get { return DataContext as AncestryGraphPresentation; } }

@@ -14,10 +14,10 @@
         mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance mainWindow:DesignMainWindowPresentation, IsDesignTimeCreatable=True}" WindowState="Maximized" WindowStartupLocation="CenterScreen">
 
-    <DockPanel >
+    <DockPanel>
         <personList:PersonList DataContext="{Binding PersonListPresentation}" DockPanel.Dock="Left"></personList:PersonList>
         <ancestryGraph:AncestryGraph DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraph>
-
+        <TextBlock Text="{Binding SelectionCount.Value}" DockPanel.Dock="Bottom"></TextBlock>
 
     </DockPanel>
 

@@ -7,8 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance personList:DesignPersonListPresentation, IsDesignTimeCreatable=True}">
-    
-    <ListView BorderThickness="1" ItemsSource="{Binding People}">
+    <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="1" ItemsSource="{Binding People}" >
         <ListView.View>
             <GridView>
                 <GridViewColumn DisplayMemberBinding="{Binding FirstName}">
@@ -19,8 +18,12 @@
                 </GridViewColumn>
             </GridView>
         </ListView.View>
+        <ListView.ItemContainerStyle>
+            <Style TargetType="{x:Type ListViewItem}">
+                <Setter Property="IsSelected" Value="{Binding IsSelected.Value}"/>
+            </Style>
+        </ListView.ItemContainerStyle>
 
-        
-        
+
     </ListView>
 </UserControl>

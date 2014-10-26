@@ -11,12 +11,18 @@ namespace View.AncestryGraph {
     public partial class AncestryGraph : UserControl {
         public AncestryGraph() {
             InitializeComponent();
-            Loaded += AncestryGraph_Loaded;
+            Loaded += AncestryGraphLoaded;
         }
 
-        void AncestryGraph_Loaded(object sender, System.Windows.RoutedEventArgs e) {
-            _graphArea.ShowGraph();
-            _zoomControl.ZoomToFill();            
+        void AncestryGraphLoaded(object sender, System.Windows.RoutedEventArgs e) {
+            Presentation.Changed += GraphChanged;
         }
+
+        void GraphChanged(object sender, System.EventArgs e) {
+            _graphArea.ShowGraph();
+            _zoomControl.ZoomToFill();
+        }
+
+        private AncestryGraphPresentation Presentation { get { return DataContext as AncestryGraphPresentation; } }
     }
 }

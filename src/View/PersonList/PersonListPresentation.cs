@@ -2,26 +2,21 @@
 using System.Collections.ObjectModel;
 using Common.Enumerable;
 using Model;
+using View.Global;
 
 namespace View.PersonList {
     public class PersonListPresentation {
-        private readonly ObservableCollection<PersonPresentation> _people = new ObservableCollection<PersonPresentation>();
-        public PersonListPresentation(PersonRegistry registry) {
-            _people.BindTo(registry, CreatePerson, RemovePerson);
+        private readonly AllPeople _people;
 
+        public PersonListPresentation(AllPeople people) {
+            _people = people;
         }
 
-        private void RemovePerson(PersonPresentation personPresentation) {
-            // todo: remove event listeners
-
+        public ObservableCollection<PersonPresentation> People {
+            get { return _people.WpfCollection; }
         }
 
-        private PersonPresentation CreatePerson(PersonFile arg) {
-            return new PersonPresentation(arg);
-        }
 
-        public IEnumerable<PersonPresentation> People {
-            get { return _people; }
-        }
+        // todo: add filters etc.
     }
 }

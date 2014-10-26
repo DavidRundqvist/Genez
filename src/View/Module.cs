@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Common.DependencyInjection;
 using Microsoft.Practices.Unity;
+using View.Global;
 using View.MainWindow;
 using View.PersonList;
 
@@ -16,7 +17,8 @@ namespace View {
                                           return window;
                                       });
             container.RegisterType<MainWindowPresentation>(new ContainerControlledLifetimeManager());
-            container.RegisterType<PersonListPresentation>(new ContainerControlledLifetimeManager());
+            container.RegisterType<AllPeople>(new ContainerControlledLifetimeManager());
+            container.RegisterType<SelectedPeople>(new ContainerControlledLifetimeManager());
 
         }
     }
