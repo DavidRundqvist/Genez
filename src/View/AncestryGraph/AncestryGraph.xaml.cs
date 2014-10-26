@@ -10,22 +10,15 @@ namespace View.AncestryGraph {
     public partial class AncestryGraph : UserControl {
         public AncestryGraph() {
             InitializeComponent();
-            
-
             Loaded += AncestryGraph_Loaded;
-
-            //Customize Zoombox a bit
-            //Set minimap (overview) window to be visible by default
-            //ZoomControl.SetViewFinderVisibility(zoomctrl, System.Windows.Visibility.Hidden);
-            //Set Fill zooming strategy so whole graph will be always visible
-
             ConfigureGraphArea();
         }
 
         void AncestryGraph_Loaded(object sender, System.Windows.RoutedEventArgs e) {
             
-            Presentation.Changed += (s, args) => GraphArea.RelayoutGraph();
-             GraphArea.GenerateGraph(Presentation);
+            Presentation.Changed += (s, args) => _graphArea.RelayoutGraph();
+            _graphArea.GenerateGraph(Presentation);
+            _zoomControl.ZoomToFill();
         }
 
         private AncestryGraphPresentation Presentation { get { return DataContext as AncestryGraphPresentation; } }
@@ -54,17 +47,13 @@ namespace View.AncestryGraph {
             //Bundling algorithm will try to tie different edges that follows same direction to a single channel making complex graphs more appealing.
             logicCore.DefaultEdgeRoutingAlgorithm = GraphX.EdgeRoutingAlgorithmTypeEnum.SimpleER;
 
-            //This property sets async algorithms computation so methods like: GraphArea.RelayoutGraph() and GraphArea.GenerateGraph()
+            //This property sets async algorithms computation so methods like: _graphArea.RelayoutGraph() and _graphArea.GenerateGraph()
             //will run async with the UI thread. Completion of the specified methods can be catched by corresponding events:
-            //GraphArea.RelayoutFinished and GraphArea.GenerateGraphFinished.
+            //_graphArea.RelayoutFinished and _graphArea.GenerateGraphFinished.
             logicCore.AsyncAlgorithmCompute = false;
 
-            //Finally assign logic core to GraphArea object
-            GraphArea.LogicCore = logicCore;// as IGXLogicCore<DataVertex, DataEdge, BidirectionalGraph<DataVertex, DataEdge>>;
-
-            
-           
-            
+            //Finally assign logic core to _graphArea object
+            _graphArea.LogicCore = logicCore;// as IGXLogicCore<DataVertex, DataEdge, BidirectionalGraph<DataVertex, DataEdge>>;
         }
     }
 }

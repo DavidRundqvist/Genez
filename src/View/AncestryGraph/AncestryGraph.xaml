@@ -7,7 +7,7 @@
              xmlns:ancestryGraph="clr-namespace:View.AncestryGraph"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">    
-    <controls:ZoomControl Zoom="1">
-        <ancestryGraph:AncestryGraphArea x:Name="GraphArea"></ancestryGraph:AncestryGraphArea>
-    </controls:ZoomControl>
+    <controls:ZoomControl x:Name="_zoomControl">
+        <ancestryGraph:AncestryGraphArea x:Name="_graphArea"></ancestryGraph:AncestryGraphArea>
+    </controls:ZoomControl>    
 </UserControl>
