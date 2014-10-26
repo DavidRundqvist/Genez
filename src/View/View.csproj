@@ -69,8 +69,12 @@
     <Compile Include="AncestryGraph\AncestryGraph.xaml.cs">
       <DependentUpon>AncestryGraph.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AncestryGraph\DesignPersonVertex.cs" />
     <Compile Include="AncestryGraph\GraphControls.xaml.cs">
       <DependentUpon>GraphControls.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AncestryGraph\PersonNode.xaml.cs">
+      <DependentUpon>PersonNode.xaml</DependentUpon>
     </Compile>
     <Compile Include="Global\AllPeople.cs" />
     <Compile Include="Global\IProperty.cs" />
@@ -123,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AncestryGraph\GraphControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AncestryGraph\PersonNode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

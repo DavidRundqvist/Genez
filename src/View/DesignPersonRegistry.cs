@@ -25,6 +25,7 @@ namespace View {
         private PersonFile CreatePerson(string firstName, string lastName) {
             var result = new PersonFile();
             result.Add(new Name(new PersonName(new[]{new NameComponent(firstName, NameType.Given), new NameComponent(lastName, NameType.Family)}), new Source()));
+            result.Add(new Gender(GenderType.Male, new Source()));
             return result;
         }
     }

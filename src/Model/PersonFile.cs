@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Common;
 using Common.Coding;
+using Common.Enumerable;
 using Model.PersonInformation;
+using Model.PersonInformation.Events;
 
 
 namespace Model {
@@ -115,6 +117,16 @@ namespace Model {
 
         private IEnumerable<PersonFile> Mothers { get { return Information.OfType<Mother>().Select(m => m.Relative); }}
         private IEnumerable<PersonFile> Fathers { get { return Information.OfType<Father>().Select(m => m.Relative); }}
+
+        public Maybe<string> BirthDate {
+            get { return Facts.OfType<Birth>().FirstMaybe().Convert(b => b.Date); }
+        }
+
+        public Maybe<string> DeathDate {
+            get { return Facts.OfType<Death>().FirstMaybe().Convert(b => b.Date); }
+        }
+
+        public bool IsDead { get { return Facts.OfType<Death>().Any(); } }
 
         #endregion
     }

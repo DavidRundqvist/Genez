@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="View.AncestryGraph.PersonNode"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ancestryGraph="clr-namespace:View.AncestryGraph"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance ancestryGraph:DesignPersonVertex, IsDesignTimeCreatable=True}">
+    <Border BorderThickness="3" CornerRadius="5" BorderBrush="{Binding GenderColor}">        
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter Property="Background" Value="LightGreen"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="5">       
+                <TextBlock Text="{Binding Name}" Margin="0"/>
+                <TextBlock Text="{Binding LifeTime}" Margin="10,0,0,0"/>
+            </StackPanel>
+			<Viewbox Height="30" Margin="3" x:Name="DeathBox" Visibility="{Binding IsDead}">
+				<Path Data="M0,0 L0,40 M-10, 10 L10,10" Fill="Black" Stretch="Fill" Stroke="Black" StrokeThickness="3" />            
+			</Viewbox>
+        </StackPanel>
+        
+        
+    </Border>
+    
+
+
+</UserControl>

@@ -49,9 +49,11 @@
   <ItemGroup>
     <Compile Include="IPersonRepository.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="PersonInformation\Events\Birth.cs" />
+    <Compile Include="PersonInformation\Events\Death.cs" />
     <Compile Include="PersonInformation\Father.cs" />
     <Compile Include="PersonInformation\Gender.cs" />
-    <Compile Include="PersonInformation\Event.cs" />
+    <Compile Include="PersonInformation\Events\Event.cs" />
     <Compile Include="PersonInformation\Relation.cs" />
     <Compile Include="PersonInformation\InformationExtensions.cs" />
     <Compile Include="Constraints\ConstraintResult.cs" />

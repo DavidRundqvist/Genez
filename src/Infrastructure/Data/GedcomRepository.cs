@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Common;
 using Gedcom;
 using GedcomParser;
 using Model;
 using Model.PersonInformation;
+using Model.PersonInformation.Events;
 
 namespace Infrastructure.Data {
     public class GedcomRepository : IPersonRepository {
@@ -21,8 +23,28 @@ namespace Infrastructure.Data {
             var result = new PersonFile();
             AddName(result, arg.GetName());
             AddGender(result, arg.Sex);
-             
+            AddEvents(result, arg.Events);
             return result;
+        }
+
+        private void AddEvents(PersonFile result, GedcomRecordList<GedcomIndividualEvent> events) {
+            foreach (var individualEvent in events) {
+                var dateString = individualEvent.Date != null 
+                    ? Maybe.From(individualEvent.Date.DateString) 
+                    : Maybe.Empty;
+                
+                switch (individualEvent.EventType) {
+                    case GedcomEvent.GedcomEventType.BIRT:                        
+                            result.Add(new Birth(dateString, new Source()));
+                        break;
+                    case GedcomEvent.GedcomEventType.DEAT:
+                            result.Add(new Death(dateString, new Source()));
+                        break;
+                    default:
+                        break;
+                }                
+            }
+
         }
 
         private void AddName(PersonFile person, GedcomName gedcomName) {

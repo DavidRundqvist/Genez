@@ -37,7 +37,7 @@ namespace View.AncestryGraph {
             this.Clear();
             
             foreach (var person in people) {
-                var vertex = new PersonVertex(person);
+                var vertex = new PersonVertex(person, _selectedPeople.Any(p => p.Person == person));
                 this.AddVertex(vertex);
                 personVertices[person] = vertex;
             }

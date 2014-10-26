@@ -45,6 +45,11 @@ namespace Common.Enumerable
             var item = self.FirstOrDefault<T>(predicate);
             return Maybe.From(item);
         }
+        public static Maybe<T> FirstMaybe<T>(this IEnumerable<T> self) {
+            var item = self.FirstOrDefault<T>();
+            return Maybe.From(item);
+        }
+
 
         public static IEnumerable<T1> SelectT1<T1, T2>(this IEnumerable<Tuple<T1, T2>> self) {
             return self.Select(item => item.Item1);

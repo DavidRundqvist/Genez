@@ -12,27 +12,11 @@
 
         <!-- VERTEX CONTROL -->
         <Style TargetType="{x:Type gxl:VertexControl}">
-            <!-- Set background color through attached property -->
-
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type gxl:VertexControl}">
-                        <ControlTemplate.Resources>
-
-                        </ControlTemplate.Resources>
-
-                        <Grid>
-                            <Border x:Name="BackgroundNorm" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5"  BorderBrush="{TemplateBinding BorderBrush}"/>
-                            <TextBlock Text="{Binding Name}" Margin="3"   />
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                            </Trigger>
-                        </ControlTemplate.Triggers>
+                        <ancestryGraph:PersonNode DataContext="{Binding}"></ancestryGraph:PersonNode>
                     </ControlTemplate>
                 </Setter.Value>
 
@@ -102,7 +86,7 @@
     </UserControl.Resources>
     <DockPanel>
         <ancestryGraph:GraphControls DockPanel.Dock="Top"></ancestryGraph:GraphControls>
-        <controls:ZoomControl x:Name="_zoomControl" MinZoom="0.1">
+        <controls:ZoomControl x:Name="_zoomControl" MinZoom="0.1" MaxZoom="2">
             <ancestryGraph:AncestryGraphArea DataContext="{Binding}" x:Name="_graphArea"></ancestryGraph:AncestryGraphArea>
         </controls:ZoomControl>
     </DockPanel>
