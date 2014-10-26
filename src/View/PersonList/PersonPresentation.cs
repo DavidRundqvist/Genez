@@ -1,6 +1,6 @@
 ﻿using Model;
 
-namespace Presentation {
+namespace View.PersonList {
     public class PersonPresentation {
         private readonly PersonFile _person;
         public PersonPresentation(PersonFile person) {

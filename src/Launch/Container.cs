@@ -11,7 +11,6 @@ namespace Launch {
             var container = new UnityContainer();
             var modules = new IModule[] {
                                             new Launch.Module(), 
-                                            new Presentation.Module(), 
                                             new View.Module(),
                                             new Model.Module()
                                         };

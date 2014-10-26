@@ -22,7 +22,9 @@ namespace Common.Enumerable {
                                            map.RemoveRange(toRemove);
                                        };
 
-
+            var added = other.Select(t2 => Tuple.Create<T1, T2>(t2, ctor(t2))).ToArray();
+            self.AddRange(added.SelectT2());
+            map.AddRange(added);            
         }
     }
 }

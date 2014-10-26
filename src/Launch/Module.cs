@@ -7,6 +7,8 @@ using Common;
 using Common.DependencyInjection;
 using Microsoft.Practices.Unity;
 using View;
+using View.MainWindow;
+
 
 namespace Launch {
     public class Module : IModule{

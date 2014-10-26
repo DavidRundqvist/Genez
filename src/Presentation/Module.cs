@@ -9,8 +9,6 @@ using Microsoft.Practices.Unity;
 namespace Presentation {
     public class Module : IModule{
         public void Register(IUnityContainer container) {
-            container.RegisterType<MainWindowPresentation>(new ContainerControlledLifetimeManager());
-            container.RegisterType<PersonListPresentation>(new ContainerControlledLifetimeManager());
         }
     }
 }

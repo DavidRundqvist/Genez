@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Common.Enumerable;
 using Model;
 
-namespace Presentation {
+namespace View.PersonList {
     public class PersonListPresentation {
-        protected readonly PersonRegistry _registry;
         private readonly ObservableCollection<PersonPresentation> _people = new ObservableCollection<PersonPresentation>();
         public PersonListPresentation(PersonRegistry registry) {
-            _registry = registry;
             _people.BindTo(registry, CreatePerson, RemovePerson);
+
         }
 
         private void RemovePerson(PersonPresentation personPresentation) {

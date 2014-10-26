@@ -4,16 +4,20 @@ using System.Linq;
 using System.Text;
 using Common.DependencyInjection;
 using Microsoft.Practices.Unity;
-using Presentation;
+using View.MainWindow;
+using View.PersonList;
 
 namespace View {
     public class Module : IModule{
         public void Register(IUnityContainer container) {
             container.RegisterFactory(c => {
-                                          var window = new MainWindow();
+                                          var window = new MainWindow.MainWindow();
                                           window.DataContext = c.Resolve<MainWindowPresentation>();
                                           return window;
                                       });
+            container.RegisterType<MainWindowPresentation>(new ContainerControlledLifetimeManager());
+            container.RegisterType<PersonListPresentation>(new ContainerControlledLifetimeManager());
+
         }
     }
 }

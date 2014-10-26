@@ -12,7 +12,6 @@ using Common.Enumerable;
 using Infrastructure.Data;
 using Microsoft.Practices.Unity;
 using Model;
-using Presentation;
 using View;
 
 namespace Launch {

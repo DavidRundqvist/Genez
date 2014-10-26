@@ -1,16 +1,14 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using Common.Enumerable;
 using Model;
 using Model.PersonInformation;
-using Presentation;
 
-namespace View.DesignPresentation {
-    public class DesignPersonListPresentation : PersonListPresentation {
-        public DesignPersonListPresentation() : base(new PersonRegistry()) {
+namespace View {
+
+    public class DesignPersonRegistry : PersonRegistry {
+        public DesignPersonRegistry() {
             var designPeople = CreateDesignPeople();
-            _registry.Add(designPeople.ToArray());
+            Add(designPeople.ToArray());            
         }
 
         private IEnumerable<PersonFile> CreateDesignPeople() {
@@ -19,7 +17,6 @@ namespace View.DesignPresentation {
             yield return CreatePerson("Carl", "Rundqvist");
             yield return CreatePerson("Camilla", "Rundqvist");
             yield return CreatePerson("Monica", "Rundqvist");
-
         }
 
         private PersonFile CreatePerson(string firstName, string lastName) {

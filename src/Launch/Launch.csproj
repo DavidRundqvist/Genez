@@ -92,10 +92,6 @@
       <Project>{d0db9a35-ecda-4b66-9a1e-87def2747414}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation\Presentation.csproj">
-      <Project>{4b0f8f40-3865-45a8-8576-60f84b73a320}</Project>
-      <Name>Presentation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{ce08b7a7-69f3-496a-884d-6566c471d356}</Project>
       <Name>Model</Name>

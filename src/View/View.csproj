@@ -32,9 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GraphX.Common, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb26e87ca554c82, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\GraphX\GraphX.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GraphX.Controls, Version=2.0.2.0, Culture=neutral, PublicKeyToken=abeeef8557a9853f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\GraphX\GraphX.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="GraphX.Logic, Version=2.0.2.0, Culture=neutral, PublicKeyToken=e796769467c28ce2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\GraphX\GraphX.Logic.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=2.0.315.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph">
+      <HintPath>..\..\lib\QuickGraph\QuickGraph.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -51,15 +66,27 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DesignPresentation\DesignMainWindowPresentation.cs" />
-    <Compile Include="DesignPresentation\DesignPersonListPresentation.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="AncestryGraph\AncestryGraph.xaml.cs">
+      <DependentUpon>AncestryGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow\DesignMainWindowPresentation.cs" />
+    <Compile Include="DesignPersonRegistry.cs" />
+    <Compile Include="AncestryGraph\AncestryGraphArea.cs" />
+    <Compile Include="AncestryGraph\AncestryGraphLogics.cs" />
+    <Compile Include="AncestryGraph\AncestryGraphPresentation.cs" />
+    <Compile Include="AncestryGraph\PersonVertex.cs" />
+    <Compile Include="AncestryGraph\RelationEdge.cs" />
+    <Compile Include="MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWindow\MainWindowPresentation.cs" />
     <Compile Include="Module.cs" />
-    <Compile Include="PersonList.xaml.cs">
+    <Compile Include="PersonList\DesignPersonListPresentation.cs" />
+    <Compile Include="PersonList\PersonList.xaml.cs">
       <DependentUpon>PersonList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PersonList\PersonListPresentation.cs" />
+    <Compile Include="PersonList\PersonPresentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -84,11 +111,15 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindow.xaml">
+    <Page Include="AncestryGraph\AncestryGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PersonList.xaml">
+    <Page Include="PersonList\PersonList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,10 +133,9 @@
       <Project>{CE08B7A7-69F3-496A-884D-6566C471D356}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation\Presentation.csproj">
-      <Project>{4b0f8f40-3865-45a8-8576-60f84b73a320}</Project>
-      <Name>Presentation</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GraphX\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
