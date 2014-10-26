@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Common.DependencyInjection;
 using Microsoft.Practices.Unity;
+using View.AncestryGraph;
 using View.Global;
 using View.MainWindow;
 using View.PersonList;
@@ -19,6 +20,8 @@ namespace View {
             container.RegisterType<MainWindowPresentation>(new ContainerControlledLifetimeManager());
             container.RegisterType<AllPeople>(new ContainerControlledLifetimeManager());
             container.RegisterType<SelectedPeople>(new ContainerControlledLifetimeManager());
+            container.RegisterType<AncestorGenerations>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ChildGenerations>(new ContainerControlledLifetimeManager());
 
         }
     }

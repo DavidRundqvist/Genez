@@ -6,6 +6,6 @@ namespace View.Global {
         /// The value of this property.
         /// Can be null
         /// </summary>
-        T Value { get; set; }
+        T Value { get; }
     }
 }

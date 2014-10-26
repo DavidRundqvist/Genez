@@ -7,7 +7,7 @@ namespace View.MainWindow {
     public class DesignMainWindowPresentation : MainWindowPresentation{
         public DesignMainWindowPresentation() : base(
             new DesignPersonListPresentation(), 
-            new AncestryGraphPresentation(new SelectedPeople(new AllPeople(new DesignPersonRegistry()))),
+            new AncestryGraphPresentation(new SelectedPeople(new AllPeople(new DesignPersonRegistry())), new DesignGraphControlsPresentations()),
             new SelectedPeople(new AllPeople(new PersonRegistry()))) {}
     }
 

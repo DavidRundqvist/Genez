@@ -66,6 +66,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AncestryGraph\DelegatingProperty.cs" />
+    <Compile Include="AncestryGraph\DesignGraphControlsPresentations.cs" />
+    <Compile Include="AncestryGraph\DesignSliderPresentation.cs" />
+    <Compile Include="AncestryGraph\SliderControl.xaml.cs">
+      <DependentUpon>SliderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Global\AncestorGenerations.cs" />
     <Compile Include="AncestryGraph\AncestryGraph.xaml.cs">
       <DependentUpon>AncestryGraph.xaml</DependentUpon>
     </Compile>
@@ -73,9 +80,12 @@
     <Compile Include="AncestryGraph\GraphControls.xaml.cs">
       <DependentUpon>GraphControls.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AncestryGraph\GraphControlsPresentation.cs" />
     <Compile Include="AncestryGraph\PersonNode.xaml.cs">
       <DependentUpon>PersonNode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AncestryGraph\SliderPresentation.cs" />
+    <Compile Include="Global\ChildGenerations.cs" />
     <Compile Include="Global\AllPeople.cs" />
     <Compile Include="Global\IProperty.cs" />
     <Compile Include="Global\Property.cs" />
@@ -131,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AncestryGraph\PersonNode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AncestryGraph\SliderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

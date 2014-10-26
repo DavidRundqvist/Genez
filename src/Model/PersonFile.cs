@@ -107,12 +107,14 @@ namespace Model {
             return ReliableName.Convert(name => name.ToString()).GetValueOrDefault("Unknown name");
         }
 
-        public IEnumerable<PersonFile> Ancestors {
-            get {
-                var parents = Mothers.Concat(Fathers).ToList();
-                var result = parents.Concat(parents.SelectMany(p => p.Ancestors));
-                return result;
+        public IEnumerable<PersonFile> GetAncestors(int numberOfGenerations) {
+            if (numberOfGenerations < 1) {
+                return Enumerable.Empty<PersonFile>();
             }
+
+            IEnumerable<PersonFile> result = Mothers.Concat(Fathers).ToList();
+            result = result.Concat(result.SelectMany(p => p.GetAncestors(numberOfGenerations - 1)));
+            return result;
         }
 
         private IEnumerable<PersonFile> Mothers { get { return Information.OfType<Mother>().Select(m => m.Relative); }}

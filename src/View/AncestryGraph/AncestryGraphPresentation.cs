@@ -16,38 +16,48 @@ namespace View.AncestryGraph {
     /// </summary>
     public class AncestryGraphPresentation : BidirectionalGraph<PersonVertex, RelationEdge> {
         private readonly SelectedPeople _selectedPeople;
+        private readonly GraphControlsPresentation _graphControlsPresentation;
         public event EventHandler Changed;
 
 
-        public AncestryGraphPresentation(SelectedPeople selectedPeople) {
+        public AncestryGraphPresentation(SelectedPeople selectedPeople, GraphControlsPresentation graphControlsPresentation) {
             _selectedPeople = selectedPeople;
-            _selectedPeople.CollectionChanged += SelectedPeopleCollectionChanged;
+            _graphControlsPresentation = graphControlsPresentation;
+            _selectedPeople.CollectionChanged += (sender, args) => UpdateGraph();
+            AncestorGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
+            ChildGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
+
         }
 
-        void SelectedPeopleCollectionChanged(object sender, Common.Enumerable.CollectionEventArgs<PersonPresentation> args) {
+        public SliderPresentation AncestorGenerations { get { return _graphControlsPresentation.AncestorGenerations; }}
+        public SliderPresentation ChildGenerations { get { return _graphControlsPresentation.ChildGenerations; }}
+
+        private void UpdateGraph() {
             var personFiles = _selectedPeople
                 .Select(p => p.Person)
                 .ToList();
             var people = personFiles
-                .Concat(personFiles.SelectMany(file => file.Ancestors))
+                .Concat(personFiles.SelectMany(file => file.GetAncestors(AncestorGenerations.Value.Value)))
                 .Distinct()
                 .ToList();
 
             var personVertices = new Dictionary<PersonFile, PersonVertex>();
             this.Clear();
-            
+
             foreach (var person in people) {
                 var vertex = new PersonVertex(person, _selectedPeople.Any(p => p.Person == person));
                 this.AddVertex(vertex);
                 personVertices[person] = vertex;
             }
             foreach (var person in people) {
-                var personVertex = personVertices[person];                
+                var personVertex = personVertices[person];
                 var relatives = person.Information.OfType<Relation>();
                 foreach (var relative in relatives) {
                     if (relative.Relative != person) {
-                        var relativeVertex = personVertices[relative.Relative];
-                        this.AddEdge(new RelationEdge(personVertex, relativeVertex));
+                        if (personVertices.ContainsKey(relative.Relative)) {
+                            var relativeVertex = personVertices[relative.Relative];
+                            this.AddEdge(new RelationEdge(personVertex, relativeVertex));
+                        }
                     }
                 }
             }
