@@ -3,7 +3,7 @@ using System.Linq;
 using Model;
 using Model.PersonInformation;
 
-namespace View {
+namespace View.Global {
 
     public class DesignPersonRegistry : PersonRegistry {
         public DesignPersonRegistry() {

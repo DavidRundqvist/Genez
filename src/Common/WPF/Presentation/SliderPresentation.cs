@@ -1,6 +1,4 @@
-﻿using View.Global;
-
-namespace View.AncestryGraph {
+﻿namespace Common.WPF.Presentation {
     public class SliderPresentation {
         private readonly Property<int> _value;
         private readonly string _header;

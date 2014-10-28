@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Common.Enumerable;
+using Model.PersonInformation;
+using QuickGraph;
+using View.Global;
+
+namespace View.AncestryGraph {
+    public class AncestryGraph : BidirectionalGraph<PersonPresentation, RelationEdge> {
+        public void Add(IEnumerable<PersonPresentation> people) {
+            people = people.ToList();
+            foreach (var person in people) {
+                AddVertex(person);
+            }
+            foreach (var person in people) {
+                var relatives = person.Person.Information.OfType<Relation>();
+                foreach (var relative in relatives) {
+                    var relativeLocal = relative;
+                    var relativePres = people.FirstMaybe(p => p.Person == relativeLocal.Relative); // todo: optimize?
+                    if (relativePres.HasValue) {
+                        AddEdge(new RelationEdge(person, relativePres.Value));
+                    }
+                }
+            }            
+        }
+    }
+}

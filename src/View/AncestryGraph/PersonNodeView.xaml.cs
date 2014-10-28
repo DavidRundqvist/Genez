@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 
 namespace View.AncestryGraph {
     /// <summary>
-    /// Interaction logic for SliderControl.xaml
+    /// Interaction logic for PersonNodeView.xaml
     /// </summary>
-    public partial class SliderControl : UserControl {
-        public SliderControl() {
+    public partial class PersonNodeView : UserControl {
+        public PersonNodeView() {
             InitializeComponent();
         }
     }

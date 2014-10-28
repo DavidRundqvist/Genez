@@ -20,5 +20,14 @@ namespace View.Global {
         public ObservableCollection<PersonPresentation> WpfCollection {
             get { return _wpfCollection; }
         }
+
+        public IEnumerable<PersonPresentation> GetAncestor(PersonPresentation child, int generations) {
+            var ancestorFiles = child.Person.GetAncestors(generations);
+            return GetPresentations(ancestorFiles);
+        }
+
+        private IEnumerable<PersonPresentation> GetPresentations(IEnumerable<PersonFile> ancestorFiles) {
+            return ancestorFiles.Join(_wpfCollection, file => file, pres => pres.Person, (file, pres) => pres);
+        }
     }
 }

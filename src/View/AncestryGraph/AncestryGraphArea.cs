@@ -1,6 +1,10 @@
 ﻿using GraphX;
+using GraphX.GraphSharp.Algorithms.Layout;
+using GraphX.GraphSharp.Algorithms.Layout.Simple.Tree;
 using GraphX.GraphSharp.Algorithms.OverlapRemoval;
+using GraphX.Logic;
 using QuickGraph;
+using View.Global;
 
 namespace View.AncestryGraph {
 
@@ -9,15 +13,39 @@ namespace View.AncestryGraph {
     /// _graphArea is the visual panel component responsible for drawing visuals (vertices and edges).
     /// It is also provides many global preferences and methods that makes GraphX so customizable and user-friendly.
     /// </summary>
-    public class AncestryGraphArea : GraphArea<PersonVertex, RelationEdge, BidirectionalGraph<PersonVertex, RelationEdge>> {
+    public class AncestryGraphArea : GraphArea<PersonPresentation, RelationEdge, BidirectionalGraph<PersonPresentation, RelationEdge>> {
         public AncestryGraphArea() {
             this.LogicCore = new AncestryGraphLogics();
         }
 
-        public void ShowGraph() {
-            GenerateGraph(Presentation, true, true, true);
+        public void ShowGraph(AncestryGraph graph) {
+            GenerateGraph(graph, true, true, true);
         }
 
-        private AncestryGraphPresentation Presentation { get { return DataContext as AncestryGraphPresentation; } }
+        /// <summary>
+        /// Logics core object which contains all algorithms and logic settings
+        /// </summary>
+        private class AncestryGraphLogics :
+            GXLogicCore<PersonPresentation, RelationEdge, BidirectionalGraph<PersonPresentation, RelationEdge>> {
+            public AncestryGraphLogics() {
+                DefaultLayoutAlgorithm = GraphX.LayoutAlgorithmTypeEnum.Tree;
+                DefaultLayoutAlgorithmParams = AlgorithmFactory.CreateLayoutParameters(DefaultLayoutAlgorithm);
+
+                var parameters = DefaultLayoutAlgorithmParams as SimpleTreeLayoutParameters;
+                parameters.Direction = LayoutDirection.BottomToTop;
+                parameters.LayerGap = 100;
+                parameters.VertexGap = 100;
+                parameters.OptimizeWidthAndHeight = true;
+
+                DefaultOverlapRemovalAlgorithm = GraphX.OverlapRemovalAlgorithmTypeEnum.FSA;
+                DefaultOverlapRemovalAlgorithmParams =
+                    AlgorithmFactory.CreateOverlapRemovalParameters(GraphX.OverlapRemovalAlgorithmTypeEnum.FSA);
+                ((OverlapRemovalParameters) DefaultOverlapRemovalAlgorithmParams).HorizontalGap = 50;
+                ((OverlapRemovalParameters) DefaultOverlapRemovalAlgorithmParams).VerticalGap = 50;
+
+                AsyncAlgorithmCompute = false;
+
+            }
+        }
     }
 }

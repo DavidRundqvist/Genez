@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Common.WPF.Presentation;
 using View.Global;
 
 namespace View.AncestryGraph {

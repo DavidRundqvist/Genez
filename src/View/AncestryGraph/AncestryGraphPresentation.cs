@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Enumerable;
+using Common.WPF.Presentation;
 using Model;
 using Model.PersonInformation;
 using QuickGraph;
@@ -14,53 +16,32 @@ namespace View.AncestryGraph {
     /// Data graph content handled manually by user (add/remove objects). The main idea is that you can dynamicaly
     /// remove/add objects into the _graphArea layout and then use data graph to restore original layout content.
     /// </summary>
-    public class AncestryGraphPresentation : BidirectionalGraph<PersonVertex, RelationEdge> {
+    public class AncestryGraphPresentation {
+        private readonly AllPeople _allPeople;
         private readonly SelectedPeople _selectedPeople;
         private readonly GraphControlsPresentation _graphControlsPresentation;
         public event EventHandler Changed;
+        private readonly AncestryGraph _graph;
 
-
-        public AncestryGraphPresentation(SelectedPeople selectedPeople, GraphControlsPresentation graphControlsPresentation) {
+        public AncestryGraphPresentation(AllPeople allPeople, SelectedPeople selectedPeople, GraphControlsPresentation graphControlsPresentation, AncestryGraph graph) {
+            _allPeople = allPeople;
             _selectedPeople = selectedPeople;
             _graphControlsPresentation = graphControlsPresentation;
+            _graph = graph;
             _selectedPeople.CollectionChanged += (sender, args) => UpdateGraph();
             AncestorGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
             ChildGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
-
         }
 
         public SliderPresentation AncestorGenerations { get { return _graphControlsPresentation.AncestorGenerations; }}
         public SliderPresentation ChildGenerations { get { return _graphControlsPresentation.ChildGenerations; }}
+        public AncestryGraph Graph {get { return _graph; }}
 
         private void UpdateGraph() {
-            var personFiles = _selectedPeople
-                .Select(p => p.Person)
-                .ToList();
-            var people = personFiles
-                .Concat(personFiles.SelectMany(file => file.GetAncestors(AncestorGenerations.Value.Value)))
-                .Distinct()
-                .ToList();
-
-            var personVertices = new Dictionary<PersonFile, PersonVertex>();
-            this.Clear();
-
-            foreach (var person in people) {
-                var vertex = new PersonVertex(person, _selectedPeople.Any(p => p.Person == person));
-                this.AddVertex(vertex);
-                personVertices[person] = vertex;
-            }
-            foreach (var person in people) {
-                var personVertex = personVertices[person];
-                var relatives = person.Information.OfType<Relation>();
-                foreach (var relative in relatives) {
-                    if (relative.Relative != person) {
-                        if (personVertices.ContainsKey(relative.Relative)) {
-                            var relativeVertex = personVertices[relative.Relative];
-                            this.AddEdge(new RelationEdge(personVertex, relativeVertex));
-                        }
-                    }
-                }
-            }
+            _graph.Clear();
+            var people = _selectedPeople.Concat(
+                    _selectedPeople.SelectMany(p => _allPeople.GetAncestor(p, AncestorGenerations.Value.Value)));
+            _graph.Add(people);                
             OnChanged();
         }
 

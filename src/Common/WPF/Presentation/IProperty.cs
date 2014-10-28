@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace View.Global {
+namespace Common.WPF.Presentation {
     public interface IProperty<T> : INotifyPropertyChanged {
         /// <summary>
         /// The value of this property.

@@ -16,7 +16,7 @@
 
     <DockPanel>
         <personList:PersonList DataContext="{Binding PersonListPresentation}" DockPanel.Dock="Left"></personList:PersonList>
-        <ancestryGraph:AncestryGraph DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraph>
+        <ancestryGraph:AncestryGraphView DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>
         <TextBlock Text="{Binding SelectionCount.Value}" DockPanel.Dock="Bottom"></TextBlock>
 
     </DockPanel>

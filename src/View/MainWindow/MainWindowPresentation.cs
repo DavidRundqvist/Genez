@@ -1,4 +1,5 @@
-﻿using View.AncestryGraph;
+﻿using Common.WPF.Presentation;
+using View.AncestryGraph;
 using View.Global;
 using View.PersonList;
 

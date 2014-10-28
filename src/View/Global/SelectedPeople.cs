@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Common.Enumerable;
+using Common.WPF.Presentation;
 using View.PersonList;
 
 namespace View.Global {

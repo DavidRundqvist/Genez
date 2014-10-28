@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using View.Global;
 
-namespace View.AncestryGraph {
+namespace Common.WPF.Presentation {
     public class DelegatingProperty<T> : IProperty<T> {
         private readonly Func<T> _retriever;
 

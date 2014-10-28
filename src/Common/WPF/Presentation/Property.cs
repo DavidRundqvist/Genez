@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace View.Global {
+namespace Common.WPF.Presentation {
     public class Property<T> : IProperty<T> {
 
         private T _value;

@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:view="clr-namespace:Common.WPF.View;assembly=Common"
              xmlns:ancestryGraph="clr-namespace:View.AncestryGraph"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance ancestryGraph:DesignGraphControlsPresentations, IsDesignTimeCreatable=True}">
     <StackPanel Orientation="Horizontal" >
-        <ancestryGraph:SliderControl DataContext="{Binding AncestorGenerations}" Margin="5,0,5,0"></ancestryGraph:SliderControl>
-        <ancestryGraph:SliderControl DataContext="{Binding ChildGenerations}" Margin="5,0,5,0" ></ancestryGraph:SliderControl>
+        <view:SliderControl DataContext="{Binding AncestorGenerations}" Margin="5,0,5,0"></view:SliderControl>
+        <view:SliderControl DataContext="{Binding ChildGenerations}" Margin="5,0,5,0" ></view:SliderControl>
     </StackPanel>
 </UserControl>

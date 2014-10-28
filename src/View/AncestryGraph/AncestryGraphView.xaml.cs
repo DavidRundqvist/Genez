@@ -6,10 +6,10 @@ using GraphX.GraphSharp.Algorithms.OverlapRemoval;
 
 namespace View.AncestryGraph {
     /// <summary>
-    /// Interaction logic for AncestryGraph.xaml
+    /// Interaction logic for AncestryGraphView.xaml
     /// </summary>
-    public partial class AncestryGraph : UserControl {
-        public AncestryGraph() {
+    public partial class AncestryGraphView : UserControl {
+        public AncestryGraphView() {
             InitializeComponent();
             Loaded += AncestryGraphLoaded;
         }
@@ -19,7 +19,7 @@ namespace View.AncestryGraph {
         }
 
         void GraphChanged(object sender, System.EventArgs e) {
-            _graphArea.ShowGraph();
+            _graphArea.ShowGraph(Presentation.Graph);
             _zoomControl.ZoomToFill();
         }
 
