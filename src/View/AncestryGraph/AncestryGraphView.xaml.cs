@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
 using GraphX;
 using GraphX.Controls;
 using GraphX.GraphSharp.Algorithms.Layout.Simple.FDP;
@@ -24,5 +25,7 @@ namespace View.AncestryGraph {
         }
 
         private AncestryGraphPresentation Presentation { get { return DataContext as AncestryGraphPresentation; } }
+
+ 
     }
 }

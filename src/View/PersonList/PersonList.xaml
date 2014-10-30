@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance personList:DesignPersonListPresentation, IsDesignTimeCreatable=True}">
-    <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="1" ItemsSource="{Binding People}" >
+    <ListView BorderThickness="1" ItemsSource="{Binding People}" >
         <ListView.View>
             <GridView>
                 <GridViewColumn DisplayMemberBinding="{Binding FirstName}">

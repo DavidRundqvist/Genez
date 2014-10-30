@@ -35,7 +35,7 @@ namespace View.AncestryGraph {
                 parameters.Direction = LayoutDirection.BottomToTop;
                 parameters.LayerGap = 100;
                 parameters.VertexGap = 100;
-                parameters.OptimizeWidthAndHeight = true;
+                parameters.SpanningTreeGeneration = SpanningTreeGeneration.BFS;
 
                 DefaultOverlapRemovalAlgorithm = GraphX.OverlapRemovalAlgorithmTypeEnum.FSA;
                 DefaultOverlapRemovalAlgorithmParams =

@@ -39,8 +39,10 @@ namespace View.AncestryGraph {
 
         private void UpdateGraph() {
             _graph.Clear();
-            var people = _showInGraphPeople.Concat(
-                    _showInGraphPeople.SelectMany(p => _allPeople.GetAncestor(p, AncestorGenerations.Value.Value)));
+            var ancestors = _showInGraphPeople.SelectMany(p => _allPeople.GetAncestor(p, AncestorGenerations.Value.Value));
+            var children = _showInGraphPeople.SelectMany(p => _allPeople.GetChildren(p, ChildGenerations.Value.Value));
+
+            var people = children.Concat(_showInGraphPeople).Concat(ancestors);
             _graph.Add(people);                
             OnChanged();
         }

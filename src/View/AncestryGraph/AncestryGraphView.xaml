@@ -37,7 +37,7 @@
             </Setter>
 
             <!-- VERTEX DRAGGING CONTROL -->
-            <Setter Property="gxl:DragBehaviour.IsDragEnabled" Value="False" />
+            <Setter Property="gxl:DragBehaviour.IsDragEnabled" Value="True" />
             <Setter Property="gxl:DragBehaviour.UpdateEdgesOnMove" Value="True" />
 
             <Style.Triggers>

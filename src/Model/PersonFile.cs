@@ -131,5 +131,9 @@ namespace Model {
         public bool IsDead { get { return Facts.OfType<Death>().Any(); } }
 
         #endregion
+
+        public IEnumerable<PersonFile> GetParents() {
+            return Fathers.Concat(Mothers);
+        }
     }
 }
