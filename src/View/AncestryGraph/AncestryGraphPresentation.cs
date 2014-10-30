@@ -18,17 +18,17 @@ namespace View.AncestryGraph {
     /// </summary>
     public class AncestryGraphPresentation {
         private readonly AllPeople _allPeople;
-        private readonly SelectedPeople _selectedPeople;
+        private readonly ShowInGraphPeople _showInGraphPeople;
         private readonly GraphControlsPresentation _graphControlsPresentation;
         public event EventHandler Changed;
         private readonly AncestryGraph _graph;
 
-        public AncestryGraphPresentation(AllPeople allPeople, SelectedPeople selectedPeople, GraphControlsPresentation graphControlsPresentation, AncestryGraph graph) {
+        public AncestryGraphPresentation(AllPeople allPeople, ShowInGraphPeople showInGraphPeople, GraphControlsPresentation graphControlsPresentation, AncestryGraph graph) {
             _allPeople = allPeople;
-            _selectedPeople = selectedPeople;
+            _showInGraphPeople = showInGraphPeople;
             _graphControlsPresentation = graphControlsPresentation;
             _graph = graph;
-            _selectedPeople.CollectionChanged += (sender, args) => UpdateGraph();
+            _showInGraphPeople.CollectionChanged += (sender, args) => UpdateGraph();
             AncestorGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
             ChildGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
         }
@@ -39,8 +39,8 @@ namespace View.AncestryGraph {
 
         private void UpdateGraph() {
             _graph.Clear();
-            var people = _selectedPeople.Concat(
-                    _selectedPeople.SelectMany(p => _allPeople.GetAncestor(p, AncestorGenerations.Value.Value)));
+            var people = _showInGraphPeople.Concat(
+                    _showInGraphPeople.SelectMany(p => _allPeople.GetAncestor(p, AncestorGenerations.Value.Value)));
             _graph.Add(people);                
             OnChanged();
         }

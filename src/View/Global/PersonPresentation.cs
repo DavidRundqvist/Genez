@@ -13,6 +13,7 @@ namespace View.Global {
 
         private readonly PersonFile _person;
         private readonly Property<bool> _isSelected = new Property<bool>(false);
+        private readonly Property<bool> _showInGraph = new Property<bool>(false);
 
         public PersonPresentation(PersonFile person) {
             _person = person;
@@ -26,6 +27,7 @@ namespace View.Global {
         public string Name { get { return _person.ToString(); } }
         public string BirthDate { get { return _person.BirthDate.GetValueOrDefault("?"); }}
         public string LifeTime { get { return string.Format("{0} - {1}", BirthDate, DeathDate); } }
+        public Property<bool> ShowInGraph { get { return _showInGraph; } }
 
         public Brush GenderColor {
             get {
