@@ -1,4 +1,5 @@
 using System;
+using Common;
 using Common.Coding;
 
 namespace Model.PersonInformation {
@@ -15,18 +16,10 @@ namespace Model.PersonInformation {
             _source = source;
         }
 
-        public Source AccordingTo {
-            get { return _source; }
-        }
-
-        public Reliability Reliability {
-            get { return _reliability; }
-        }
-
-        virtual public Type InformationType {
-            get { return this.GetType(); }
-        }
-
+        public Source AccordingTo {get { return _source; }}
+        public Reliability Reliability {get { return _reliability; }}
+        virtual public Type InformationType {get { return this.GetType(); }}
+        public abstract Maybe<string> Value { get; }
 
         //public abstract bool Equals(Information other);
     }

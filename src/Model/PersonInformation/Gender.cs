@@ -1,4 +1,5 @@
-﻿using Common.Coding;
+﻿using Common;
+using Common.Coding;
 
 namespace Model.PersonInformation {
     public enum GenderType {
@@ -16,6 +17,10 @@ namespace Model.PersonInformation {
             _gender = gender;
         }
 
-        public GenderType Value { get { return _gender; }}
+        public GenderType Sex { get { return _gender; }}
+
+        public override Maybe<string> Value {
+            get { return Sex.ToString(); }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Common;
 using Common.Coding;
 
 namespace Model.PersonInformation
@@ -15,6 +16,10 @@ namespace Model.PersonInformation
 
         public PersonName TheName {
             get { return _name; }
+        }
+
+        public override Maybe<string> Value {
+            get { return _name.ToString(); }
         }
     }
 }

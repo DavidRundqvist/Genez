@@ -8,7 +8,7 @@ using QuickGraph;
 using View.Global;
 
 namespace View.AncestryGraph {
-    public class AncestryGraph : BidirectionalGraph<PersonPresentation, RelationEdge> {
+    public class AncestryGraph : BidirectionalGraph<PersonPresentation, RelationPresentation> {
         public void Add(IEnumerable<PersonPresentation> people) {
             people = people.ToList();
             foreach (var person in people) {
@@ -16,11 +16,11 @@ namespace View.AncestryGraph {
             }
             foreach (var person in people) {
                 var relatives = person.Person.Information.OfType<Relation>();
-                foreach (var relative in relatives) {
-                    var relativeLocal = relative;
+                foreach (var relation in relatives) {
+                    var relativeLocal = relation;
                     var relativePres = people.FirstMaybe(p => p.Person == relativeLocal.Relative); // todo: optimize?
                     if (relativePres.HasValue) {
-                        AddEdge(new RelationEdge(person, relativePres.Value));
+                        AddEdge(new RelationPresentation(person, relativePres.Value, relation));
                     }
                 }
             }            

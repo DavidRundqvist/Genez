@@ -1,3 +1,4 @@
+using Common;
 using Common.Coding;
 
 namespace Model.PersonInformation {
@@ -13,6 +14,10 @@ namespace Model.PersonInformation {
 
         public PersonFile Relative {
             get { return _relative; }
+        }
+
+        public override Maybe<string> Value {
+            get { return Maybe.From(_relative.ToString()); }
         }
     }
 }

@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:personList="clr-namespace:View.PersonList"
+             xmlns:global="clr-namespace:View.Global"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance personList:DesignPersonListPresentation, IsDesignTimeCreatable=True}">
@@ -30,6 +32,12 @@
             <Style TargetType="{x:Type ListViewItem}">
                 <Setter Property="IsSelected" Value="{Binding IsSelected.Value}"/>
                 <EventSetter Event="MouseDoubleClick" Handler="PersonDoubleClicked"></EventSetter>
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <global:PersonDetailsView></global:PersonDetailsView>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ToolTipService.ShowDuration" Value="{x:Static system:Int32.MaxValue}"></Setter>
             </Style>
         </ListView.ItemContainerStyle>
 

@@ -74,12 +74,12 @@ namespace Model {
         }
         #endregion
 
-        #region Convenience
+
         public bool IsMale {
             get {
                 return Facts
                     .OfType<Gender>()
-                    .Any(c => c.Value == GenderType.Male);
+                    .Any(c => c.Sex == GenderType.Male);
             }
         }
 
@@ -87,7 +87,7 @@ namespace Model {
             get {
                 return Facts
                     .OfType<Gender>()
-                    .Any(c => c.Value == GenderType.Female);
+                    .Any(c => c.Sex == GenderType.Female);
             }
         }
 
@@ -121,19 +121,18 @@ namespace Model {
         private IEnumerable<PersonFile> Fathers { get { return Information.OfType<Father>().Select(m => m.Relative); }}
 
         public Maybe<string> BirthDate {
-            get { return Facts.OfType<Birth>().FirstMaybe().Convert(b => b.Date); }
+            get { return Facts.OfType<Birth>().FirstMaybe().Convert(b => b.Value); }
         }
 
         public Maybe<string> DeathDate {
-            get { return Facts.OfType<Death>().FirstMaybe().Convert(b => b.Date); }
+            get { return Facts.OfType<Death>().FirstMaybe().Convert(b => b.Value); }
         }
 
         public bool IsDead { get { return Facts.OfType<Death>().Any(); } }
 
-        #endregion
-
         public IEnumerable<PersonFile> GetParents() {
             return Fathers.Concat(Mothers);
         }
+
     }
 }

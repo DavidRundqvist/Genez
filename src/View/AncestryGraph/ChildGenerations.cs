@@ -2,6 +2,6 @@
 
 namespace View.AncestryGraph {
     public class ChildGenerations : Property<int> {
-        public ChildGenerations() : base(2) {}
+        public ChildGenerations() : base(1) {}
     }
 }

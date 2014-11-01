@@ -82,11 +82,15 @@
     </Compile>
     <Compile Include="AncestryGraph\ChildGenerations.cs" />
     <Compile Include="Global\AllPeople.cs" />
+    <Compile Include="Global\InformationPresentation.cs" />
+    <Compile Include="Global\PersonDetailsView.xaml.cs">
+      <DependentUpon>PersonDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Global\RelationPresentation.cs" />
     <Compile Include="MainWindow\DesignMainWindowPresentation.cs" />
     <Compile Include="Global\DesignPersonRegistry.cs" />
     <Compile Include="AncestryGraph\AncestryGraphArea.cs" />
     <Compile Include="AncestryGraph\AncestryGraphPresentation.cs" />
-    <Compile Include="AncestryGraph\RelationEdge.cs" />
     <Compile Include="MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -132,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AncestryGraph\PersonNodeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Global\PersonDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

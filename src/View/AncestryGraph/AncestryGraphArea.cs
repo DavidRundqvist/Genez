@@ -13,7 +13,7 @@ namespace View.AncestryGraph {
     /// _graphArea is the visual panel component responsible for drawing visuals (vertices and edges).
     /// It is also provides many global preferences and methods that makes GraphX so customizable and user-friendly.
     /// </summary>
-    public class AncestryGraphArea : GraphArea<PersonPresentation, RelationEdge, BidirectionalGraph<PersonPresentation, RelationEdge>> {
+    public class AncestryGraphArea : GraphArea<PersonPresentation, RelationPresentation, BidirectionalGraph<PersonPresentation, RelationPresentation>> {
         public AncestryGraphArea() {
             this.LogicCore = new AncestryGraphLogics();
         }
@@ -26,7 +26,7 @@ namespace View.AncestryGraph {
         /// Logics core object which contains all algorithms and logic settings
         /// </summary>
         private class AncestryGraphLogics :
-            GXLogicCore<PersonPresentation, RelationEdge, BidirectionalGraph<PersonPresentation, RelationEdge>> {
+            GXLogicCore<PersonPresentation, RelationPresentation, BidirectionalGraph<PersonPresentation, RelationPresentation>> {
             public AncestryGraphLogics() {
                 DefaultLayoutAlgorithm = GraphX.LayoutAlgorithmTypeEnum.Tree;
                 DefaultLayoutAlgorithmParams = AlgorithmFactory.CreateLayoutParameters(DefaultLayoutAlgorithm);

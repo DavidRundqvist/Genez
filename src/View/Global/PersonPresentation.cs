@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 using Common.WPF.Presentation;
 using GraphX;
@@ -14,9 +17,11 @@ namespace View.Global {
         private readonly PersonFile _person;
         private readonly Property<bool> _isSelected = new Property<bool>(false);
         private readonly Property<bool> _showInGraph = new Property<bool>(false);
+        private readonly IEnumerable<InformationPresentation> _additionalInformation;
 
         public PersonPresentation(PersonFile person) {
             _person = person;
+            _additionalInformation = person.Information.Select(i => new InformationPresentation(i));
         }
 
         public string FirstName {get { return Person.ReliableName.Convert(name => name.Given).GetValueOrDefault("Unknown"); }}
@@ -57,5 +62,7 @@ namespace View.Global {
                     : Visibility.Hidden;
             }
         }
+
+        public IEnumerable<InformationPresentation> AdditionalInformation { get { return _additionalInformation; } }
     }
 }

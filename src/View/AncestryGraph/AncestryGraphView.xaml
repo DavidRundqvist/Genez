@@ -6,7 +6,9 @@
              xmlns:controls="clr-namespace:GraphX.Controls;assembly=GraphX.Controls"
              xmlns:ancestryGraph="clr-namespace:View.AncestryGraph"
              xmlns:gxl="clr-namespace:GraphX;assembly=GraphX.Controls"
+             xmlns:global="clr-namespace:View.Global"
              mc:Ignorable="d" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="400" d:DesignWidth="600">  
     <UserControl.Resources>
 
@@ -19,22 +21,14 @@
                         <ancestryGraph:PersonNodeView DataContext="{Binding}"></ancestryGraph:PersonNodeView>
                     </ControlTemplate>
                 </Setter.Value>
-
             </Setter>
 
             <Setter Property="ToolTip">
                 <Setter.Value>
-                    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" UseLayoutRounding="True">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Additional person info:" Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
-                            <StackPanel Orientation="Horizontal" Margin="3">
-                                <TextBlock MinWidth="70" Text="Name: " VerticalAlignment="Center"/>
-                                <TextBlock FontWeight="Bold" Text="{Binding Name}" Margin="3" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
+                    <global:PersonDetailsView></global:PersonDetailsView>
                 </Setter.Value>
             </Setter>
+            <Setter Property="ToolTipService.ShowDuration" Value="{x:Static system:Int32.MaxValue}"></Setter>
 
             <!-- VERTEX DRAGGING CONTROL -->
             <Setter Property="gxl:DragBehaviour.IsDragEnabled" Value="True" />
@@ -58,27 +52,25 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type gxl:EdgeControl}">
                         <Grid>
-                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="2" MinWidth="1" MinHeight="1" ToolTip="{TemplateBinding ToolTip}" x:Name="PART_edgePath"/>
-                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="2" MinWidth="1" MinHeight="1" x:Name="PART_edgeArrowPath"/>
-                        </Grid>
+                            <Path Stroke="Black" StrokeThickness="2" ToolTip="{TemplateBinding ToolTip}" x:Name="PART_edgePath"/>
+                            <Path Stroke="Black" StrokeThickness="2" x:Name="PART_edgeArrowPath"/>                            
+                        </Grid>                        
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Reliable.Value}" Value="True">
+                                <Setter TargetName="PART_edgePath" Property="StrokeThickness" Value="1"></Setter>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
-            <Setter Property="MinWidth" Value="1" />
-            <Setter Property="MinHeight" Value="1" />
-            <Setter Property="Background" Value="Red" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="Opacity" Value="1" />
+            
 
             <Setter Property="ToolTip">
                 <Setter.Value>
-                    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2"  UseLayoutRounding="True">
                         <StackPanel Orientation="Vertical" Margin="2">
                             <TextBlock FontWeight="Bold" Text="Solid link: " Margin="3"/>
-                            <TextBlock FontWeight="Bold" Foreground="LightGreen" Text="{Binding ToolTipText}" Margin="3"/>
+                            <TextBlock FontWeight="Bold" Foreground="LightGreen" Text="Hej" Margin="3"/>
                         </StackPanel>
-                    </Border>
                 </Setter.Value>
             </Setter>
         </Style>

@@ -12,12 +12,12 @@
         xmlns:mainWindow="clr-namespace:View.MainWindow"
         xmlns:ancestryGraph="clr-namespace:View.AncestryGraph"
         mc:Ignorable="d" 
-        d:DataContext="{d:DesignInstance mainWindow:DesignMainWindowPresentation, IsDesignTimeCreatable=True}" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+        d:DataContext="{d:DesignInstance mainWindow:DesignMainWindowPresentation, IsDesignTimeCreatable=True}" 
+        WindowState="Maximized" WindowStartupLocation="CenterScreen">
 
     <DockPanel>
         <personList:PersonList DataContext="{Binding PersonListPresentation}" DockPanel.Dock="Left"></personList:PersonList>
         <ancestryGraph:AncestryGraphView DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>
-        <TextBlock Text="{Binding SelectionCount.Value}" DockPanel.Dock="Bottom"></TextBlock>
 
     </DockPanel>
 

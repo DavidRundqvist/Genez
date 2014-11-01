@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 using Model;
 using Model.PersonInformation;
+using Model.PersonInformation.Events;
 
 namespace View.Global {
 
@@ -24,8 +27,11 @@ namespace View.Global {
 
         private PersonFile CreatePerson(string firstName, string lastName) {
             var result = new PersonFile();
-            result.Add(new Name(new PersonName(new[]{new NameComponent(firstName, NameType.Given), new NameComponent(lastName, NameType.Family)}), new Source()));
-            result.Add(new Gender(GenderType.Male, new Source()));
+            var source = new Source();
+            result.Add(new Name(new PersonName(new[]{new NameComponent(firstName, NameType.Given), new NameComponent(lastName, NameType.Family)}), source));
+            result.Add(new Gender(GenderType.Male, source));
+            result.Add(new Birth(Maybe.From((DateTime.Now - TimeSpan.FromDays(3600)).ToShortDateString()), source));
+            result.Add(new Death(Maybe.From(DateTime.Now.ToShortDateString()), source));
             return result;
         }
     }
