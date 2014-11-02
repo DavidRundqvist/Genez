@@ -14,25 +14,25 @@ namespace Test.Infrastructure.Persistence {
     public class RegistryPersistenceTest {
 
         private RegistryPersistence _sut;
-        private Mock<IFileSystem> _fileSystem;
+        private Mock<IRepository> _repository;
         private PersonRegistry _registry;
         private PersonRegistry _designRegistry;
-        private Mock<ISerializer> _serializer;
+        
 
         [SetUp]
         public void Setup() {
-            _fileSystem = new Mock<IFileSystem>();
+            _repository = new Mock<IRepository>();
             _registry = new PersonRegistry();
             _designRegistry = new DesignPersonRegistry();
-            _serializer = new Mock<ISerializer>();
-            _sut = new RegistryPersistence(_fileSystem.Object, _registry, _serializer.Object, new PersonDTOFactory(new InformationDTOFactory()));
+            _sut = new RegistryPersistence(_repository.Object);
+            _sut.AttachTo(_registry);
         }
 
         [TearDown]
         public void TearDown() {}
 
         [Test]
-        public void Should_create_new_file_for_added_person() {
+        public void Should_store_added_people() {
             // arrange
 
 
@@ -40,7 +40,7 @@ namespace Test.Infrastructure.Persistence {
             _registry.Add(_designRegistry.First());
 
             // assert
-            _fileSystem.Verify(f => f.OpenWriteStream(_designRegistry.First().Id));
+            _repository.Verify(r => r.Store(It.Is<IEnumerable<PersonFile>>(people => people.Contains(_designRegistry.First()))));
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Test.Infrastructure.Persistence {
             _registry.Remove(_designRegistry.First());
 
             // assert
-            _fileSystem.Verify(f => f.Delete(_designRegistry.First().Id));
+            _repository.Verify(r => r.Remove(It.Is<IEnumerable<PersonFile>>(people => people.Contains(_designRegistry.First()))));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace Test.Infrastructure.Persistence {
             _registry.First().Add(new Name(new PersonName(new[]{new NameComponent("The Cripple", NameType.Given)}),new Source() ));
 
             // assert
-            _fileSystem.Verify(f => f.OpenWriteStream(_designRegistry.First().Id), Times.Exactly(2));
+            _repository.Verify(r => r.Store(It.Is<IEnumerable<PersonFile>>(people => people.Contains(_designRegistry.First()))), Times.Exactly(2));
         }
 
     }

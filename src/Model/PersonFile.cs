@@ -19,7 +19,7 @@ namespace Model {
         /// <summary>
         /// The ID of the person
         /// </summary>
-        private readonly Guid _id;
+        private readonly Id<PersonFile> _id;
 
         /// <summary>
         /// The information about a person
@@ -34,11 +34,11 @@ namespace Model {
         /// <summary>
         /// Ctor
         /// </summary>
-        public PersonFile(Guid id) {
+        public PersonFile(Id<PersonFile> id) {
             _id = id;
             _information.CollectionChanged += (s, e) => OnChanged();
         }
-        public PersonFile() : this(Guid.NewGuid()) {}
+        public PersonFile() : this(new Id<PersonFile>(Guid.NewGuid())) {}
 
         protected virtual void OnChanged() {
             var handler = Changed;
@@ -145,7 +145,7 @@ namespace Model {
         /// <summary>
         /// The ID of the person
         /// </summary>
-        public Guid Id {
+        public Id<PersonFile> Id {
             get { return _id; }
         }
 

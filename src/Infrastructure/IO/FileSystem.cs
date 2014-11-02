@@ -1,27 +1,38 @@
 ﻿using System;
 using System.IO;
+using Infrastructure.Persistence;
 
 namespace Infrastructure.IO {
     public class FileSystem : IFileSystem {
-        private DirectoryInfo _rootDir;
+        private readonly DirectoryInfo _rootDir;
 
         public FileSystem() {
-            _rootDir = new DirectoryInfo(".");
+            _rootDir = new DirectoryInfo(@".\Registry");
         }
 
 
-        public Stream OpenWriteStream(Guid id) {
-            var fileName = GetFileName(id);
-            return File.OpenWrite(fileName);
+        public Stream OpenWriteStream(FileName fileName) {
+            var file = GetFileAndCreateFolder(fileName);
+            return file.OpenWrite();
         }
 
-        private static string GetFileName(Guid id) {
-            var fileName = string.Format("{0}.{1}", id, "xml");
-            return fileName;
+        private FileInfo GetFileAndCreateFolder(FileName fileName) {
+            var result = GetFile(fileName);
+            var dir = result.Directory;
+            if (!dir.Exists)
+                dir.Create();
+            return result;
         }
 
-        public void Delete(Guid id) {
-            File.Delete(GetFileName(id));
+        private FileInfo GetFile(FileName fileName) {
+            return new FileInfo(Path.Combine(_rootDir.FullName, fileName.FileNameString));
+        }
+
+
+        public void Delete(FileName fileName) {
+            var file = GetFile(fileName);
+            if (file.Exists)
+                file.Delete();            
         }
     }
 }

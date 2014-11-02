@@ -8,27 +8,27 @@ using Model.PersonInformation.Relations;
 namespace Infrastructure.Persistence {
     public class InformationDTOFactory : IInformationVisitor<InformationDTO> {
         public InformationDTO Visit(Birth info) {
-            return new BirthDTO();
+            return BirthDTO.From(info);
         }
 
         public InformationDTO Visit(Death info) {
-            return new DeathDTO();
+            return DeathDTO.From(info);
         }
 
         public InformationDTO Visit(Name info) {
-            return new NameDTO();
+            return NameDTO.From(info);
         }
 
         public InformationDTO Visit(Mother info) {
-            return new MotherDTO();
+            return MotherDTO.From(info);
         }
 
         public InformationDTO Visit(Father info) {
-            return new FatherDTO();
+            return FatherDTO.From(info);
         }
 
         public InformationDTO Visit(Gender info) {
-            return new GenderDTO();
+            return GenderDTO.From(info);
         }
     }
 }

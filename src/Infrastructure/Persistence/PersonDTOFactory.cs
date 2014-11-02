@@ -10,7 +10,7 @@ namespace Infrastructure.Persistence {
 
         public PersonDTO ToDTO(PersonFile person) {
             var information = person.Information.Select(i => i.Accept(_factory)).ToList();
-            return new PersonDTO() {Information = information, Id = person.Id};
+            return new PersonDTO() {Information = information, Id = person.Id.Guid};
         }
     }
 }

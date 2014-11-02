@@ -9,7 +9,7 @@ using Model.PersonInformation;
 using Model.PersonInformation.Events;
 
 namespace Infrastructure.Data {
-    public class GedcomRepository : IPersonRepository {
+    public class GedcomRepository : IRepository {
 
         private readonly GedcomDatabase _gedcomDatabase;
 
@@ -106,6 +106,14 @@ namespace Infrastructure.Data {
  
 
             return people.Values;
+        }
+
+        public void Store(IEnumerable<PersonFile> people) {
+            throw new System.NotImplementedException();
+        }
+
+        public void Remove(IEnumerable<PersonFile> people) {
+            throw new System.NotImplementedException();
         }
 
 

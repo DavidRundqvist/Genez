@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coding\EntityAttribute.cs" />
+    <Compile Include="Coding\Id.cs" />
     <Compile Include="Coding\ValueObjectAttribute.cs" />
     <Compile Include="DependencyInjection\ContainerExtensions.cs" />
     <Compile Include="Enumerable\CollectionBinding.cs" />

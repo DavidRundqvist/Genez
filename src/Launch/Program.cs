@@ -22,7 +22,7 @@ namespace Launch {
         static void Main(string[] args) {
             var c = Container.CreateContainer();
             var app = c.Resolve<Application>();
-            c.Resolve<RegistryPersistence>().Initialize();            
+            c.Resolve<RegistryPersistence>().AttachTo(c.Resolve<PersonRegistry>());            
 #if DEBUG
             //AddTestDatabase(c);
 #endif

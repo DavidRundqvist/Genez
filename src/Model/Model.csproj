@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignPersonRegistry.cs" />
-    <Compile Include="IPersonRepository.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="PersonInformation\IInformationVisitor.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="PersonInformation\Events\Birth.cs" />
