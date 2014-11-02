@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Model.PersonInformation.Relations;
 
 namespace Model.PersonInformation {
     public static class InformationExtensions {

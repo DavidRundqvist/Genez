@@ -1,13 +1,13 @@
 using Common;
 using Common.Coding;
 
-namespace Model.PersonInformation {
+namespace Model.PersonInformation.Relations {
 
     [ValueObject]
-    public class Relation : Information {
+    public abstract class Relation : Information {
         private readonly PersonFile _relative;
 
-        public Relation(PersonFile relative, Source source, Reliability reliability) : base(source, reliability) {
+        protected Relation(PersonFile relative, Source source, Reliability reliability) : base(source, reliability) {
             _relative = relative;
         }
 

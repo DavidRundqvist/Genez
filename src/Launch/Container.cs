@@ -12,7 +12,8 @@ namespace Launch {
             var modules = new IModule[] {
                                             new Launch.Module(), 
                                             new View.Module(),
-                                            new Model.Module()
+                                            new Model.Module(),
+                                            new Infrastructure.Module()
                                         };
 
             foreach (var module in modules) {

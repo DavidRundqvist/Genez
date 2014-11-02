@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Common.Enumerable;
 using Model.PersonInformation;
+using Model.PersonInformation.Relations;
 using QuickGraph;
 using View.Global;
 

@@ -1,6 +1,7 @@
 ﻿using Model;
 using Model.Constraints;
 using Model.PersonInformation;
+using Model.PersonInformation.Relations;
 using NUnit.Framework;
 // ReSharper disable InconsistentNaming
 

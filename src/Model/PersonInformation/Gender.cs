@@ -22,5 +22,7 @@ namespace Model.PersonInformation {
         public override Maybe<string> Value {
             get { return Sex.ToString(); }
         }
+
+        public override T Accept<T>(IInformationVisitor<T> visitor) {return visitor.Visit(this);}
     }
 }

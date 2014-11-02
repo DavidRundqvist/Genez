@@ -57,7 +57,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\GedcomRepository.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="IO\FileSystem.cs" />
+    <Compile Include="IO\IFileSystem.cs" />
+    <Compile Include="Persistence\InformationDTOFactory.cs" />
+    <Compile Include="Persistence\ISerializer.cs" />
+    <Compile Include="Persistence\PersonDTOFactory.cs" />
+    <Compile Include="Persistence\RegistryPersistence.cs" />
+    <Compile Include="Persistence\XmlSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Persistence\Information\Events\BirthDTO.cs" />
+    <Compile Include="Persistence\Information\Events\DeathDTO.cs" />
+    <Compile Include="Persistence\Information\Events\EventDTO.cs" />
+    <Compile Include="Persistence\Information\Relations\FatherDTO.cs" />
+    <Compile Include="Persistence\Information\GenderDTO.cs" />
+    <Compile Include="Persistence\Information\InformationDTO.cs" />
+    <Compile Include="Persistence\Information\Relations\MotherDTO.cs" />
+    <Compile Include="Persistence\Information\NameDTO.cs" />
+    <Compile Include="Persistence\PersonDTO.cs" />
+    <Compile Include="Persistence\Information\Relations\RelationDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

@@ -75,6 +75,9 @@
     <Compile Include="BDD\UncertaintyBehaviors.cs" />
     <Compile Include="Common\EventCollectionTest.cs" />
     <Compile Include="Infrastructure\Data\GedcomRepositoryTest.cs" />
+    <Compile Include="Infrastructure\Persistence\PersonDTOFactoryTest.cs" />
+    <Compile Include="Infrastructure\Persistence\PersonDTOTest.cs" />
+    <Compile Include="Infrastructure\Persistence\RegistryPersistenceTest.cs" />
     <Compile Include="Launch\ContainerTest.cs" />
     <Compile Include="Model\Coding\HashSetTest.cs" />
     <Compile Include="Model\Constraints\ParentGenderConstraintTest.cs" />

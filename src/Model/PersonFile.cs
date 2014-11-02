@@ -6,6 +6,7 @@ using Common.Coding;
 using Common.Enumerable;
 using Model.PersonInformation;
 using Model.PersonInformation.Events;
+using Model.PersonInformation.Relations;
 
 
 namespace Model {
@@ -18,21 +19,32 @@ namespace Model {
         /// <summary>
         /// The ID of the person
         /// </summary>
-        private Guid _id;
+        private readonly Guid _id;
 
         /// <summary>
         /// The information about a person
         /// </summary>
-        private readonly ISet<Information> _information = new HashSet<Information>();
+        private readonly EventCollection<Information> _information = new EventCollection<Information>();
 
+        /// <summary>
+        /// Person changed event
+        /// </summary>
+        public event EventHandler Changed;
 
         /// <summary>
         /// Ctor
         /// </summary>
         public PersonFile(Guid id) {
             _id = id;
+            _information.CollectionChanged += (s, e) => OnChanged();
         }
         public PersonFile() : this(Guid.NewGuid()) {}
+
+        protected virtual void OnChanged() {
+            var handler = Changed;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
 
         #region Properties
         public IEnumerable<Information> Information {
@@ -129,6 +141,13 @@ namespace Model {
         }
 
         public bool IsDead { get { return Facts.OfType<Death>().Any(); } }
+
+        /// <summary>
+        /// The ID of the person
+        /// </summary>
+        public Guid Id {
+            get { return _id; }
+        }
 
         public IEnumerable<PersonFile> GetParents() {
             return Fathers.Concat(Mothers);

@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using Common.DependencyInjection;
 using Common.Enumerable;
 using Infrastructure.Data;
+using Infrastructure.Persistence;
 using Microsoft.Practices.Unity;
 using Model;
 using View;
@@ -21,9 +22,9 @@ namespace Launch {
         static void Main(string[] args) {
             var c = Container.CreateContainer();
             var app = c.Resolve<Application>();
-
+            c.Resolve<RegistryPersistence>().Initialize();            
 #if DEBUG
-            AddTestDatabase(c);
+            //AddTestDatabase(c);
 #endif
             app.Run(app.MainWindow);
         }

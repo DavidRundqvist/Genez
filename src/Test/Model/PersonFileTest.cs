@@ -1,5 +1,6 @@
 ﻿using Model;
 using Model.PersonInformation;
+using Model.PersonInformation.Relations;
 // ReSharper disable InconsistentNaming
 using System;
 using System.Collections.Generic;

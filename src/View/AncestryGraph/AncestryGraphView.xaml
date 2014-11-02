@@ -56,7 +56,7 @@
                             <Path Stroke="Black" StrokeThickness="2" x:Name="PART_edgeArrowPath"/>                            
                         </Grid>                        
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Reliable.Value}" Value="True">
+                            <DataTrigger Binding="{Binding Reliable.Value}" Value="False">
                                 <Setter TargetName="PART_edgePath" Property="StrokeThickness" Value="1"></Setter>
                             </DataTrigger>
                         </ControlTemplate.Triggers>

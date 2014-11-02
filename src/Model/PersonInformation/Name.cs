@@ -21,5 +21,9 @@ namespace Model.PersonInformation
         public override Maybe<string> Value {
             get { return _name.ToString(); }
         }
+
+        public override T Accept<T>(IInformationVisitor<T> visitor) {
+            return visitor.Visit(this);
+        }
     }
 }

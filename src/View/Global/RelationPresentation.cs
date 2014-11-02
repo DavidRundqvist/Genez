@@ -7,6 +7,7 @@ using Common.WPF.Presentation;
 using GraphX;
 using Model;
 using Model.PersonInformation;
+using Model.PersonInformation.Relations;
 
 namespace View.Global {
     public class RelationPresentation : EdgeBase<PersonPresentation> {

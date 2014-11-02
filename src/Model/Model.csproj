@@ -47,14 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DesignPersonRegistry.cs" />
     <Compile Include="IPersonRepository.cs" />
+    <Compile Include="PersonInformation\IInformationVisitor.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="PersonInformation\Events\Birth.cs" />
     <Compile Include="PersonInformation\Events\Death.cs" />
-    <Compile Include="PersonInformation\Father.cs" />
+    <Compile Include="PersonInformation\Relations\Father.cs" />
     <Compile Include="PersonInformation\Gender.cs" />
     <Compile Include="PersonInformation\Events\Event.cs" />
-    <Compile Include="PersonInformation\Relation.cs" />
+    <Compile Include="PersonInformation\Relations\Relation.cs" />
     <Compile Include="PersonInformation\InformationExtensions.cs" />
     <Compile Include="Constraints\ConstraintResult.cs" />
     <Compile Include="Constraints\FatherConstraint.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="PersonInformation\Information.cs" />
     <Compile Include="Exceptions\FamilyConstraintException.cs" />
     <Compile Include="Constraints\SingularRelativeConstraint.cs" />
-    <Compile Include="PersonInformation\Mother.cs" />
+    <Compile Include="PersonInformation\Relations\Mother.cs" />
     <Compile Include="Place.cs" />
     <Compile Include="PersonInformation\Name.cs" />
     <Compile Include="PersonFile.cs" />

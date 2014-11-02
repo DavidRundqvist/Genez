@@ -22,6 +22,8 @@ namespace Model.PersonInformation {
         public abstract Maybe<string> Value { get; }
 
         //public abstract bool Equals(Information other);
+
+        public abstract T Accept<T>(IInformationVisitor<T> visitor);
     }
 
 
