@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Common;
+using Common.Coding;
 using Model.PersonInformation;
 using Model.PersonInformation.Events;
 using Model.PersonInformation.Relations;
@@ -20,15 +22,15 @@ namespace Model {
         private IEnumerable<PersonFile> CreateDesignPeople() {
             var source = new Source();
 
-            var tyrion = CreatePerson("", "Tyrion", "Lannister", "the Imp");            
-            var jaime = CreatePerson("Ser", "Jaime", "Lannister", "the Kingslayer");            
-            var cersei = CreatePerson("Queen", "Cersei", "Lannister");            
-            var tywin = CreatePerson("Lord", "Tywin", "Lannister");            
-            var joanna = CreatePerson("Lady", "Joanna", "Lannister");
-            var robert = CreatePerson("King", "Robert", "Baratheon");
-            var joffrey = CreatePerson("Prince", "Joffrey", "Baratheon");
-            var tommen = CreatePerson("Prince", "Tommen", "Baratheon");
-            var myrcella = CreatePerson("Princess", "Myrcella", "Baratheon");
+            var tyrion = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A1"), "", "Tyrion", "Lannister", "the Imp");            
+            var jaime = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A2"), "Ser", "Jaime", "Lannister", nick: "the Kingslayer");            
+            var cersei = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A3"), "Queen", "Cersei", "Lannister");            
+            var tywin = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A4"), "Lord", "Tywin", "Lannister");            
+            var joanna = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A5"), "Lady", "Joanna", "Lannister");
+            var robert = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A6"), "King", "Robert", "Baratheon");
+            var joffrey = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A7"), "Prince", "Joffrey", "Baratheon");
+            var tommen = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A8"), "Prince", "Tommen", "Baratheon");
+            var myrcella = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A9"), "Princess", "Myrcella", "Baratheon");
 
             AddName(joffrey, source, "King", "Joffrey", "Baratheon", "");
 
@@ -68,8 +70,8 @@ namespace Model {
             return new[] {tyrion, jaime, cersei, tywin, joanna, robert, joffrey, tommen, myrcella};
         }
 
-        private PersonFile CreatePerson(string rank, string firstName, string lastName, string nick = "") {
-            var result = new PersonFile();
+        private PersonFile CreatePerson(Guid personId, string rank, string firstName, string lastName, string nick = "") {
+            var result = new PersonFile(new Id<PersonFile>(personId));
             var source = new Source();
             AddName(result, source, rank, firstName, lastName, nick);
             return result;

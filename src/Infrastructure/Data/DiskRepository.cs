@@ -61,7 +61,10 @@ namespace Infrastructure.Data {
             }
         }
 
-        private PersonRegistryDTO LoadRegistry() {
+        private PersonRegistryDTO LoadRegistry() {            
+            if (!_fileSystem.DoesFileExist(_registryFileName))
+                return new PersonRegistryDTO();
+
             using (var stream = _fileSystem.OpenReadStream(_registryFileName)) {
                 return (PersonRegistryDTO) _registrySerializer.Deserialize(stream);
             }            

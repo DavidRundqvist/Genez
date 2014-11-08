@@ -11,6 +11,10 @@ namespace Infrastructure.IO {
         }
 
 
+        public bool DoesFileExist(FileName fileName) {
+            return GetFile(fileName).Exists;
+        }
+
         public Stream OpenWriteStream(FileName fileName) {
             var file = GetFileAndCreateFolder(fileName);
             return file.OpenWrite();
