@@ -35,5 +35,9 @@ namespace Common.WPF.Presentation {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public override string ToString() {
+            return Value != null ? Value.ToString() : "Empty";
+        }
     }
 }

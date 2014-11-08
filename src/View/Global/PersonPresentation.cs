@@ -17,19 +17,25 @@ namespace View.Global {
         private readonly PersonFile _person;
         private readonly Property<bool> _isSelected = new Property<bool>(false);
         private readonly Property<bool> _showInGraph = new Property<bool>(false);
+        private readonly Property<PersonNamePresentation> _name;
         private readonly IEnumerable<InformationPresentation> _additionalInformation;
 
         public PersonPresentation(PersonFile person) {
             _person = person;
+            _name = new Property<PersonNamePresentation>(GetName(person));
             _additionalInformation = person.Information.Select(i => new InformationPresentation(i));
         }
 
-        public string FirstName {get { return Person.ReliableName.Convert(name => name.Given).GetValueOrDefault("Unknown"); }}
-        public string FamilyName {get { return Person.ReliableName.Convert(name => name.Family).GetValueOrDefault("Unknown"); }}
+        private PersonNamePresentation GetName(PersonFile person) {
+            return new PersonNamePresentation(person);
+        }
+
+        public string FirstName {get { return Person.MainName.Convert(name => name.TheName.Given).GetValueOrDefault("Unknown"); }}
+        public string FamilyName {get { return Person.MainName.Convert(name => name.TheName.Family).GetValueOrDefault("Unknown"); }}
         public PersonFile Person {get { return _person; }}
-        public override string ToString() {return Name;}
+        public override string ToString() {return Name.Value.ToString();}
         public Property<bool> IsSelected { get { return _isSelected; } }
-        public string Name { get { return _person.ToString(); } }
+        public Property<PersonNamePresentation> Name { get { return _name; } }
         public string BirthDate { get { return _person.BirthDate.GetValueOrDefault("?"); }}
         public string LifeTime { get { return string.Format("{0} - {1}", BirthDate, DeathDate); } }
         public Property<bool> ShowInGraph { get { return _showInGraph; } }

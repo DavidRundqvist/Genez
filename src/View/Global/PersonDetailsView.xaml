@@ -23,10 +23,12 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition SharedSizeGroup="ColumnOne" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition SharedSizeGroup="ColumnTwo"  />
+                            <ColumnDefinition SharedSizeGroup="ColumnThree" />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Header.Value}"/>
                         <Label Content="{Binding Value.Value}" Grid.Column="1"/>
+                        <Label Content="{Binding Reliable.Value}" Grid.Column="2"/>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

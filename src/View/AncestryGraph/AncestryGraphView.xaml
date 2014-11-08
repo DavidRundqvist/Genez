@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:GraphX.Controls;assembly=GraphX.Controls"
              xmlns:ancestryGraph="clr-namespace:View.AncestryGraph"
              xmlns:gxl="clr-namespace:GraphX;assembly=GraphX.Controls"
              xmlns:global="clr-namespace:View.Global"
              mc:Ignorable="d" 
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:controls="clr-namespace:GraphX.Controls;assembly=GraphX.Controls"
              d:DesignHeight="400" d:DesignWidth="600">  
     <UserControl.Resources>
 
@@ -48,6 +48,7 @@
 
         <!-- EDGE CONTROL -->
         <Style TargetType="{x:Type gxl:EdgeControl}">
+            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type gxl:EdgeControl}">
@@ -56,9 +57,9 @@
                             <Path Stroke="Black" StrokeThickness="2" x:Name="PART_edgeArrowPath"/>                            
                         </Grid>                        
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Reliable.Value}" Value="False">
-                                <Setter TargetName="PART_edgePath" Property="StrokeThickness" Value="1"></Setter>
-                            </DataTrigger>
+                          <DataTrigger Binding="{Binding Reliable.Value}" Value="False">
+                              <Setter Property="DashStyle" Value ="Dash"></Setter>
+                          </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -67,10 +68,7 @@
 
             <Setter Property="ToolTip">
                 <Setter.Value>
-                        <StackPanel Orientation="Vertical" Margin="2">
-                            <TextBlock FontWeight="Bold" Text="Solid link: " Margin="3"/>
-                            <TextBlock FontWeight="Bold" Foreground="LightGreen" Text="Hej" Margin="3"/>
-                        </StackPanel>
+                    <ancestryGraph:RelationDetailsView></ancestryGraph:RelationDetailsView>
                 </Setter.Value>
             </Setter>
         </Style>

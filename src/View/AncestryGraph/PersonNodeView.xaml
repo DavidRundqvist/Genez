@@ -18,7 +18,7 @@
         </Border.Style>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="5">       
-                <TextBlock Text="{Binding Name}" Margin="0"/>
+                <TextBlock Text="{Binding Name.Value}" Margin="0"/>
                 <TextBlock Text="{Binding LifeTime}" Margin="10,0,0,0"/>
             </StackPanel>
 			<Viewbox Height="30" Margin="3" x:Name="DeathBox" Visibility="{Binding DeathMarkVisibility}">

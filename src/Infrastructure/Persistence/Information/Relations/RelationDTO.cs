@@ -6,7 +6,7 @@ using Model;
 namespace Infrastructure.Persistence.Information.Relations {
     [XmlInclude(typeof (MotherDTO))]
     [XmlInclude(typeof (FatherDTO))]
-    public class RelationDTO : InformationDTO {
+    public abstract class RelationDTO : InformationDTO {
         public Guid Relative;
     }
 

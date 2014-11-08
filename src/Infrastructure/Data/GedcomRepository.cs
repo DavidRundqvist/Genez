@@ -78,8 +78,9 @@ namespace Infrastructure.Data {
         private IEnumerable<NameComponent> GetNames(GedcomName gedcomName) {
             if (IsOk(gedcomName.Given))   yield return new NameComponent(gedcomName.Given, NameType.Given);
             if (IsOk(gedcomName.Surname)) yield return new NameComponent(gedcomName.Surname, NameType.Family);
-            if (IsOk(gedcomName.Prefix))  yield return new NameComponent(gedcomName.Given, NameType.Title);
-            if (IsOk(gedcomName.Nick))    yield return new NameComponent(gedcomName.Given, NameType.Primary);            
+            if (IsOk(gedcomName.Prefix))  yield return new NameComponent(gedcomName.Prefix, NameType.Rank);
+            if (IsOk(gedcomName.Nick))    yield return new NameComponent(gedcomName.Nick, NameType.Nick);            
+            if (IsOk(gedcomName.Suffix))  yield return new NameComponent(gedcomName.Nick, NameType.Title);            
         }
 
         private static bool IsOk(string text) {
@@ -108,11 +109,15 @@ namespace Infrastructure.Data {
             return people.Values;
         }
 
-        public void Store(IEnumerable<PersonFile> people) {
+        public void Add(IEnumerable<PersonFile> people) {
             throw new System.NotImplementedException();
         }
 
         public void Remove(IEnumerable<PersonFile> people) {
+            throw new System.NotImplementedException();
+        }
+
+        public void Update(IEnumerable<PersonFile> people) {
             throw new System.NotImplementedException();
         }
 

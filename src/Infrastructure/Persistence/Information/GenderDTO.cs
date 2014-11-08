@@ -7,5 +7,9 @@ namespace Infrastructure.Persistence.Information {
         public static GenderDTO From(Gender info) {
             return new GenderDTO() {Sex = info.Sex};
         }
+
+        public override T Accept<T>(IDTOVisitor<T> visitor) {
+            return visitor.Visit(this);
+        }
     }
 }

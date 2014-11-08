@@ -19,11 +19,10 @@ namespace Model.PersonInformation {
         public Source AccordingTo {get { return _source; }}
         public Reliability Reliability {get { return _reliability; }}
         virtual public Type InformationType {get { return this.GetType(); }}
-        public abstract Maybe<string> Value { get; }
-
-        //public abstract bool Equals(Information other);
+        public abstract Maybe<string> Value { get; }        
 
         public abstract T Accept<T>(IInformationVisitor<T> visitor);
+        public bool IsReliable { get { return _reliability == Reliability.Reliable; } }
     }
 
 

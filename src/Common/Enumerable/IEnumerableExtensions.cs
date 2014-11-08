@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 
 namespace Common.Enumerable
 {
@@ -26,8 +25,13 @@ namespace Common.Enumerable
         }
 
         public static string Join(this IEnumerable<string> self) {
-            return string.Join(" ", self);
+            return self.Join(" ");
         }
+
+        public static string Join(this IEnumerable<string> self, string separator) {
+            return string.Join(separator, self);
+        }
+
 
         public static void AddRange<T>(this ICollection<T> self, IEnumerable<T> items) {
             foreach (var item in items) {

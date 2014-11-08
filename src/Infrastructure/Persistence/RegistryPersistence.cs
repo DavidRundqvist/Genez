@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Common;
 using Common.Coding;
 using Common.Enumerable;
 using Infrastructure.IO;
@@ -23,7 +24,7 @@ namespace Infrastructure.Persistence {
         }
 
         private void Add(PersonFile[] personFiles) {
-            _repository.Store(personFiles);
+            _repository.Add(personFiles);
             personFiles.ForEach(p => p.Changed += PersonFileChanged);
         }
 
@@ -34,7 +35,7 @@ namespace Infrastructure.Persistence {
 
         private void PersonFileChanged(object sender, EventArgs eventArgs) {
             var p = sender as PersonFile;
-            _repository.Store(new[]{p});
+            _repository.Update(new[]{p});
         }
 
     }

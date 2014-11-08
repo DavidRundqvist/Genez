@@ -16,6 +16,11 @@ namespace Infrastructure.IO {
             return file.OpenWrite();
         }
 
+        public Stream OpenReadStream(FileName fileName) {
+            var file = GetFile(fileName);
+            return file.OpenRead();
+        }
+
         private FileInfo GetFileAndCreateFolder(FileName fileName) {
             var result = GetFile(fileName);
             var dir = result.Directory;

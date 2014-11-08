@@ -63,8 +63,11 @@
     <Compile Include="Data\DiskRepository.cs" />
     <Compile Include="Persistence\FileName.cs" />
     <Compile Include="Persistence\InformationDTOFactory.cs" />
+    <Compile Include="Persistence\Information\IDTOVisitor.cs" />
+    <Compile Include="Persistence\Information\InformationFactory.cs" />
     <Compile Include="Persistence\PersonDTOFactory.cs" />
     <Compile Include="Persistence\PersonDTOReference.cs" />
+    <Compile Include="Persistence\PersonFactory.cs" />
     <Compile Include="Persistence\PersonRegistryDTO.cs" />
     <Compile Include="Persistence\RegistryPersistence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

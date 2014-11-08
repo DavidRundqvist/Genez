@@ -103,20 +103,20 @@ namespace Model {
             }
         }
 
-        public IEnumerable<PersonName> ReliableNames {
-            get { return Facts.OfType<Name>().Select(n => n.TheName); }
+        public IEnumerable<Name> Names {
+            get { return Information.OfType<Name>().OrderBy(n => n.IsReliable); }
         }
 
-        public Maybe<PersonName> ReliableName {
+        public Maybe<Name> MainName {
             get {
-                return ReliableNames.Count() == 1 
-                    ? Maybe.From(ReliableNames.First()) 
+                return Names.Any() 
+                    ? Maybe.From(Names.First()) 
                     : Maybe.Empty;
             }
         }
 
         public override string ToString() {
-            return ReliableName.Convert(name => name.ToString()).GetValueOrDefault("Unknown name");
+            return MainName.Convert(name => name.ToString()).GetValueOrDefault("Unknown name");
         }
 
         public IEnumerable<PersonFile> GetAncestors(int numberOfGenerations) {

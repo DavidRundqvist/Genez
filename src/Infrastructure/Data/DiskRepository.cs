@@ -11,15 +11,16 @@ namespace Infrastructure.Data {
 
         private readonly IFileSystem _fileSystem;
         private readonly PersonDTOFactory _personDtoFactory;
+        private readonly PersonFactory _personFactory;
 
         private readonly FileName _registryFileName;
-        private readonly PersonRegistryDTO _personRegistryDto = new PersonRegistryDTO();
         private readonly XmlSerializer _personSerializer;
         private readonly XmlSerializer _registrySerializer;
 
-        public DiskRepository(IFileSystem fileSystem, PersonDTOFactory personDtoFactory) {
+        public DiskRepository(IFileSystem fileSystem, PersonDTOFactory personDtoFactory, PersonFactory personFactory) {
             _fileSystem = fileSystem;
             _personDtoFactory = personDtoFactory;
+            _personFactory = personFactory;
             _registryFileName = new FileName("PeopleRegistry.xml");
 
             _personSerializer = new XmlSerializer(typeof (PersonDTO));
@@ -28,54 +29,61 @@ namespace Infrastructure.Data {
 
 
         public IEnumerable<PersonFile> GetAllPeople() {
-            return Enumerable.Empty<PersonFile>();
+            var registry = LoadRegistry();
+            var personDtos = LoadPeople(registry.People);
+            return _personFactory.From(personDtos);
         }
 
-        public void Store(IEnumerable<PersonFile> people) {
-            var saveRegistry = false;
+        private IEnumerable<PersonDTO> LoadPeople(IEnumerable<PersonDTOReference> people) {
+            foreach (var dtoReference in people) {
+                var fileName = GetFileName(new Id<PersonFile>(dtoReference.Id));
+                using (var stream = _fileSystem.OpenReadStream(fileName)) {
+                    var dto = (PersonDTO) _personSerializer.Deserialize(stream);
+                    yield return dto;
+                }
+            }
+        }
+
+        public void Add(IEnumerable<PersonFile> people) {
+            var registry = LoadRegistry();
             foreach (var personFile in people) {
                 var dto = _personDtoFactory.ToDTO(personFile);
                 var fileName = GetFileName(personFile.Id);
                 Persist(dto, fileName);
-                saveRegistry |= AddToRegistry(personFile, fileName);
+                registry.Add(new PersonDTOReference{FileName = fileName, Id = dto.Id});
             }
-            if (saveRegistry) {
-                PersistRegistry();
-            }
+            Persist(registry);
         }
 
-        private void PersistRegistry() {
+        private void Persist(PersonRegistryDTO personRegistryDto) {
             using (var stream = _fileSystem.OpenWriteStream(_registryFileName)) {
-                _registrySerializer.Serialize(stream, _personRegistryDto);
+                _registrySerializer.Serialize(stream, personRegistryDto);
             }
         }
 
-        private bool AddToRegistry(PersonFile personFile, FileName fileName) {
-            if (!_personRegistryDto.Contains(personFile.Id)) {
-                _personRegistryDto.Add(new PersonDTOReference(){FileName = fileName, Id = personFile.Id.Guid});
-                return true;
-            }
-            return false;
-        }
-
-        public void Remove(IEnumerable<PersonFile> people) {
-            var saveRegistry = false;
-            foreach (var personFile in people) {
-                var fileName = GetFileName(personFile.Id);
-                _fileSystem.Delete(fileName);
-                saveRegistry |= RemoveFromRegistry(personFile);
-            }
-            if (saveRegistry) {
-                PersistRegistry();
+        private PersonRegistryDTO LoadRegistry() {
+            using (var stream = _fileSystem.OpenReadStream(_registryFileName)) {
+                return (PersonRegistryDTO) _registrySerializer.Deserialize(stream);
             }            
         }
 
-        private bool RemoveFromRegistry(PersonFile personFile) {
-            if (_personRegistryDto.Contains(personFile.Id)) {
-                _personRegistryDto.Remove(personFile.Id);
-                return true;
+
+        public void Remove(IEnumerable<PersonFile> people) {
+            var registry = LoadRegistry();
+            foreach (var personFile in people) {
+                var fileName = GetFileName(personFile.Id);
+                _fileSystem.Delete(fileName);
+                registry.Remove(personFile.Id);
             }
-            return false;            
+            Persist(registry);          
+        }
+
+        public void Update(IEnumerable<PersonFile> people) {           
+            foreach (var personFile in people) {
+                var dto = _personDtoFactory.ToDTO(personFile);
+                var fileName = GetFileName(personFile.Id);
+                Persist(dto, fileName);                
+            }            
         }
 
 

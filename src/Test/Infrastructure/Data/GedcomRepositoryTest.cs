@@ -21,7 +21,7 @@ namespace Test.Infrastructure.Data {
             var result = sut.GetAllPeople();
 
             // assert
-            var david = result.FirstOrDefault(p => p.ReliableNames.Any(name => name.ToString() == "David Rundqvist"));
+            var david = result.FirstOrDefault(p => p.Names.Any(name => name.ToString() == "David Rundqvist"));
             Assert.IsNotNull(david);
         }
     }

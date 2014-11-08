@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Linq.Expressions;
 using Model;
+using Model.PersonInformation.Relations;
 
 namespace View.Global {
     public class DesignPersonPresentation : PersonPresentation{
-        public DesignPersonPresentation() : base(new DesignPersonRegistry().First()) {}
+        public DesignPersonPresentation() : base(DesignPersonRegistry.TheOne.FirstPerson) {}
     }
 }

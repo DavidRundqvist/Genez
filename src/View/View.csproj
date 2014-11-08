@@ -80,12 +80,18 @@
       <DependentUpon>PersonNodeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="AncestryGraph\ChildGenerations.cs" />
+    <Compile Include="AncestryGraph\RelationDetailsView.xaml.cs">
+      <DependentUpon>RelationDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global\AllPeople.cs" />
     <Compile Include="Global\DesignPersonPresentation.cs" />
+    <Compile Include="Global\DesignRelationPresentation.cs" />
     <Compile Include="Global\InformationPresentation.cs" />
+    <Compile Include="Global\NamePresentation.cs" />
     <Compile Include="Global\PersonDetailsView.xaml.cs">
       <DependentUpon>PersonDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Global\PersonNamePresentation.cs" />
     <Compile Include="Global\RelationPresentation.cs" />
     <Compile Include="MainWindow\DesignMainWindowPresentation.cs" />
     <Compile Include="AncestryGraph\AncestryGraphArea.cs" />
@@ -135,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AncestryGraph\PersonNodeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AncestryGraph\RelationDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,19 +11,26 @@ namespace Model {
     public class PersonName {
         private readonly ReadOnlyCollection<NameComponent> _components;
         public PersonName(IEnumerable<NameComponent> components) {
-            _components = components.ToList().AsReadOnly();
+            _components = components.Where(s => !string.IsNullOrEmpty(s.Text)).ToList().AsReadOnly();
         }
 
-        public ReadOnlyCollection<NameComponent> Components {
-            get { return _components; }
+        public IOrderedEnumerable<NameComponent> Components {
+            get { return _components.OrderBy(c => c.Type); }
         }
 
         public override string ToString() {
-            return Components.OrderBy(c => c.Type).Select(c => c.Text).ToArray().Join();
+            return Components.Select(c => c.Text).ToArray().Join();
         }
 
-        public Maybe<string> Given {get { return _components.FirstMaybe(c => c.Type == NameType.Given).Convert(c => c.Text); }}
-        public Maybe<string> Family {get { return _components.FirstMaybe(c => c.Type == NameType.Family).Convert(c => c.Text); }}
+        public Maybe<string> Rank {get { return GetName(NameType.Rank); }}
+        public Maybe<string> Given {get { return GetName(NameType.Given); }}
+        public Maybe<string> Family {get { return GetName(NameType.Family); }}
+        public Maybe<string> Nick {get { return GetName(NameType.Nick); }}
+        public Maybe<string> Title {get { return GetName(NameType.Title); }}
+        
+
+        public Maybe<string> GetName(NameType nameType) {return _components.FirstMaybe(c => c.Type == nameType).Convert(c => c.Text);}
+
     }
 
     [ValueObject]
@@ -41,12 +48,11 @@ namespace Model {
     }
 
     public enum NameType {
-        Rank,   // King
-        Given,   // William
-        Middle,
-        Family,  // Normandy
-        Primary,                
-        Title, // I of England
+        Rank,   // Ser
+        Given,   // Jaime
+        Family,  // Lannister
+        Nick, // The Kingslayer
+        Title, // Heir to Casterly Rock        
     }
 
 }
