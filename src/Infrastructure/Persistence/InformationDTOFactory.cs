@@ -30,5 +30,9 @@ namespace Infrastructure.Persistence {
         public InformationDTO Visit(Gender info) {
             return GenderDTO.From(info);
         }
+
+        public InformationDTO Visit(Portrait info) {
+            return PortraitDTO.From(info);
+        }
     }
 }

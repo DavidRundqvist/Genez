@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Common;
 using Infrastructure.Persistence;
 
 namespace Infrastructure.IO {

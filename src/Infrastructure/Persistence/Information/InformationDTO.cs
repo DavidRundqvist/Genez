@@ -8,6 +8,7 @@ namespace Infrastructure.Persistence.Information {
     [XmlInclude(typeof (GenderDTO))]
     [XmlInclude(typeof (NameDTO))]
     [XmlInclude(typeof (RelationDTO))]
+    [XmlInclude(typeof (PortraitDTO))]
     public abstract class InformationDTO {
         public abstract T Accept<T>(IDTOVisitor<T> visitor);
     }

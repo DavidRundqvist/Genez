@@ -60,5 +60,10 @@ namespace Infrastructure.Persistence.Information {
         public Model.PersonInformation.Information Visit(NameDTO dto) {
             return new Name(PersonNameDTO.From(dto.Name), new Source());
         }
+
+        public Model.PersonInformation.Information Visit(PortraitDTO dto) {
+            return new Portrait(new FileName(dto.FileName), new Source());
+
+        }
     }
 }

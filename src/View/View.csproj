@@ -92,7 +92,9 @@
       <DependentUpon>PersonDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Global\PersonNamePresentation.cs" />
+    <Compile Include="Global\PersonPresentationFactory.cs" />
     <Compile Include="Global\RelationPresentation.cs" />
+    <Compile Include="WPFImageFactory.cs" />
     <Compile Include="MainWindow\DesignMainWindowPresentation.cs" />
     <Compile Include="AncestryGraph\AncestryGraphArea.cs" />
     <Compile Include="AncestryGraph\AncestryGraphPresentation.cs" />
@@ -165,6 +167,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{B0CE43FC-F6DB-46D6-95F2-B09A9EEDB245}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{D0DB9A35-ECDA-4B66-9A1E-87DEF2747414}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{CE08B7A7-69F3-496A-884D-6566C471D356}</Project>

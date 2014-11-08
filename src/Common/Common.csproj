@@ -58,6 +58,7 @@
     <Compile Include="Enumerable\IEnumerableExtensions.cs" />
     <Compile Include="DependencyInjection\IModule.cs" />
     <Compile Include="Enumerable\IEventCollection.cs" />
+    <Compile Include="FileName.cs" />
     <Compile Include="Maybe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WPF\Presentation\DelegatingProperty.cs" />

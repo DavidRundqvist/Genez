@@ -48,11 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignPersonRegistry.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="PersonInformation\IInformationVisitor.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="PersonInformation\Events\Birth.cs" />
     <Compile Include="PersonInformation\Events\Death.cs" />
+    <Compile Include="PersonInformation\Portrait.cs" />
     <Compile Include="PersonInformation\Relations\Father.cs" />
     <Compile Include="PersonInformation\Gender.cs" />
     <Compile Include="PersonInformation\Events\Event.cs" />

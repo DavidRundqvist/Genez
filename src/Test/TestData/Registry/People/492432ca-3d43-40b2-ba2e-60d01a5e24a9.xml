@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<PersonDTO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>492432ca-3d43-40b2-ba2e-60d01a5e24a9</Id>
+  <Information>
+    <InformationDTO xsi:type="NameDTO">
+      <Name>
+        <Components>
+          <NameComponentDTO>
+            <Text>Princess</Text>
+            <Type>Rank</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Myrcella</Text>
+            <Type>Given</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Baratheon</Text>
+            <Type>Family</Type>
+          </NameComponentDTO>
+        </Components>
+      </Name>
+    </InformationDTO>
+    <InformationDTO xsi:type="MotherDTO">
+      <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a3</Relative>
+    </InformationDTO>
+    <InformationDTO xsi:type="GenderDTO">
+      <Sex>Female</Sex>
+    </InformationDTO>
+    <InformationDTO xsi:type="FatherDTO">
+      <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a6</Relative>
+    </InformationDTO>
+    <InformationDTO xsi:type="FatherDTO">
+      <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a2</Relative>
+    </InformationDTO>
+  </Information>
+</PersonDTO>

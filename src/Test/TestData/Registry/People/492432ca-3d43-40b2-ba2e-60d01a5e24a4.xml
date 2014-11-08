@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<PersonDTO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>492432ca-3d43-40b2-ba2e-60d01a5e24a4</Id>
+  <Information>
+    <InformationDTO xsi:type="NameDTO">
+      <Name>
+        <Components>
+          <NameComponentDTO>
+            <Text>Lord</Text>
+            <Type>Rank</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Tywin</Text>
+            <Type>Given</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Lannister</Text>
+            <Type>Family</Type>
+          </NameComponentDTO>
+        </Components>
+      </Name>
+    </InformationDTO>
+    <InformationDTO xsi:type="GenderDTO">
+      <Sex>Male</Sex>
+    </InformationDTO>
+    <InformationDTO xsi:type="BirthDTO">
+      <Date>242AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="DeathDTO">
+      <Date>300AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="PortraitDTO">
+      <FileName>Images\Tywin.jpg</FileName>
+    </InformationDTO>
+  </Information>
+</PersonDTO>

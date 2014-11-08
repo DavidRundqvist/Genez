@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using Common;
 using Common.Coding;
 using Model.PersonInformation;
@@ -20,6 +22,8 @@ namespace Model {
         }
 
         private IEnumerable<PersonFile> CreateDesignPeople() {
+
+            // some information taken from: http://awoiaf.westeros.org/
             var source = new Source();
 
             var tyrion = CreatePerson(new Guid("492432CA-3D43-40B2-BA2E-60D01A5E24A1"), "", "Tyrion", "Lannister", "the Imp");            
@@ -62,10 +66,20 @@ namespace Model {
             tommen.Add(new Gender(GenderType.Male, source));
             myrcella.Add(new Gender(GenderType.Female, source));
 
-            tywin.Add(new Death(Maybe.From("Last book"), source));
-            joanna.Add(new Death(Maybe.From("Before book 1"), source));
-            robert.Add(new Death(Maybe.From("Book 1"), source));
-            joffrey.Add(new Death(Maybe.From("Book 5"), source));
+            tyrion.Add(new Birth(Maybe.From("272AC"), source, Reliability.Unreliable));
+            tyrion.Add(new Birth(Maybe.From("273AC"), source, Reliability.Unreliable));
+            tywin.Add(new Birth(Maybe.From("242AC"), source));
+            tywin.Add(new Death(Maybe.From("300AC"), source));
+            joanna.Add(new Death(Maybe.From("274AC"), source, Reliability.Unreliable));
+            robert.Add(new Death(Maybe.From("298AC"), source));
+            
+            joffrey.Add(new Birth(Maybe.From("286AC"), source));
+            joffrey.Add(new Death(Maybe.From("300AC"), source));
+
+            tyrion.AddPortrait(new FileName(@"Images\tyrion.jpg"), source);
+            cersei.AddPortrait(new FileName(@"Images\Cersei.jpg"), source);
+            tywin.AddPortrait(new FileName(@"Images\Tywin.jpg"), source);
+            robert.AddPortrait(new FileName(@"Images\robert.jpg"), source);
 
             return new[] {tyrion, jaime, cersei, tywin, joanna, robert, joffrey, tommen, myrcella};
         }

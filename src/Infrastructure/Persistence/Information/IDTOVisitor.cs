@@ -9,5 +9,6 @@ namespace Infrastructure.Persistence.Information {
         T Visit(DeathDTO dto) ;
         T Visit(BirthDTO dto) ;
         T Visit(NameDTO dto) ;
+        T Visit(PortraitDTO dto);
     }
 }

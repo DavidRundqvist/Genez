@@ -5,14 +5,18 @@ namespace Model.PersonInformation.Events {
 
     [ValueObject]
     public abstract class Event : Information {
-        private readonly Maybe<string> _value;
+        private readonly Maybe<string> _date;
 
         protected Event(Maybe<string> date, Source source, Reliability reliability = Reliability.Reliable) : base(source, reliability) {
-            _value = date;
+            _date = date;
         }
 
         public override Maybe<string> Value {
-            get { return _value; }            
+            get { return Date; }            
+        }
+
+        public Maybe<string> Date {
+            get { return _date; }
         }
     }
 }

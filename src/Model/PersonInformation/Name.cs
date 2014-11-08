@@ -25,5 +25,9 @@ namespace Model.PersonInformation
         public override T Accept<T>(IInformationVisitor<T> visitor) {
             return visitor.Visit(this);
         }
+
+        public override string ToString() {
+            return TheName.ToString();
+        }
     }
 }

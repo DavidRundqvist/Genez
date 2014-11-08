@@ -46,9 +46,8 @@ namespace Model {
         }
 
 
-        #region Properties
         public IEnumerable<Information> Information {
-            get { return _information; }
+            get { return _information.OrderBy(i => i.Reliability); }
         }
 
         public IEnumerable<Information> Facts {
@@ -58,9 +57,7 @@ namespace Model {
         public IEnumerable<Information> Guesses {
             get { return _information.Where(i => i.Reliability != Reliability.Reliable); }
         }
-        #endregion
 
-        #region Methods
         public void Add(Information information) {
             _information.Add(information);
         }
@@ -84,8 +81,6 @@ namespace Model {
         public void AddFather(PersonFile father, Source source, Reliability reliability = Reliability.Reliable) {
             Add(new Father(father, source, reliability));
         }
-        #endregion
-
 
         public bool IsMale {
             get {
@@ -104,7 +99,7 @@ namespace Model {
         }
 
         public IEnumerable<Name> Names {
-            get { return Information.OfType<Name>().OrderBy(n => n.IsReliable); }
+            get { return Information.OfType<Name>(); }
         }
 
         public Maybe<Name> MainName {
@@ -132,15 +127,7 @@ namespace Model {
         private IEnumerable<PersonFile> Mothers { get { return Information.OfType<Mother>().Select(m => m.Relative); }}
         private IEnumerable<PersonFile> Fathers { get { return Information.OfType<Father>().Select(m => m.Relative); }}
 
-        public Maybe<string> BirthDate {
-            get { return Facts.OfType<Birth>().FirstMaybe().Convert(b => b.Value); }
-        }
-
-        public Maybe<string> DeathDate {
-            get { return Facts.OfType<Death>().FirstMaybe().Convert(b => b.Value); }
-        }
-
-        public bool IsDead { get { return Facts.OfType<Death>().Any(); } }
+        public bool IsDead { get { return Information.OfType<Death>().Any(); } }
 
         /// <summary>
         /// The ID of the person
@@ -149,8 +136,13 @@ namespace Model {
             get { return _id; }
         }
 
+        public IEnumerable<Portrait> Portraits {get { return Information.OfType<Portrait>(); }}
         public IEnumerable<PersonFile> GetParents() {
             return Fathers.Concat(Mothers);
+        }
+
+        public void AddPortrait(FileName imageFile, Source source, Reliability reliability = Reliability.Reliable) {
+            this.Add(new Portrait(imageFile, source, reliability));
         }
 
     }

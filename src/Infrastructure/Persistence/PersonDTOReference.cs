@@ -1,4 +1,5 @@
 ﻿using System;
+using Common;
 
 namespace Infrastructure.Persistence {
     public class PersonDTOReference {

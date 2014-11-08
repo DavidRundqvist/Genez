@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Infrastructure.Persistence {
+namespace Common {
     public class FileName {
         public string FileNameString;
 

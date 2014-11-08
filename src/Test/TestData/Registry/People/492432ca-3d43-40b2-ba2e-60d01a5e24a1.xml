@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<PersonDTO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>492432ca-3d43-40b2-ba2e-60d01a5e24a1</Id>
+  <Information>
+    <InformationDTO xsi:type="NameDTO">
+      <Name>
+        <Components>
+          <NameComponentDTO>
+            <Text>Tyrion</Text>
+            <Type>Given</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Lannister</Text>
+            <Type>Family</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>the Imp</Text>
+            <Type>Nick</Type>
+          </NameComponentDTO>
+        </Components>
+      </Name>
+    </InformationDTO>
+    <InformationDTO xsi:type="FatherDTO">
+      <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a4</Relative>
+    </InformationDTO>
+    <InformationDTO xsi:type="MotherDTO">
+      <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a5</Relative>
+    </InformationDTO>
+    <InformationDTO xsi:type="GenderDTO">
+      <Sex>Male</Sex>
+    </InformationDTO>
+    <InformationDTO xsi:type="PortraitDTO">
+      <FileName>Images\tyrion.jpg</FileName>
+    </InformationDTO>
+    <InformationDTO xsi:type="BirthDTO">
+      <Date>272AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="BirthDTO">
+      <Date>273AC</Date>
+    </InformationDTO>
+  </Information>
+</PersonDTO>

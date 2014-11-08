@@ -4,18 +4,21 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 using Common.Enumerable;
 using Model;
 
 namespace View.Global {
     public class AllPeople : EventCollection<PersonPresentation> {
         private readonly PersonRegistry _registry;
+        private readonly PersonPresentationFactory _factory;
 
         private readonly ObservableCollection<PersonPresentation> _wpfCollection = new ObservableCollection<PersonPresentation>();
 
-        public AllPeople(PersonRegistry registry) {
+        public AllPeople(PersonRegistry registry, PersonPresentationFactory factory) {
             _registry = registry;
-            this.BindTo(registry, arg => new PersonPresentation(arg));
+            _factory = factory;
+            this.BindTo(registry, person => _factory.CreatePresentation(person));
             _wpfCollection.BindTo(this, p => p);
         }
 

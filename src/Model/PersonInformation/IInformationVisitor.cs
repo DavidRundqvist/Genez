@@ -9,5 +9,6 @@ namespace Model.PersonInformation {
         T Visit(Mother info);
         T Visit(Father info);
         T Visit(Gender info);
+        T Visit(Portrait info);
     }
 }

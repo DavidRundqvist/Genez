@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Common;
 using Infrastructure.Persistence;
 
 namespace Infrastructure.IO {
@@ -7,7 +8,7 @@ namespace Infrastructure.IO {
         private readonly DirectoryInfo _rootDir;
 
         public FileSystem() {
-            _rootDir = new DirectoryInfo(@".\Registry");
+            _rootDir = new DirectoryInfo(@"..\..\..\Test\TestData\Registry");
         }
 
 

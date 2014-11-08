@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<PersonDTO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>492432ca-3d43-40b2-ba2e-60d01a5e24a7</Id>
+  <Information>
+    <InformationDTO xsi:type="NameDTO">
+      <Name>
+        <Components>
+          <NameComponentDTO>
+            <Text>Prince</Text>
+            <Type>Rank</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Joffrey</Text>
+            <Type>Given</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Baratheon</Text>
+            <Type>Family</Type>
+          </NameComponentDTO>
+        </Components>
+      </Name>
+    </InformationDTO>
+    <InformationDTO xsi:type="NameDTO">
+      <Name>
+        <Components>
+          <NameComponentDTO>
+            <Text>King</Text>
+            <Type>Rank</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Joffrey</Text>
+            <Type>Given</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Baratheon</Text>
+            <Type>Family</Type>
+          </NameComponentDTO>
+        </Components>
+      </Name>
+    </InformationDTO>
+    <InformationDTO xsi:type="MotherDTO">
+      <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a3</Relative>
+    </InformationDTO>
+    <InformationDTO xsi:type="GenderDTO">
+      <Sex>Male</Sex>
+    </InformationDTO>
+    <InformationDTO xsi:type="BirthDTO">
+      <Date>286AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="DeathDTO">
+      <Date>300AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="FatherDTO">
+      <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a6</Relative>
+    </InformationDTO>
+    <InformationDTO xsi:type="FatherDTO">
+      <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a2</Relative>
+    </InformationDTO>
+  </Information>
+</PersonDTO>

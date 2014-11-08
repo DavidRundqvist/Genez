@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<PersonDTO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>492432ca-3d43-40b2-ba2e-60d01a5e24a6</Id>
+  <Information>
+    <InformationDTO xsi:type="NameDTO">
+      <Name>
+        <Components>
+          <NameComponentDTO>
+            <Text>King</Text>
+            <Type>Rank</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Robert</Text>
+            <Type>Given</Type>
+          </NameComponentDTO>
+          <NameComponentDTO>
+            <Text>Baratheon</Text>
+            <Type>Family</Type>
+          </NameComponentDTO>
+        </Components>
+      </Name>
+    </InformationDTO>
+    <InformationDTO xsi:type="GenderDTO">
+      <Sex>Male</Sex>
+    </InformationDTO>
+    <InformationDTO xsi:type="DeathDTO">
+      <Date>298AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="PortraitDTO">
+      <FileName>Images\robert.jpg</FileName>
+    </InformationDTO>
+  </Information>
+</PersonDTO>>

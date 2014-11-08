@@ -17,16 +17,21 @@
             </Style>
         </Border.Style>
         <StackPanel Orientation="Horizontal">
+            
+            <!-- Image -->
+            <Image MaxHeight="70" MaxWidth="100" Margin="5" Source="{Binding Image.Value}"></Image>
+            
+            <!-- Information -->
             <StackPanel Margin="5">       
                 <TextBlock Text="{Binding Name.Value}" Margin="0"/>
-                <TextBlock Text="{Binding LifeTime}" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding LifeTime.Value}" Margin="10,0,0,0"/>
             </StackPanel>
-			<Viewbox Height="30" Margin="3" x:Name="DeathBox" Visibility="{Binding DeathMarkVisibility}">
+            
+            <!-- dead or alive? -->
+			<Viewbox VerticalAlignment="Top" Height="30" Margin="3" Visibility="{Binding DeathMarkVisibility}">
 				<Path Data="M0,0 L0,40 M-10, 10 L10,10" Fill="Black" Stretch="Fill" Stroke="Black" StrokeThickness="3" />            
 			</Viewbox>
         </StackPanel>
-        
-        
     </Border>
     
 
