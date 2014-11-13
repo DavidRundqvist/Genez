@@ -26,6 +26,12 @@
     <InformationDTO xsi:type="GenderDTO">
       <Sex>Male</Sex>
     </InformationDTO>
+    <InformationDTO xsi:type="BirthDTO">
+      <Date>291AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="PortraitDTO">
+      <FileName>Images\tommen.jpg</FileName>
+    </InformationDTO>
     <InformationDTO xsi:type="FatherDTO">
       <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a6</Relative>
     </InformationDTO>

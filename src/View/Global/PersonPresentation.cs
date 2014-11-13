@@ -39,15 +39,14 @@ namespace View.Global {
             var birth = _person.Information.OfType<Birth>().FirstMaybe();
             var death = _person.Information.OfType<Death>().FirstMaybe();
 
-            var birthDate = GetEventPresentation(birth);
-            var deathDate = GetEventPresentation(death);
+            var birthDate = birth.Convert(GetDatePresentation).GetValueOrDefault("?");
+            var deathDate = death.Convert(GetDatePresentation).GetValueOrDefault("");
             return string.Format("{0} - {1}", birthDate, deathDate);
         }
 
-        private string GetEventPresentation<T>(Maybe<T> death) where T : Event {
-            return death.Convert(GetDatePresentation).GetValueOrDefault("?");
+        private string GetDatePresentation(Event theEvent) {
+            return theEvent.Date.Convert(s => s + (theEvent.IsReliable ? "" : "?")).GetValueOrDefault("?");
         }
-        private string GetDatePresentation(Event theEvent) {return theEvent.Date.Convert(s => s + (theEvent.IsReliable ? "" : "?")).GetValueOrDefault("?");}
 
         public string FirstName {get { return Person.MainName.Convert(name => name.TheName.Given).GetValueOrDefault("Unknown"); }}
         public string FamilyName {get { return Person.MainName.Convert(name => name.TheName.Family).GetValueOrDefault("Unknown"); }}

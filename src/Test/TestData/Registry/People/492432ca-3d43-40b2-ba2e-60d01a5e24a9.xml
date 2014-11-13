@@ -26,6 +26,12 @@
     <InformationDTO xsi:type="GenderDTO">
       <Sex>Female</Sex>
     </InformationDTO>
+    <InformationDTO xsi:type="BirthDTO">
+      <Date>290AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="PortraitDTO">
+      <FileName>Images\myrcella.jpg</FileName>
+    </InformationDTO>
     <InformationDTO xsi:type="FatherDTO">
       <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a6</Relative>
     </InformationDTO>

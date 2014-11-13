@@ -33,5 +33,11 @@
     <InformationDTO xsi:type="GenderDTO">
       <Sex>Male</Sex>
     </InformationDTO>
+    <InformationDTO xsi:type="BirthDTO">
+      <Date>266AC</Date>
+    </InformationDTO>
+    <InformationDTO xsi:type="PortraitDTO">
+      <FileName>Images\jaime.jpg</FileName>
+    </InformationDTO>
   </Information>
 </PersonDTO>

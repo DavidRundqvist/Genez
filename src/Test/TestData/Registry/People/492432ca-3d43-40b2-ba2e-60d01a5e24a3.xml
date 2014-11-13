@@ -29,6 +29,9 @@
     <InformationDTO xsi:type="GenderDTO">
       <Sex>Female</Sex>
     </InformationDTO>
+    <InformationDTO xsi:type="BirthDTO">
+      <Date>266AC</Date>
+    </InformationDTO>
     <InformationDTO xsi:type="PortraitDTO">
       <FileName>Images\Cersei.jpg</FileName>
     </InformationDTO>

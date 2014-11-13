@@ -23,8 +23,11 @@
     <InformationDTO xsi:type="GenderDTO">
       <Sex>Female</Sex>
     </InformationDTO>
+    <InformationDTO xsi:type="PortraitDTO">
+      <FileName>Images\joanna.png</FileName>
+    </InformationDTO>
     <InformationDTO xsi:type="DeathDTO">
       <Date>274AC</Date>
     </InformationDTO>
   </Information>
-</PersonDTO>rsonDTO>
+</PersonDTO>

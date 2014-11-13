@@ -71,15 +71,23 @@ namespace Model {
             tywin.Add(new Birth(Maybe.From("242AC"), source));
             tywin.Add(new Death(Maybe.From("300AC"), source));
             joanna.Add(new Death(Maybe.From("274AC"), source, Reliability.Unreliable));
-            robert.Add(new Death(Maybe.From("298AC"), source));
-            
+            robert.Add(new Death(Maybe.From("298AC"), source));            
             joffrey.Add(new Birth(Maybe.From("286AC"), source));
             joffrey.Add(new Death(Maybe.From("300AC"), source));
+            jaime.Add(new Birth("266AC", source));
+            cersei.Add(new Birth("266AC", source));
+            myrcella.Add(new Birth("290AC", source));
+            tommen.Add(new Birth("291AC", source));
 
             tyrion.AddPortrait(new FileName(@"Images\tyrion.jpg"), source);
             cersei.AddPortrait(new FileName(@"Images\Cersei.jpg"), source);
             tywin.AddPortrait(new FileName(@"Images\Tywin.jpg"), source);
             robert.AddPortrait(new FileName(@"Images\robert.jpg"), source);
+            jaime.AddPortrait(new FileName(@"Images\jaime.jpg"), source);
+            joanna.AddPortrait(new FileName(@"Images\joanna.png"), source);
+            joffrey.AddPortrait(new FileName(@"Images\joffrey.jpg"), source);
+            myrcella.AddPortrait(new FileName(@"Images\myrcella.jpg"), source);
+            tommen.AddPortrait(new FileName(@"Images\tommen.jpg"), source);
 
             return new[] {tyrion, jaime, cersei, tywin, joanna, robert, joffrey, tommen, myrcella};
         }
