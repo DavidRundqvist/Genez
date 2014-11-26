@@ -78,7 +78,7 @@
     <Compile Include="Infrastructure\Persistence\PersonDTOFactoryTest.cs" />
     <Compile Include="Infrastructure\Persistence\PersonDTOTest.cs" />
     <Compile Include="Infrastructure\Persistence\RegistryPersistenceTest.cs" />
-    <Compile Include="Launch\ContainerTest.cs" />
+    <Compile Include="Application\ContainerTest.cs" />
     <Compile Include="Model\Coding\HashSetTest.cs" />
     <Compile Include="Model\Constraints\ParentGenderConstraintTest.cs" />
     <Compile Include="Model\Constraints\SingularRelativeConstraintTest.cs" />
@@ -95,9 +95,9 @@
       <Project>{D0DB9A35-ECDA-4B66-9A1E-87DEF2747414}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Launch\Launch.csproj">
+    <ProjectReference Include="..\Application\Application.csproj">
       <Project>{709b8e62-3a5d-4e41-a7bf-81284b6eaa9e}</Project>
-      <Name>Launch</Name>
+      <Name>Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\View\View.csproj">
       <Project>{d00b729d-5b66-4052-8f1e-96736bc61ea7}</Project>

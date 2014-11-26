@@ -38,6 +38,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coding\EntityAttribute.cs" />
+    <Compile Include="Coding\EventExtensions.cs" />
     <Compile Include="Coding\Id.cs" />
     <Compile Include="Coding\ValueObjectAttribute.cs" />
     <Compile Include="DependencyInjection\ContainerExtensions.cs" />
@@ -61,14 +63,18 @@
     <Compile Include="FileName.cs" />
     <Compile Include="Maybe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPF\ImageExtensions.cs" />
     <Compile Include="WPF\Presentation\DelegatingProperty.cs" />
     <Compile Include="WPF\Presentation\DesignSliderPresentation.cs" />
     <Compile Include="WPF\Presentation\IProperty.cs" />
+    <Compile Include="WPF\Presentation\ButtonPresentation.cs" />
+    <Compile Include="WPF\Presentation\MenuItemPresentation.cs" />
     <Compile Include="WPF\Presentation\Property.cs" />
     <Compile Include="WPF\Presentation\SliderPresentation.cs" />
     <Compile Include="WPF\View\SliderControl.xaml.cs">
       <DependentUpon>SliderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\WpfCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="WPF\View\SliderControl.xaml">

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Windows;
 using Microsoft.Practices.Unity;
 using NUnit.Framework;
 
-namespace Test.Launch {
+namespace Test.Application {
     [TestFixture]
     public class ContainerTest {
 
@@ -12,7 +10,7 @@ namespace Test.Launch {
 
         [SetUp]
         public void Setup() {
-            _sut = global::Launch.Container.CreateContainer();
+            _sut = global::Application.Container.CreateContainer();
         }
 
         [TearDown]
@@ -26,7 +24,7 @@ namespace Test.Launch {
 
 
             // act
-            _sut.Resolve<Application>();
+            _sut.Resolve<System.Windows.Application>();
 
             // assert
 

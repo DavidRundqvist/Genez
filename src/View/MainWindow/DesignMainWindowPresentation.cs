@@ -1,15 +1,33 @@
-﻿using Infrastructure.IO;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Media;
+using Infrastructure.IO;
 using Model;
 using View.AncestryGraph;
 using View.Global;
 using View.PersonList;
+using View.Properties;
 
 namespace View.MainWindow {
     public class DesignMainWindowPresentation : MainWindowPresentation{
         public DesignMainWindowPresentation() : base(
             new DesignPersonListPresentation(), 
-            new AncestryGraphPresentation(new AllPeople(new DesignPersonRegistry(), new PersonPresentationFactory(new WPFImageFactory(new FileSystem()))), new ShowInGraphPeople(new AllPeople(new DesignPersonRegistry(), new PersonPresentationFactory(new WPFImageFactory(new FileSystem())))),new GraphControlsPresentation(new AncestorGenerations(), new ChildGenerations()), new AncestryGraph.AncestryGraph())) {}
+            CreateGraph(),
+            new DesignCommands()) {}
+
+        private static AncestryGraphPresentation CreateGraph() {
+            var allPeople = new AllPeople(
+                new DesignPersonRegistry(),
+                new PersonPresentationFactory(
+                    new WPFImageFactory(
+                        new FileSystem())));
+
+            return new AncestryGraphPresentation(
+                allPeople,
+                new ShowInGraphPeople(allPeople),
+                new GraphControlsPresentation(
+                    new AncestorGenerations(),
+                    new ChildGenerations()),
+                new AncestryGraph.AncestryGraph());
+        }
     }
-
-
 }

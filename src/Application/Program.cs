@@ -1,27 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using Common.DependencyInjection;
-using Common.Enumerable;
 using Infrastructure.Data;
 using Infrastructure.Persistence;
 using Microsoft.Practices.Unity;
 using Model;
-using View;
 
-namespace Launch {
+namespace Application {
     public class Program {
         
         [STAThread]
         static void Main(string[] args) {
             var c = Container.CreateContainer();
-            var app = c.Resolve<Application>();
+            var app = c.Resolve<System.Windows.Application>();
             c.Resolve<RegistryPersistence>().AttachTo(c.Resolve<PersonRegistry>());            
 #if DEBUG
             //AddTestDatabase(c);

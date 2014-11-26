@@ -14,10 +14,28 @@
         mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance mainWindow:DesignMainWindowPresentation, IsDesignTimeCreatable=True}" 
         WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=Commands.ExitCommand}" Key="E" Modifiers="Control"></KeyBinding>
+    </Window.InputBindings>
 
     <DockPanel>
+        <StackPanel DockPanel.Dock="Top">            
+            <mainWindow:MainMenu DataContext="{Binding Commands}"></mainWindow:MainMenu>
+            <!--<ToolBarTray>
+                <ToolBar>
+                    <Button>Command 1</Button>
+                    <Button>Command 2</Button>
+                    <Button>Command 3</Button>
+                </ToolBar>
+                <ToolBar>
+                    <Button>Command 4</Button>
+                    <Button>Command 5</Button>
+                    <Button>Command 6</Button>
+                </ToolBar>
+            </ToolBarTray>-->
+        </StackPanel>
         <personList:PersonList DataContext="{Binding PersonListPresentation}" DockPanel.Dock="Left"></personList:PersonList>
-        <ancestryGraph:AncestryGraphView DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>
+        <!--<ancestryGraph:AncestryGraphView Margin="5" DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>-->
 
     </DockPanel>
 

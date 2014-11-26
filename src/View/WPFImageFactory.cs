@@ -11,6 +11,8 @@ namespace View {
         }
 
         public ImageSource GetImage(FileName imageId) {
+            if (!_fileSystem.DoesFileExist(imageId))
+                return null;
             using (var source = _fileSystem.OpenReadStream(imageId)) {
                 return BitmapFrame.Create(source, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
             }
