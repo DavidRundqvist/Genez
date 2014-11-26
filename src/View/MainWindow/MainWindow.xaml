@@ -35,7 +35,7 @@
             </ToolBarTray>-->
         </StackPanel>
         <personList:PersonList DataContext="{Binding PersonListPresentation}" DockPanel.Dock="Left"></personList:PersonList>
-        <!--<ancestryGraph:AncestryGraphView Margin="5" DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>-->
+        <ancestryGraph:AncestryGraphView Margin="5" DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>
 
     </DockPanel>
 
