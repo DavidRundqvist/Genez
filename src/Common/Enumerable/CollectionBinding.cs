@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Common.WPF;
 
 namespace Common.Enumerable {
     public static class CollectionBinding {
@@ -22,7 +23,7 @@ namespace Common.Enumerable {
                                        };
 
             var added = other.Select(t2 => Tuple.Create<T1, T2>(t2, ctor(t2))).ToArray();
-            self.AddRange(added.SelectT2());
+            self.AddRange(added.SelectT2());            
             map.AddRange(added);                 
         }
 

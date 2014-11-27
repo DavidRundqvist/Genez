@@ -15,6 +15,7 @@ namespace Application.Commands {
         }
 
         public ICommand ExitCommand { get { return _container.Resolve<ExitCommand>(); } }
-        public ICommand SaveCommand { get { return _container.Resolve<SaveCommand>(); } }
+        public ICommand ExportCommand { get { return _container.Resolve<ExportCommand>(); } }
+        public ICommand ImportCommand {get { return _container.Resolve<ImportCommand>(); }}
     }
 }

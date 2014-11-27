@@ -14,7 +14,7 @@ namespace View.Global {
                 ? Maybe.From(person.Portraits.First().ImageFile)
                 : Maybe.Empty;
 
-            var image = portraitId.Convert(filename => _imageRepository.GetImage(filename));        
+            var image = portraitId.Convert(FileInfo => _imageRepository.GetImage(FileInfo));        
             return new PersonPresentation(person, image);
         }
     }

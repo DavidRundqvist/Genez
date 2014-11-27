@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Common;
 using Common.Coding;
@@ -24,7 +25,7 @@ namespace Infrastructure.Persistence.Information {
         }
             
         PersonFile Find(Id<PersonFile> id) {
-            return _people.First(p => p.Id == id);
+            return _people.First(p => p.Id.Equals(id));
         }
 
         PersonFile Find(Guid personId) {
@@ -62,7 +63,7 @@ namespace Infrastructure.Persistence.Information {
         }
 
         public Model.PersonInformation.Information Visit(PortraitDTO dto) {
-            return new Portrait(new FileName(dto.FileName), new Source());
+            return new Portrait(dto.FileName, new Source());
 
         }
     }

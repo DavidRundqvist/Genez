@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.WPF;
 
 namespace Common.Enumerable
 {
@@ -34,6 +35,14 @@ namespace Common.Enumerable
 
 
         public static void AddRange<T>(this ICollection<T> self, IEnumerable<T> items) {
+            // Optimization
+            var batch = self as BatchObservableCollection<T>;
+            if (batch != null) {
+                batch.AddBatch(items);
+                return;
+            }
+
+            // Normal
             foreach (var item in items) {
                 self.Add(item);
             }

@@ -6,7 +6,7 @@ namespace Infrastructure.Persistence.Information {
         public string FileName;
 
         public static PortraitDTO From(Portrait info) {
-            return new PortraitDTO() {FileName = info.ImageFile.FileNameString};
+            return new PortraitDTO() {FileName = info.ImageFile};
         }
 
         public override T Accept<T>(IDTOVisitor<T> visitor) {

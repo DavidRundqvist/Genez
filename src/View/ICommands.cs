@@ -3,6 +3,7 @@
 namespace View {
     public interface ICommands {
         ICommand ExitCommand { get; }
-        ICommand SaveCommand { get; }
+        ICommand ExportCommand { get; }
+        ICommand ImportCommand { get; }
     }
 }

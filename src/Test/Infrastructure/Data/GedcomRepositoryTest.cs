@@ -13,12 +13,12 @@ namespace Test.Infrastructure.Data {
 
 
         [Test]
-        public void Should_load_people_from_gedcom() {
+        public async void Should_load_people_from_gedcom() {
             // arrange
-            var sut = GedcomRepository.Parse(new FileInfo(@"TestData\2009-01-04.ged"));
+            var sut = new GedcomRepositoryFactory().GetGedcomRepository(new FileInfo(@"TestData\2009-01-04.ged"));
 
             // act
-            var result = sut.GetAllPeople();
+            var result = await sut.GetAllPeople();
 
             // assert
             var david = result.FirstOrDefault(p => p.Names.Any(name => name.ToString() == "David Rundqvist"));

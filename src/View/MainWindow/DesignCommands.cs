@@ -7,8 +7,10 @@ namespace View.MainWindow {
     public class DesignCommands : ICommands {
         public ICommand ExitCommand { get; private set; }
 
-        public ICommand SaveCommand {
+        public ICommand ExportCommand {
             get { throw new System.NotImplementedException(); }
         }
+
+        public ICommand ImportCommand { get; private set; }
     }
 }

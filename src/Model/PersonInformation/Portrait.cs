@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Common;
@@ -8,16 +9,16 @@ using Common.Coding;
 namespace Model.PersonInformation {
     
     public class Portrait : Information{
-        private readonly FileName _imageFile ;
-        public Portrait(FileName imageFile, Source source, Reliability reliability = Reliability.Reliable) : base(source, reliability) {
+        private readonly string _imageFile ;
+        public Portrait(string imageFile, Source source, Reliability reliability = Reliability.Reliable) : base(source, reliability) {
             _imageFile = imageFile;
         }
 
         public override Maybe<string> Value {
-            get { return ImageFile.ToString(); }
+            get { return ImageFile; }
         }
 
-        public FileName ImageFile {
+        public string ImageFile {
             get { return _imageFile; }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Media;
 using Infrastructure.IO;
 using Model;
@@ -19,7 +20,7 @@ namespace View.MainWindow {
                 new DesignPersonRegistry(),
                 new PersonPresentationFactory(
                     new WPFImageFactory(
-                        new FileSystem())));
+                        new DirectoryInfo(@"C:\temp"))));
 
             return new AncestryGraphPresentation(
                 allPeople,

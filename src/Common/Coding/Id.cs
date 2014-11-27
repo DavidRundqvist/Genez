@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace Common.Coding {
-    public class Id<T> {
+    public struct Id<T> {
         private readonly Guid _backingId;
         public Id(Guid backingId) {
             _backingId = backingId;
@@ -12,6 +12,10 @@ namespace Common.Coding {
 
         public Guid Guid {
             get { return _backingId; }
+        }
+
+        public override string ToString() {
+            return _backingId.ToString();
         }
     }
 }

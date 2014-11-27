@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using Common;
@@ -79,15 +80,15 @@ namespace Model {
             myrcella.Add(new Birth("290AC", source));
             tommen.Add(new Birth("291AC", source));
 
-            tyrion.AddPortrait(new FileName(@"Images\tyrion.jpg"), source);
-            cersei.AddPortrait(new FileName(@"Images\Cersei.jpg"), source);
-            tywin.AddPortrait(new FileName(@"Images\Tywin.jpg"), source);
-            robert.AddPortrait(new FileName(@"Images\robert.jpg"), source);
-            jaime.AddPortrait(new FileName(@"Images\jaime.jpg"), source);
-            joanna.AddPortrait(new FileName(@"Images\joanna.png"), source);
-            joffrey.AddPortrait(new FileName(@"Images\joffrey.jpg"), source);
-            myrcella.AddPortrait(new FileName(@"Images\myrcella.jpg"), source);
-            tommen.AddPortrait(new FileName(@"Images\tommen.jpg"), source);
+            tyrion.AddPortrait( @"Images\tyrion.jpg", source);
+            cersei.AddPortrait( @"Images\Cersei.jpg", source);
+            tywin.AddPortrait(  @"Images\Tywin.jpg", source);
+            robert.AddPortrait( @"Images\robert.jpg", source);
+            jaime.AddPortrait(  @"Images\jaime.jpg", source);
+            joanna.AddPortrait( @"Images\joanna.png", source);
+            joffrey.AddPortrait(@"Images\joffrey.jpg", source);
+            myrcella.AddPortrait(@"Images\myrcella.jpg", source);
+            tommen.AddPortrait(@"Images\tommen.jpg", source);
 
             return new[] {tyrion, jaime, cersei, tywin, joanna, robert, joffrey, tommen, myrcella};
         }

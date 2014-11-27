@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using Common.Enumerable;
+using Common.WPF;
 using Model;
 
 namespace View.Global {
@@ -13,7 +14,7 @@ namespace View.Global {
         private readonly PersonRegistry _registry;
         private readonly PersonPresentationFactory _factory;
 
-        private readonly ObservableCollection<PersonPresentation> _wpfCollection = new ObservableCollection<PersonPresentation>();
+        private readonly BatchObservableCollection<PersonPresentation> _wpfCollection = new BatchObservableCollection<PersonPresentation>();
 
         public AllPeople(PersonRegistry registry, PersonPresentationFactory factory) {
             _registry = registry;

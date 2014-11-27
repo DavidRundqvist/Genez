@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Common;
 using Gedcom;
 using GedcomParser;
@@ -11,12 +14,14 @@ using Model.PersonInformation.Events;
 namespace Infrastructure.Data {
     public class GedcomRepository : IRepository {
 
-        private readonly GedcomDatabase _gedcomDatabase;
+        private readonly Lazy<GedcomDatabase> _gedcomDatabase;
 
-        protected GedcomRepository(FileInfo fileInfo) {
-            var reader = new GedcomRecordReader();
-            reader.ReadGedcom(fileInfo.FullName);
-            _gedcomDatabase = reader.Database;
+        protected internal GedcomRepository(FileInfo fileInfo) {
+            _gedcomDatabase = new Lazy<GedcomDatabase>(() => {
+                                                           var reader = new GedcomRecordReader();
+                                                           reader.ReadGedcom(fileInfo.FullName);
+                                                           return reader.Database;
+                                                       });
         }
 
         private PersonFile ToPerson(GedcomIndividualRecord arg) {
@@ -88,28 +93,30 @@ namespace Infrastructure.Data {
         }
 
 
-        public IEnumerable<PersonFile> GetAllPeople() {
-            var people = _gedcomDatabase.Individuals.ToDictionary(ind => ind, ToPerson);
+        public Task<IEnumerable<PersonFile>> GetAllPeople() {
+            return Task.Run(() => {
+                                var db = _gedcomDatabase.Value;
 
-
-
-            foreach (GedcomFamilyRecord family in _gedcomDatabase.Families)
-            {
-                var mother = family.Wife != null ? _gedcomDatabase[family.Wife] as GedcomIndividualRecord : null;
-                var father = family.Husband != null ? _gedcomDatabase[family.Husband] as GedcomIndividualRecord : null;
-                foreach (string childID in family.Children)
-                {
-                    var child = _gedcomDatabase[childID] as GedcomIndividualRecord;
-                    if (father != null) people[child].AddFather(people[father], new Source());
-                    if (mother != null) people[child].AddMother(people[mother], new Source());
-                }
-            }
- 
-
-            return people.Values;
+                                var people = db.Individuals.ToDictionary(ind => ind, ToPerson);
+                                foreach (GedcomFamilyRecord family in db.Families) {
+                                    var mother = family.Wife != null
+                                        ? db[family.Wife] as GedcomIndividualRecord
+                                        : null;
+                                    var father = family.Husband != null
+                                        ? db[family.Husband] as GedcomIndividualRecord
+                                        : null;
+                                    foreach (string childID in family.Children) {
+                                        var child = db[childID] as GedcomIndividualRecord;
+                                        if (father != null) people[child].AddFather(people[father], new Source());
+                                        if (mother != null) people[child].AddMother(people[mother], new Source());
+                                    }
+                                }
+                                IEnumerable<PersonFile> result = people.Values;
+                                return result;
+                            });
         }
 
-        public void Add(IEnumerable<PersonFile> people) {
+        public Task Add(IEnumerable<PersonFile> people) {
             throw new System.NotImplementedException();
         }
 
@@ -120,11 +127,5 @@ namespace Infrastructure.Data {
         public void Update(IEnumerable<PersonFile> people) {
             throw new System.NotImplementedException();
         }
-
-
-        public static GedcomRepository Parse(FileInfo file) {
-            return new GedcomRepository(file);
-        }
-
     }
 }

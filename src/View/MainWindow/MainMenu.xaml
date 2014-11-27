@@ -16,7 +16,11 @@
     
     <Menu IsMainMenu="True" >
         <MenuItem Header="_File">
-            <MenuItem Header="_Save" Command="{Binding SaveCommand}">
+            <MenuItem Header="_Import..." Command="{Binding ImportCommand}">
+                <MenuItem.Icon>
+                    <Image Source="../Resources/floppydisk.png"></Image>
+                </MenuItem.Icon>
+            </MenuItem>            <MenuItem Header="_Export..." Command="{Binding ExportCommand}">
                 <MenuItem.Icon>
                     <Image Source="../Resources/floppydisk.png"></Image>
                 </MenuItem.Icon>

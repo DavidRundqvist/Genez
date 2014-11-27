@@ -2,7 +2,7 @@
 using Common.WPF;
 
 namespace Application.Commands {
-    public class SaveCommand : WpfCommand {
+    public class ExportCommand : WpfCommand {
         public override void Execute(object parameter) {
             MessageBox.Show("Not yet implemented", "Todo");
         }

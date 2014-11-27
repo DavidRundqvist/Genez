@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -13,100 +14,74 @@ using Model;
 namespace Infrastructure.Data {
     public class DiskRepository : IRepository{
 
-        private readonly IFileSystem _fileSystem;
+        private readonly DirectoryInfo _fileSystem;
         private readonly PersonDTOFactory _personDtoFactory;
         private readonly PersonFactory _personFactory;
 
-        private readonly FileName _registryFileName;
         private readonly XmlSerializer _personSerializer;
-        private readonly XmlSerializer _registrySerializer;
 
-        public DiskRepository(IFileSystem fileSystem, PersonDTOFactory personDtoFactory, PersonFactory personFactory) {
+        public DiskRepository(DirectoryInfo fileSystem, PersonDTOFactory personDtoFactory, PersonFactory personFactory) {
             _fileSystem = fileSystem;
             _personDtoFactory = personDtoFactory;
             _personFactory = personFactory;
-            _registryFileName = new FileName("PeopleRegistry.xml");
 
             _personSerializer = new XmlSerializer(typeof (PersonDTO));
-            _registrySerializer = new XmlSerializer(typeof (PersonRegistryDTO));
         }
 
 
-        public IEnumerable<PersonFile> GetAllPeople() {
-            var registry = LoadRegistry();
-            var personDtos = LoadPeople(registry.People);
-            return _personFactory.From(personDtos);
+        public Task<IEnumerable<PersonFile>> GetAllPeople() {
+            return Task.Run(() => {
+                                var files = _fileSystem.GetSubFolder("People").GetFiles("*.xml");
+                                var dtos = files.Select(LoadPerson);
+                                return _personFactory.From(dtos);
+                            });
         }
 
-        private IEnumerable<PersonDTO> LoadPeople(IEnumerable<PersonDTOReference> people) {
-            foreach (var dtoReference in people) {
-                var fileName = GetFileName(new Id<PersonFile>(dtoReference.Id));
-                using (var stream = _fileSystem.OpenReadStream(fileName)) {
-                    var dto = (PersonDTO) _personSerializer.Deserialize(stream);
-                    yield return dto;
-                }
+
+        private PersonDTO LoadPerson(FileInfo file) {
+            using (var stream = file.OpenRead()) {
+                var dto = (PersonDTO) _personSerializer.Deserialize(stream);
+                return dto;
             }
         }
 
-        public void Add(IEnumerable<PersonFile> people) {
-            var registry = LoadRegistry();
-
-            Parallel.ForEach(people, personFile => {
-                                         // registry is not threadsafe, but we believe that 'people' doesn't contain duplicates
-                                         if (registry.Contains(personFile.Id))
-                                             return;
-
-                                         var dto = _personDtoFactory.ToDTO(personFile);
-                                         var fileName = GetFileName(personFile.Id);
-                                         Persist(dto, fileName);
-                                         registry.Add(new PersonDTOReference() {FileName = fileName, Id = dto.Id});
-                                     });
-            Persist(registry);
+        public Task Add(IEnumerable<PersonFile> people) {
+            return Task.Run(() => {
+                                foreach (var personFile in people) {
+                                    var fileInfo = GetFileInfo(personFile.Id);
+                                    var dto = _personDtoFactory.ToDTO(personFile);
+                                    Persist(dto, fileInfo);
+                                }
+                            });
         }
 
-        private void Persist(PersonRegistryDTO personRegistryDto) {
-            using (var stream = _fileSystem.OpenWriteStream(_registryFileName)) {
-                _registrySerializer.Serialize(stream, personRegistryDto);
-            }
-        }
 
-        private PersonRegistryDTO LoadRegistry() {            
-            if (!_fileSystem.DoesFileExist(_registryFileName))
-                return new PersonRegistryDTO();
-
-            using (var stream = _fileSystem.OpenReadStream(_registryFileName)) {
-                return (PersonRegistryDTO) _registrySerializer.Deserialize(stream);
-            }            
-        }
 
 
         public void Remove(IEnumerable<PersonFile> people) {
-            var registry = LoadRegistry();
             foreach (var personFile in people) {
-                var fileName = GetFileName(personFile.Id);
-                _fileSystem.Delete(fileName);
-                registry.Remove(personFile.Id);
+                var fileInfo = GetFileInfo(personFile.Id);
+                fileInfo.Delete();
             }
-            Persist(registry);          
         }
 
         public void Update(IEnumerable<PersonFile> people) {           
             foreach (var personFile in people) {
                 var dto = _personDtoFactory.ToDTO(personFile);
-                var fileName = GetFileName(personFile.Id);
-                Persist(dto, fileName);                
+                var fileInfo = GetFileInfo(personFile.Id);
+                Persist(dto, fileInfo);                
             }            
         }
 
 
-        private void Persist(PersonDTO dto, FileName fileName) {
-            using (var stream = _fileSystem.OpenWriteStream(fileName)) {                
+        private void Persist(PersonDTO dto, FileInfo fileInfo) {
+            using (var stream = fileInfo.OpenWrite()) {                
                 _personSerializer.Serialize(stream, dto);
             }
         }
 
-        private FileName GetFileName(Id<PersonFile> id) {
-            return new FileName(string.Format(@"{0}\{1}.{2}", "People", id.Guid, "xml"));
+        private FileInfo GetFileInfo(Id<PersonFile> id) {
+            return _fileSystem.GetFile(string.Format(@"{0}\{1}.{2}", "People", id.Guid, "xml"));
         }
     }
 }

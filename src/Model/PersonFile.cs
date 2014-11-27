@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Common;
 using Common.Coding;
@@ -141,7 +142,7 @@ namespace Model {
             return Fathers.Concat(Mothers);
         }
 
-        public void AddPortrait(FileName imageFile, Source source, Reliability reliability = Reliability.Reliable) {
+        public void AddPortrait(string imageFile, Source source, Reliability reliability = Reliability.Reliable) {
             this.Add(new Portrait(imageFile, source, reliability));
         }
 

@@ -60,7 +60,6 @@
     <Compile Include="Enumerable\IEnumerableExtensions.cs" />
     <Compile Include="DependencyInjection\IModule.cs" />
     <Compile Include="Enumerable\IEventCollection.cs" />
-    <Compile Include="FileName.cs" />
     <Compile Include="Maybe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WPF\ImageExtensions.cs" />
@@ -71,6 +70,7 @@
     <Compile Include="WPF\Presentation\MenuItemPresentation.cs" />
     <Compile Include="WPF\Presentation\Property.cs" />
     <Compile Include="WPF\Presentation\SliderPresentation.cs" />
+    <Compile Include="WPF\BatchObservableCollection.cs" />
     <Compile Include="WPF\View\SliderControl.xaml.cs">
       <DependentUpon>SliderControl.xaml</DependentUpon>
     </Compile>
