@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Common;
 using Common.Coding;
@@ -47,12 +50,17 @@ namespace Infrastructure.Data {
 
         public void Add(IEnumerable<PersonFile> people) {
             var registry = LoadRegistry();
-            foreach (var personFile in people) {
-                var dto = _personDtoFactory.ToDTO(personFile);
-                var fileName = GetFileName(personFile.Id);
-                Persist(dto, fileName);
-                registry.Add(new PersonDTOReference{FileName = fileName, Id = dto.Id});
-            }
+
+            Parallel.ForEach(people, personFile => {
+                                         // registry is not threadsafe, but we believe that 'people' doesn't contain duplicates
+                                         if (registry.Contains(personFile.Id))
+                                             return;
+
+                                         var dto = _personDtoFactory.ToDTO(personFile);
+                                         var fileName = GetFileName(personFile.Id);
+                                         Persist(dto, fileName);
+                                         registry.Add(new PersonDTOReference() {FileName = fileName, Id = dto.Id});
+                                     });
             Persist(registry);
         }
 
