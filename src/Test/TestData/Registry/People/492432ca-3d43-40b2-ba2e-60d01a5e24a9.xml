@@ -3,6 +3,7 @@
   <Id>492432ca-3d43-40b2-ba2e-60d01a5e24a9</Id>
   <Information>
     <InformationDTO xsi:type="NameDTO">
+      <Reliability>Reliable</Reliability>
       <Name>
         <Components>
           <NameComponentDTO>
@@ -21,21 +22,27 @@
       </Name>
     </InformationDTO>
     <InformationDTO xsi:type="MotherDTO">
+      <Reliability>Reliable</Reliability>
       <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a3</Relative>
     </InformationDTO>
     <InformationDTO xsi:type="GenderDTO">
+      <Reliability>Reliable</Reliability>
       <Sex>Female</Sex>
     </InformationDTO>
     <InformationDTO xsi:type="BirthDTO">
+      <Reliability>Reliable</Reliability>
       <Date>290AC</Date>
     </InformationDTO>
     <InformationDTO xsi:type="PortraitDTO">
+      <Reliability>Reliable</Reliability>
       <FileName>Images\myrcella.jpg</FileName>
     </InformationDTO>
     <InformationDTO xsi:type="FatherDTO">
+      <Reliability>Unreliable</Reliability>
       <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a6</Relative>
     </InformationDTO>
     <InformationDTO xsi:type="FatherDTO">
+      <Reliability>Unreliable</Reliability>
       <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a2</Relative>
     </InformationDTO>
   </Information>

@@ -3,6 +3,7 @@
   <Id>492432ca-3d43-40b2-ba2e-60d01a5e24a3</Id>
   <Information>
     <InformationDTO xsi:type="NameDTO">
+      <Reliability>Reliable</Reliability>
       <Name>
         <Components>
           <NameComponentDTO>
@@ -21,18 +22,23 @@
       </Name>
     </InformationDTO>
     <InformationDTO xsi:type="FatherDTO">
+      <Reliability>Reliable</Reliability>
       <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a4</Relative>
     </InformationDTO>
     <InformationDTO xsi:type="MotherDTO">
+      <Reliability>Reliable</Reliability>
       <Relative>492432ca-3d43-40b2-ba2e-60d01a5e24a5</Relative>
     </InformationDTO>
     <InformationDTO xsi:type="GenderDTO">
+      <Reliability>Reliable</Reliability>
       <Sex>Female</Sex>
     </InformationDTO>
     <InformationDTO xsi:type="BirthDTO">
+      <Reliability>Reliable</Reliability>
       <Date>266AC</Date>
     </InformationDTO>
     <InformationDTO xsi:type="PortraitDTO">
+      <Reliability>Reliable</Reliability>
       <FileName>Images\Cersei.jpg</FileName>
     </InformationDTO>
   </Information>

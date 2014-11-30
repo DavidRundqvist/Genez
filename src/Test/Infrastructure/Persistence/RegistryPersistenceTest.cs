@@ -64,7 +64,7 @@ namespace Test.Infrastructure.Persistence {
             _registry.First().Add(new Name(new PersonName(new[]{new NameComponent("The Cripple", NameType.Given)}),new Source() ));
 
             // assert
-            _repository.Verify(r => r.Add(It.Is<IEnumerable<PersonFile>>(people => people.Contains(_designRegistry.First()))), Times.Exactly(2));
+            _repository.Verify(r => r.Update(It.Is<IEnumerable<PersonFile>>(people => people.Contains(_designRegistry.First()))), Times.Exactly(1));
         }
 
     }

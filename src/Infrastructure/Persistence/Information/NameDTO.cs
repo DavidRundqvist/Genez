@@ -8,7 +8,7 @@ namespace Infrastructure.Persistence.Information {
         public PersonNameDTO Name;
 
         public static NameDTO From(Name name) {
-            return new NameDTO(){Name = PersonNameDTO.From(name.TheName)};
+            return new NameDTO(){Name = PersonNameDTO.From(name.TheName), Reliability = name.Reliability};
         }
 
         public override T Accept<T>(IDTOVisitor<T> visitor) {

@@ -46,6 +46,7 @@ namespace Infrastructure.Data {
         }
 
         public Task Add(IEnumerable<PersonFile> people) {
+            
             return Task.Run(() => {
                                 foreach (var personFile in people) {
                                     var fileInfo = GetFileInfo(personFile.Id);

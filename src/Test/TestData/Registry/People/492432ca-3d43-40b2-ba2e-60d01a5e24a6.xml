@@ -3,6 +3,7 @@
   <Id>492432ca-3d43-40b2-ba2e-60d01a5e24a6</Id>
   <Information>
     <InformationDTO xsi:type="NameDTO">
+      <Reliability>Reliable</Reliability>
       <Name>
         <Components>
           <NameComponentDTO>
@@ -21,12 +22,15 @@
       </Name>
     </InformationDTO>
     <InformationDTO xsi:type="GenderDTO">
+      <Reliability>Reliable</Reliability>
       <Sex>Male</Sex>
     </InformationDTO>
     <InformationDTO xsi:type="DeathDTO">
+      <Reliability>Reliable</Reliability>
       <Date>298AC</Date>
     </InformationDTO>
     <InformationDTO xsi:type="PortraitDTO">
+      <Reliability>Reliable</Reliability>
       <FileName>Images\robert.jpg</FileName>
     </InformationDTO>
   </Information>

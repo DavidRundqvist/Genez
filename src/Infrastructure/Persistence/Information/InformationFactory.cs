@@ -33,19 +33,19 @@ namespace Infrastructure.Persistence.Information {
         }
 
         public Model.PersonInformation.Information Visit(MotherDTO dto) {
-            return new Mother(Find(dto.Relative), new Source());
+            return new Mother(Find(dto.Relative), new Source(), dto.Reliability);
         }
 
         public Model.PersonInformation.Information Visit(GenderDTO dto) {
-            return new Gender(dto.Sex, new Source());
+            return new Gender(dto.Sex, new Source(), dto.Reliability);
         }
 
         public Model.PersonInformation.Information Visit(FatherDTO dto) {
-            return new Father(Find(dto.Relative), new Source());
+            return new Father(Find(dto.Relative), new Source(), dto.Reliability);
         }
 
         public Model.PersonInformation.Information Visit(DeathDTO dto) {
-            return new Death(GetDate(dto), new Source());
+            return new Death(GetDate(dto), new Source(), dto.Reliability);
         }
 
         private Maybe<string> GetDate(EventDTO dto) {
@@ -55,15 +55,15 @@ namespace Infrastructure.Persistence.Information {
         }
 
         public Model.PersonInformation.Information Visit(BirthDTO dto) {
-            return new Birth(GetDate(dto), new Source());
+            return new Birth(GetDate(dto), new Source(), dto.Reliability);
         }
 
         public Model.PersonInformation.Information Visit(NameDTO dto) {
-            return new Name(PersonNameDTO.From(dto.Name), new Source());
+            return new Name(PersonNameDTO.From(dto.Name), new Source(), dto.Reliability);
         }
 
         public Model.PersonInformation.Information Visit(PortraitDTO dto) {
-            return new Portrait(dto.FileName, new Source());
+            return new Portrait(dto.FileName, new Source(), dto.Reliability);
 
         }
     }
