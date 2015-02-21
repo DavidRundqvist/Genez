@@ -26,6 +26,9 @@ namespace View.AncestryGraph {
 
         private AncestryGraphPresentation Presentation { get { return DataContext as AncestryGraphPresentation; } }
 
- 
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e) {
+            Presentation.AllPeople.UnselectAll();
+        }
     }
 }

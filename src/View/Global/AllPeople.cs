@@ -37,9 +37,12 @@ namespace View.Global {
             return GetPresentations(childrenFiles);
         }
 
-
         private IEnumerable<PersonPresentation> GetPresentations(IEnumerable<PersonFile> ancestorFiles) {
             return ancestorFiles.Join(_wpfCollection, file => file, pres => pres.Person, (file, pres) => pres);
+        }
+
+        public void UnselectAll() {
+            this.ForEach(p => p.IsSelected.Value = false);
         }
     }
 }

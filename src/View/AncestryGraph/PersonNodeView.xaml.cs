@@ -22,5 +22,11 @@ namespace View.AncestryGraph {
         public PersonNodeView() {
             InitializeComponent();
         }
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e) {
+            Presentation.IsSelected.Value = true;
+        }
+
+        PersonPresentation Presentation { get { return DataContext as PersonPresentation; } }
     }
 }

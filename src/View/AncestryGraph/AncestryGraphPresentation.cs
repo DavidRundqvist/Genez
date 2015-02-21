@@ -37,10 +37,12 @@ namespace View.AncestryGraph {
         public SliderPresentation ChildGenerations { get { return _graphControlsPresentation.ChildGenerations; }}
         public AncestryGraph Graph {get { return _graph; }}
 
+        public AllPeople AllPeople {get { return _allPeople; }}
+
         private void UpdateGraph() {
             _graph.Clear();
-            var ancestors = _showInGraphPeople.SelectMany(p => _allPeople.GetAncestor(p, AncestorGenerations.Value.Value));
-            var children = _showInGraphPeople.SelectMany(p => _allPeople.GetChildren(p, ChildGenerations.Value.Value));
+            var ancestors = _showInGraphPeople.SelectMany(p => AllPeople.GetAncestor(p, AncestorGenerations.Value.Value));
+            var children = _showInGraphPeople.SelectMany(p => AllPeople.GetChildren(p, ChildGenerations.Value.Value));
 
             var people = children.Concat(_showInGraphPeople).Concat(ancestors);
             _graph.Add(people);                

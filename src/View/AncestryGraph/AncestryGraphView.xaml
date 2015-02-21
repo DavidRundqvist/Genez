@@ -74,8 +74,8 @@
         </Style>
 
     </UserControl.Resources>
-    <DockPanel>
-        <ancestryGraph:GraphControls  DockPanel.Dock="Top"></ancestryGraph:GraphControls>
+    <DockPanel MouseDown="OnMouseDown">
+        <ancestryGraph:GraphControls DockPanel.Dock="Top"></ancestryGraph:GraphControls>
         <controls:ZoomControl ViewFinderVisibility="Collapsed" x:Name="_zoomControl" MinZoom="0.1" MaxZoom="2">
             <ancestryGraph:AncestryGraphArea DataContext="{Binding}" x:Name="_graphArea"></ancestryGraph:AncestryGraphArea>
         </controls:ZoomControl>
