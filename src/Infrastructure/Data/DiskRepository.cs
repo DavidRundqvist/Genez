@@ -3,7 +3,11 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 using Common;
 using Common.Coding;
@@ -18,14 +22,14 @@ namespace Infrastructure.Data {
         private readonly PersonDTOFactory _personDtoFactory;
         private readonly PersonFactory _personFactory;
 
-        private readonly XmlSerializer _personSerializer;
+        private readonly DataContractSerializer _personSerializer;
 
         public DiskRepository(DirectoryInfo fileSystem, PersonDTOFactory personDtoFactory, PersonFactory personFactory) {
             _fileSystem = fileSystem;
             _personDtoFactory = personDtoFactory;
             _personFactory = personFactory;
 
-            _personSerializer = new XmlSerializer(typeof (PersonDTO));
+            _personSerializer = new DataContractSerializer(typeof (PersonDTO));
         }
 
 
@@ -40,8 +44,10 @@ namespace Infrastructure.Data {
 
         private PersonDTO LoadPerson(FileInfo file) {
             using (var stream = file.OpenRead()) {
-                var dto = (PersonDTO) _personSerializer.Deserialize(stream);
-                return dto;
+                using (var reader = new XmlTextReader(stream)) {
+                    var dto = (PersonDTO)_personSerializer.ReadObject(reader);
+                    return dto;
+                }
             }
         }
 
@@ -76,8 +82,10 @@ namespace Infrastructure.Data {
 
 
         private void Persist(PersonDTO dto, FileInfo fileInfo) {
-            using (var stream = fileInfo.OpenWrite()) {                
-                _personSerializer.Serialize(stream, dto);
+            using (var stream = fileInfo.OpenWrite()) {
+                using (var writer = new XmlTextWriter(stream, Encoding.Unicode) {Formatting = Formatting.Indented}) {
+                    _personSerializer.WriteObject(writer, dto);
+                }
             }
         }
 

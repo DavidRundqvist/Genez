@@ -1,7 +1,10 @@
-﻿using Model.PersonInformation;
+﻿using System.Runtime.Serialization;
+using Model.PersonInformation;
 
 namespace Infrastructure.Persistence.Information {
+    [DataContract(Namespace = "")]
     public class GenderDTO : InformationDTO {
+        [DataMember]
         public GenderType Sex;
 
         public static GenderDTO From(Gender info) {

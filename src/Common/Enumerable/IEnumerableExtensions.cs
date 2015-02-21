@@ -35,10 +35,16 @@ namespace Common.Enumerable
 
 
         public static void AddRange<T>(this ICollection<T> self, IEnumerable<T> items) {
-            // Optimization
+            // Optimizations
             var batch = self as BatchObservableCollection<T>;
             if (batch != null) {
                 batch.AddBatch(items);
+                return;
+            }
+
+            var eventCollection = self as EventCollection<T>;
+            if (eventCollection != null) {
+                eventCollection.Add(items.ToArray());
                 return;
             }
 

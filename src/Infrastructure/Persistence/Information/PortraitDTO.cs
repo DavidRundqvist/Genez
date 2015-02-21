@@ -1,8 +1,11 @@
 using System;
+using System.Runtime.Serialization;
 using Model.PersonInformation;
 
 namespace Infrastructure.Persistence.Information {
+    [DataContract(Namespace = "")]
     public class PortraitDTO : InformationDTO {
+        [DataMember]
         public string FileName;
 
         public static PortraitDTO From(Portrait info) {

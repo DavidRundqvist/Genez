@@ -1,6 +1,8 @@
-﻿using Model.PersonInformation.Events;
+﻿using System.Runtime.Serialization;
+using Model.PersonInformation.Events;
 
 namespace Infrastructure.Persistence.Information.Events {
+    [DataContract(Namespace = "")]
     public class DeathDTO : EventDTO {
         public static DeathDTO From(Death info) {
             return new DeathDTO() {Date = info.Value.GetValueOrDefault(""), Reliability = info.Reliability};

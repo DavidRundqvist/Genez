@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using Model;
 using Model.PersonInformation;
 
 namespace Infrastructure.Persistence.Information {
+    [DataContract(Namespace = "")]
     public class NameDTO : InformationDTO {
+        [DataMember]
         public PersonNameDTO Name;
 
         public static NameDTO From(Name name) {
@@ -17,8 +20,9 @@ namespace Infrastructure.Persistence.Information {
     }
 
 
-
+    [DataContract(Namespace = "")]
     public class PersonNameDTO {
+        [DataMember]
         public List<NameComponentDTO> Components;
 
         public static PersonNameDTO From(PersonName name) {
@@ -30,9 +34,13 @@ namespace Infrastructure.Persistence.Information {
         }
 
     }
-
+    
+    [DataContract(Namespace = "")]
     public class NameComponentDTO {
+        [DataMember]
         public string Text;
+
+        [DataMember]
         public NameType Type;
 
         public static NameComponentDTO From(NameComponent name) {
