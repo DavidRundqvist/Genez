@@ -4,6 +4,7 @@ using System.Windows.Media;
 using Infrastructure.IO;
 using Model;
 using View.AncestryGraph;
+using View.Editor;
 using View.Global;
 using View.PersonList;
 using View.Properties;
@@ -13,7 +14,8 @@ namespace View.MainWindow {
         public DesignMainWindowPresentation() : base(
             new DesignPersonListPresentation(), 
             CreateGraph(),
-            new DesignCommands()) {}
+            new DesignCommands(),
+            new DesignPersonEditorPresentation()) {}
 
         private static AncestryGraphPresentation CreateGraph() {
             var allPeople = new AllPeople(
@@ -24,7 +26,7 @@ namespace View.MainWindow {
 
             return new AncestryGraphPresentation(
                 allPeople,
-                new ShowInGraphPeople(allPeople),
+                new GraphPeople(allPeople),
                 new GraphControlsPresentation(
                     new AncestorGenerations(),
                     new ChildGenerations()),

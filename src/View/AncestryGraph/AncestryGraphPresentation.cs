@@ -18,17 +18,17 @@ namespace View.AncestryGraph {
     /// </summary>
     public class AncestryGraphPresentation {
         private readonly AllPeople _allPeople;
-        private readonly ShowInGraphPeople _showInGraphPeople;
+        private readonly GraphPeople _graphPeople;
         private readonly GraphControlsPresentation _graphControlsPresentation;
         public event EventHandler Changed;
         private readonly AncestryGraph _graph;
 
-        public AncestryGraphPresentation(AllPeople allPeople, ShowInGraphPeople showInGraphPeople, GraphControlsPresentation graphControlsPresentation, AncestryGraph graph) {
+        public AncestryGraphPresentation(AllPeople allPeople, GraphPeople graphPeople, GraphControlsPresentation graphControlsPresentation, AncestryGraph graph) {
             _allPeople = allPeople;
-            _showInGraphPeople = showInGraphPeople;
+            _graphPeople = graphPeople;
             _graphControlsPresentation = graphControlsPresentation;
             _graph = graph;
-            _showInGraphPeople.CollectionChanged += (sender, args) => UpdateGraph();
+            _graphPeople.CollectionChanged += (sender, args) => UpdateGraph();
             AncestorGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
             ChildGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
         }
@@ -41,10 +41,10 @@ namespace View.AncestryGraph {
 
         private void UpdateGraph() {
             _graph.Clear();
-            var ancestors = _showInGraphPeople.SelectMany(p => AllPeople.GetAncestor(p, AncestorGenerations.Value.Value));
-            var children = _showInGraphPeople.SelectMany(p => AllPeople.GetChildren(p, ChildGenerations.Value.Value));
+            var ancestors = _graphPeople.SelectMany(p => AllPeople.GetAncestor(p, AncestorGenerations.Value.Value));
+            var children = _graphPeople.SelectMany(p => AllPeople.GetChildren(p, ChildGenerations.Value.Value));
 
-            var people = children.Concat(_showInGraphPeople).Concat(ancestors);
+            var people = children.Concat(_graphPeople).Concat(ancestors);
             _graph.Add(people);                
             OnChanged();
         }

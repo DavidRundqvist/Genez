@@ -19,7 +19,7 @@ namespace View {
                                       });
             container.RegisterType<MainWindowPresentation>(new ContainerControlledLifetimeManager());
             container.RegisterType<AllPeople>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ShowInGraphPeople>(new ContainerControlledLifetimeManager());
+            container.RegisterType<GraphPeople>(new ContainerControlledLifetimeManager());
             container.RegisterType<AncestorGenerations>(new ContainerControlledLifetimeManager());
             container.RegisterType<ChildGenerations>(new ContainerControlledLifetimeManager());
 

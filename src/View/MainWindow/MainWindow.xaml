@@ -11,6 +11,7 @@
         xmlns:personList="clr-namespace:View.PersonList"
         xmlns:mainWindow="clr-namespace:View.MainWindow"
         xmlns:ancestryGraph="clr-namespace:View.AncestryGraph"
+        xmlns:editor="clr-namespace:View.Editor"
         mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance mainWindow:DesignMainWindowPresentation, IsDesignTimeCreatable=True}" 
         WindowState="Maximized" WindowStartupLocation="CenterScreen">
@@ -21,22 +22,23 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">            
             <mainWindow:MainMenu DataContext="{Binding Commands}"></mainWindow:MainMenu>
-            <!--<ToolBarTray>
-                <ToolBar>
-                    <Button>Command 1</Button>
-                    <Button>Command 2</Button>
-                    <Button>Command 3</Button>
-                </ToolBar>
-                <ToolBar>
-                    <Button>Command 4</Button>
-                    <Button>Command 5</Button>
-                    <Button>Command 6</Button>
-                </ToolBar>
-            </ToolBarTray>-->
         </StackPanel>
-        <personList:PersonList DataContext="{Binding PersonListPresentation}" DockPanel.Dock="Left"></personList:PersonList>
-        <ancestryGraph:AncestryGraphView Margin="5" DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <personList:PersonList Grid.Column="0" DataContext="{Binding PersonListPresentation}" ></personList:PersonList>
+            <GridSplitter Width="5" Grid.Column="0" ></GridSplitter>
+            <Grid Grid.Column="1"></Grid>
+            <ancestryGraph:AncestryGraphView Grid.Column="1" Margin="5" DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>
+            <GridSplitter Width="5" Grid.Column="1" ></GridSplitter>
+            <editor:PersonEditor Grid.Column="2" DataContext="{Binding EditorPresentation}" ></editor:PersonEditor>
 
+        </Grid>
     </DockPanel>
 
 

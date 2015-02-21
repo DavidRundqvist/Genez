@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -33,6 +32,7 @@ namespace View.Global {
             _additionalInformation = person.Information.Select(i => new InformationPresentation(i));
             _image = new Property<ImageSource>(image.GetValueOrDefault());
             _lifeTime = new Property<string>(CalculateLifeTime());
+            BirthDate = new BirthPresentation(person);
         }
 
         private string CalculateLifeTime() {
@@ -57,6 +57,7 @@ namespace View.Global {
         public IProperty<string> LifeTime { get { return _lifeTime; } }
         public Property<bool> ShowInGraph { get { return _showInGraph; } }
         public IProperty<ImageSource> Image {get { return _image; }}
+        public BirthPresentation BirthDate { get; private set; }
 
         public Brush GenderColor {
             get {

@@ -84,6 +84,13 @@
     <Compile Include="AncestryGraph\RelationDetailsView.xaml.cs">
       <DependentUpon>RelationDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editor\DesignPersonEditorPresentation.cs" />
+    <Compile Include="Editor\PersonEditor.xaml.cs">
+      <DependentUpon>PersonEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\PersonEditorPresentation.cs" />
+    <Compile Include="Global\BirthPresentation.cs" />
+    <Compile Include="Global\SelectedPeople.cs" />
     <Compile Include="Global\AllPeople.cs" />
     <Compile Include="Global\DesignPersonPresentation.cs" />
     <Compile Include="Global\DesignRelationPresentation.cs" />
@@ -100,6 +107,7 @@
     <Compile Include="MainWindow\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PersonList\DesignPeople.cs" />
     <Compile Include="WPFImageFactory.cs" />
     <Compile Include="MainWindow\DesignMainWindowPresentation.cs" />
     <Compile Include="AncestryGraph\AncestryGraphArea.cs" />
@@ -128,7 +136,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Global\ShowInGraphPeople.cs" />
+    <Compile Include="Global\GraphPeople.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -153,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AncestryGraph\RelationDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editor\PersonEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
