@@ -10,12 +10,7 @@ using View.Global;
 using View.PersonList;
 
 namespace View.AncestryGraph {
-    /// <summary>
-    /// This is our custom data graph derived from BidirectionalGraph class using custom data types.
-    /// Data graph stores vertices and edges data that is used by _graphArea and end-user for a variety of operations.
-    /// Data graph content handled manually by user (add/remove objects). The main idea is that you can dynamicaly
-    /// remove/add objects into the _graphArea layout and then use data graph to restore original layout content.
-    /// </summary>
+
     public class AncestryGraphPresentation {
         private readonly AllPeople _allPeople;
         private readonly GraphPeople _graphPeople;
@@ -29,6 +24,7 @@ namespace View.AncestryGraph {
             _graphControlsPresentation = graphControlsPresentation;
             _graph = graph;
             _graphPeople.CollectionChanged += (sender, args) => UpdateGraph();
+            _graphPeople.RelationsChanged += (semder, args) => UpdateGraph();
             AncestorGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
             ChildGenerations.Value.PropertyChanged += (s, e) => UpdateGraph();
         }

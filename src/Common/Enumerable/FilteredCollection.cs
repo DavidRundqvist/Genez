@@ -23,13 +23,13 @@ namespace Common.Enumerable {
             Synchronize();
         }
 
-        private void UnbindFrom(IEnumerable<T> args) {
+        protected virtual void UnbindFrom(IEnumerable<T> args) {
             foreach (var item in args) {
                 _propertySelector(item).PropertyChanged -= ItemPropertyChanged;
             }
         }
 
-        private void BindTo(IEnumerable<T> items) {
+        protected virtual void BindTo(IEnumerable<T> items) {
             foreach (var item in items) {
                 _propertySelector(item).PropertyChanged += ItemPropertyChanged;
             }

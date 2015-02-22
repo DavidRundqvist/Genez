@@ -30,20 +30,20 @@ namespace Model {
         /// <summary>
         /// Person changed event
         /// </summary>
-        public event EventHandler Changed;
+        public event CollectionEventHandler<Information> Changed;
 
         /// <summary>
         /// Ctor
         /// </summary>
         public PersonFile(Id<PersonFile> id) {
             _id = id;
-            _information.CollectionChanged += (s, e) => OnChanged();
+            _information.CollectionChanged += (s, e) => OnChanged(e);
         }
         public PersonFile() : this(new Id<PersonFile>(Guid.NewGuid())) {}
 
-        protected virtual void OnChanged() {
+        protected virtual void OnChanged(CollectionEventArgs<Information> args) {
             var handler = Changed;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null) handler(this, args);
         }
 
 

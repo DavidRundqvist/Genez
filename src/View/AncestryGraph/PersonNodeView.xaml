@@ -6,7 +6,7 @@
              xmlns:global="clr-namespace:View.Global"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance global:DesignPersonPresentation, IsDesignTimeCreatable=True}">
-    <Border MouseDown="OnMouseDown" BorderThickness="3" CornerRadius="5" BorderBrush="{Binding GenderColor}">        
+    <Border BorderThickness="3" CornerRadius="5" BorderBrush="{Binding GenderColor.Value}">        
         <Border.Style>
             <Style TargetType="Border">
                 <Style.Triggers>

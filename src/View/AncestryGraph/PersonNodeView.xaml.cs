@@ -23,10 +23,6 @@ namespace View.AncestryGraph {
             InitializeComponent();
         }
 
-        private void OnMouseDown(object sender, MouseButtonEventArgs e) {
-            Presentation.IsSelected.Value = true;
-        }
-
-        PersonPresentation Presentation { get { return DataContext as PersonPresentation; } }
+        public PersonPresentation Presentation { get { return DataContext as PersonPresentation; } }
     }
 }

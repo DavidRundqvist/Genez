@@ -18,7 +18,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type gxl:VertexControl}">
-                        <ancestryGraph:PersonNodeView DataContext="{Binding}"></ancestryGraph:PersonNodeView>
+                        <ancestryGraph:PersonNodeView MouseDown="NodeOnMouseDown" DataContext="{Binding}"></ancestryGraph:PersonNodeView>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -39,6 +39,9 @@
                     <Setter Property="BorderBrush" Value="Gold"/>
                     <Setter Property="BorderThickness" Value="7"/>
                 </Trigger>
+                <EventTrigger RoutedEvent="MouseDown">
+                    
+                </EventTrigger>
             </Style.Triggers>
         </Style>
 

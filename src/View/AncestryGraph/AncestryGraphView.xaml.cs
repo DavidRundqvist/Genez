@@ -1,9 +1,5 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using GraphX;
-using GraphX.Controls;
-using GraphX.GraphSharp.Algorithms.Layout.Simple.FDP;
-using GraphX.GraphSharp.Algorithms.OverlapRemoval;
 
 namespace View.AncestryGraph {
     /// <summary>
@@ -29,6 +25,14 @@ namespace View.AncestryGraph {
 
         private void OnMouseDown(object sender, MouseButtonEventArgs e) {
             Presentation.AllPeople.UnselectAll();
+        }
+
+        private void NodeOnMouseDown(object sender, MouseButtonEventArgs e) {
+            if (!Keyboard.Modifiers.HasFlag(ModifierKeys.Control)) {
+                Presentation.AllPeople.UnselectAll();
+            }
+
+            (sender as PersonNodeView).Presentation.IsSelected.Value = true;
         }
     }
 }

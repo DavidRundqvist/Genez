@@ -25,12 +25,14 @@ namespace View.Global {
         private readonly ObservableCollection<InformationPresentation> _detailedInformation = new ObservableCollection<InformationPresentation>();
         private readonly DelegatingProperty<ImageSource> _image;
         private readonly DelegatingProperty<string> _lifeTime;
+        private readonly DelegatingProperty<Brush> _genderColor;
 
         public PersonPresentation(PersonFile person, Maybe<ImageSource> image) {
             _person = person;
             _name = new DelegatingProperty<PersonNamePresentation>(() => new PersonNamePresentation(person));
             _detailedInformation.BindTo(person.Information, i => new InformationPresentation(i));
             _image = new DelegatingProperty<ImageSource>(() => image.GetValueOrDefault());
+            _genderColor = new DelegatingProperty<Brush>(GetGenderColor);
             _lifeTime = new DelegatingProperty<string>(CalculateLifeTime);
             person.Changed += PersonChanged;
         }
@@ -39,6 +41,7 @@ namespace View.Global {
             _image.RaisePropertyChanged();
             _lifeTime.RaisePropertyChanged();
             _name.RaisePropertyChanged();
+            _genderColor.RaisePropertyChanged();
         }
 
         private string CalculateLifeTime() {
@@ -62,19 +65,21 @@ namespace View.Global {
         public Property<bool> ShowInGraph { get { return _showInGraph; } }
         public IProperty<ImageSource> Image {get { return _image; }}
 
-        public Brush GenderColor {
+        public IProperty<Brush> GenderColor {
             get {
-                if (_person.IsMale) {
-                    return _maleColor;
-                }
-                if (_person.IsFemale) {
-                    return _femaleColor;
-                }
-                return _unknownGenderColor;
+                return _genderColor;
             }
         }
 
-
+        private Brush GetGenderColor() {
+            if (_person.IsMale) {
+                return _maleColor;
+            }
+            if (_person.IsFemale) {
+                return _femaleColor;
+            }
+            return _unknownGenderColor;
+        }
 
 
         public Visibility DeathMarkVisibility {
