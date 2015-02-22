@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -34,6 +35,22 @@ namespace Common.WPF.Presentation {
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        public bool Equals(Property<T> other) {
+            return object.Equals(Value, other.Value);
+        }
+
+        public override bool Equals(object obj) {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Property<T>) obj);
+        }
+
+        public override int GetHashCode() {
+            return typeof (T).GetHashCode();
         }
 
         public override string ToString() {

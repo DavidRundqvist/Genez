@@ -20,6 +20,7 @@ namespace Common.Enumerable {
         private void BackingCollectionChanged(object sender, CollectionEventArgs<T> args) {
             BindTo(args.Added);
             UnbindFrom(args.Removed);
+            Synchronize();
         }
 
         private void UnbindFrom(IEnumerable<T> args) {

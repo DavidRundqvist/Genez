@@ -20,9 +20,9 @@ namespace Common.WPF.Presentation {
             OnPropertyChanged();
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+        protected virtual void OnPropertyChanged() {
             var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            if (handler != null) handler(this, new PropertyChangedEventArgs("Value"));
         }
     }
 }

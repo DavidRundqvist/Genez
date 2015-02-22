@@ -18,15 +18,24 @@ namespace View.Global {
         private static readonly SolidColorBrush _neutralColor = new SolidColorBrush(Colors.Black);
 
         private readonly Relation _relation;
-        private readonly Property<bool> _reliable;
-        private readonly Property<SolidColorBrush> _relationColor;
-        private readonly Property<string> _description;
+        private readonly DelegatingProperty<bool> _reliable;
+        private readonly DelegatingProperty<SolidColorBrush> _relationColor;
+        private readonly DelegatingProperty<string> _description;
 
         public RelationPresentation(PersonPresentation source, PersonPresentation target, Relation relation) : base(source, target, 1.0f) {
             _relation = relation;
-            _reliable = new Property<bool>(relation.Reliability == Reliability.Reliable);
-            _relationColor = new Property<SolidColorBrush>(GetColor());
-            _description = new Property<string>(GetDescription(source, target, relation));
+            _reliable = new DelegatingProperty<bool>(() => relation.Reliability == Reliability.Reliable);
+            _relationColor = new DelegatingProperty<SolidColorBrush>(GetColor);
+            _description = new DelegatingProperty<string>(()=> GetDescription(source, target, relation));
+
+            source.Person.Changed += PersonChanged;
+            target.Person.Changed += PersonChanged;
+        }
+
+        void PersonChanged(object sender, EventArgs e) {
+            _reliable.RaisePropertyChanged();
+            _relationColor.RaisePropertyChanged();
+            _description.RaisePropertyChanged();
         }
 
         private string GetDescription(PersonPresentation source, PersonPresentation target, Relation relation) {

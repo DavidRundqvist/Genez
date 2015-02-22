@@ -12,10 +12,10 @@
     <ListView BorderThickness="1" ItemsSource="{Binding People}" >
         <ListView.View>
             <GridView>
-                <GridViewColumn DisplayMemberBinding="{Binding FirstName}">
+                <GridViewColumn DisplayMemberBinding="{Binding Name.Value.FirstName}">
                     <GridViewColumnHeader>First Name</GridViewColumnHeader>
                  </GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding FamilyName}">
+                <GridViewColumn DisplayMemberBinding="{Binding Name.Value.LastName}">
                     <GridViewColumnHeader>Last Name</GridViewColumnHeader>
                 </GridViewColumn>
                 <GridViewColumn>

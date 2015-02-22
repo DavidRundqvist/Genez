@@ -1,5 +1,11 @@
+using System;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using Common.Enumerable;
+using Common.WPF;
 using Common.WPF.Presentation;
 using Model;
 using Model.PersonInformation.Events;
@@ -8,44 +14,57 @@ using View.Global;
 namespace View.Editor {
     public class PersonEditorPresentation {
         private readonly SelectedPeople _selectedPeople;
-        private bool _syncingWithSelection;
+        private readonly EventCollection<InformationPresentation> _information = new EventCollection<InformationPresentation>();
+        private readonly ButtonPresentation _addButton;
+        private readonly ButtonPresentation _removeButton;
+        private readonly FilteredCollection<InformationPresentation> _selectedInformation;
+        private readonly ObservableCollection<InformationPresentation> _wpfInformation;
+        private readonly DelegatingProperty<Visibility> _editorVisibility;
+        private readonly DelegatingProperty<bool> _removeEnabled;
+
 
         public PersonEditorPresentation(SelectedPeople selectedPeople) {
             _selectedPeople = selectedPeople;
-            BirthDate = new Property<string>("");
-            WireEvents();
-            SynchronizeWithSelection();
+            _selectedInformation = new FilteredCollection<InformationPresentation>(_information, p => p.IsSelected);
+            _selectedPeople.CollectionChanged += (s, e) => SelectedPeopleChanged();            
+            _selectedInformation.CollectionChanged += (s, e) => SelectedInformationChanged();            
+            _wpfInformation = new ObservableCollection<InformationPresentation>();
+            _wpfInformation.BindTo(_information, p => p);
+
+            _addButton = new ButtonPresentation("Add", Add);
+            _removeEnabled = new DelegatingProperty<bool>(() => _selectedInformation.Any());
+            _removeButton = new ButtonPresentation("Remove", Remove, _removeEnabled);                
+            _editorVisibility = new DelegatingProperty<Visibility>(() => _selectedPeople.Any() ? Visibility.Visible : Visibility.Collapsed);
+            SelectedPeopleChanged();
         }
 
-        private void WireEvents() {
-            // Sync presentation with backing:
-            _selectedPeople.CollectionChanged += (s, e) => SynchronizeWithSelection();
-
-            // Sync backing with presentation
-            BirthDate.PropertyChanged += (s, e) => SynchronizeWithPresentation();
+        private void SelectedInformationChanged() {
+            _removeEnabled.RaisePropertyChanged();
         }
 
-        private void SynchronizeWithPresentation() {
-            if (_syncingWithSelection)
-                return;
+        public ObservableCollection<InformationPresentation> Information { get { return _wpfInformation; } }
+        public ButtonPresentation AddButton { get { return _addButton; } }
+        public ButtonPresentation RemoveButton { get { return _removeButton; } }
+        public IProperty<Visibility> EditorVisibility {get { return _editorVisibility; }}
 
-            _selectedPeople.ForEach(p => p.Person.Set(new Birth(BirthDate.Value, new Source())));
-        }
-
-        private void SynchronizeWithSelection() {
-            _syncingWithSelection = true;
-            var dates = _selectedPeople.Select(p => p.BirthDate.Date.Value).ToList();
-            if (dates.Distinct().Count() == 1)
-            {
-                BirthDate.Value = dates.First();
+        private void Remove() {
+            foreach (var person in _selectedPeople) {
+                foreach (var informationPresentation in _selectedInformation) {
+                    person.TryRemove(informationPresentation);
+                }
             }
-            else
-            {
-                BirthDate.Value = "";
-            }
-            _syncingWithSelection = false;
+            SelectedPeopleChanged(); // hack
         }
 
-        public Property<string> BirthDate { get; private set; }
+        private void Add() {
+        }
+
+        private void SelectedPeopleChanged() {            
+            _information.Clear();
+            _information.Add(_selectedPeople.SelectMany(p => p.DetailedInformation).Distinct().ToArray());
+            _editorVisibility.RaisePropertyChanged();
+            _removeEnabled.RaisePropertyChanged();
+        }
+
     }
 }

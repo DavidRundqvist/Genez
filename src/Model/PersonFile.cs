@@ -47,8 +47,12 @@ namespace Model {
         }
 
 
-        public IEnumerable<Information> Information {
-            get { return _information.OrderBy(i => i.Reliability); }
+        public bool Contains(Information information) {
+            return _information.Contains(information);
+        }
+
+        public IEventCollection<Information> Information {
+            get { return _information; }
         }
 
         public IEnumerable<Information> Facts {

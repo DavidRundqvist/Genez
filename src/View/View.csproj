@@ -89,13 +89,11 @@
       <DependentUpon>PersonEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Editor\PersonEditorPresentation.cs" />
-    <Compile Include="Global\BirthPresentation.cs" />
     <Compile Include="Global\SelectedPeople.cs" />
     <Compile Include="Global\AllPeople.cs" />
     <Compile Include="Global\DesignPersonPresentation.cs" />
     <Compile Include="Global\DesignRelationPresentation.cs" />
     <Compile Include="Global\InformationPresentation.cs" />
-    <Compile Include="Global\NamePresentation.cs" />
     <Compile Include="Global\PersonDetailsView.xaml.cs">
       <DependentUpon>PersonDetailsView.xaml</DependentUpon>
     </Compile>
@@ -181,6 +179,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PersonList\PersonList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

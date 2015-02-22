@@ -21,18 +21,24 @@ namespace View.Global {
         private readonly PersonFile _person;
         private readonly Property<bool> _isSelected = new Property<bool>(false);
         private readonly Property<bool> _showInGraph = new Property<bool>(false);
-        private readonly Property<PersonNamePresentation> _name;
-        private readonly IEnumerable<InformationPresentation> _additionalInformation;
-        private readonly Property<ImageSource> _image;
-        private readonly Property<string> _lifeTime;
+        private readonly DelegatingProperty<PersonNamePresentation> _name;
+        private readonly ObservableCollection<InformationPresentation> _detailedInformation = new ObservableCollection<InformationPresentation>();
+        private readonly DelegatingProperty<ImageSource> _image;
+        private readonly DelegatingProperty<string> _lifeTime;
 
         public PersonPresentation(PersonFile person, Maybe<ImageSource> image) {
             _person = person;
-            _name = new Property<PersonNamePresentation>(new PersonNamePresentation(person));
-            _additionalInformation = person.Information.Select(i => new InformationPresentation(i));
-            _image = new Property<ImageSource>(image.GetValueOrDefault());
-            _lifeTime = new Property<string>(CalculateLifeTime());
-            BirthDate = new BirthPresentation(person);
+            _name = new DelegatingProperty<PersonNamePresentation>(() => new PersonNamePresentation(person));
+            _detailedInformation.BindTo(person.Information, i => new InformationPresentation(i));
+            _image = new DelegatingProperty<ImageSource>(() => image.GetValueOrDefault());
+            _lifeTime = new DelegatingProperty<string>(CalculateLifeTime);
+            person.Changed += PersonChanged;
+        }
+
+        void PersonChanged(object sender, System.EventArgs e) {
+            _image.RaisePropertyChanged();
+            _lifeTime.RaisePropertyChanged();
+            _name.RaisePropertyChanged();
         }
 
         private string CalculateLifeTime() {
@@ -48,16 +54,13 @@ namespace View.Global {
             return theEvent.Date.Convert(s => s + (theEvent.IsReliable ? "" : "?")).GetValueOrDefault("?");
         }
 
-        public string FirstName {get { return Person.MainName.Convert(name => name.TheName.Given).GetValueOrDefault("Unknown"); }}
-        public string FamilyName {get { return Person.MainName.Convert(name => name.TheName.Family).GetValueOrDefault("Unknown"); }}
         public PersonFile Person {get { return _person; }}
         public override string ToString() {return Name.Value.ToString();}
         public Property<bool> IsSelected { get { return _isSelected; } }
-        public Property<PersonNamePresentation> Name { get { return _name; } }
+        public IProperty<PersonNamePresentation> Name { get { return _name; } }
         public IProperty<string> LifeTime { get { return _lifeTime; } }
         public Property<bool> ShowInGraph { get { return _showInGraph; } }
         public IProperty<ImageSource> Image {get { return _image; }}
-        public BirthPresentation BirthDate { get; private set; }
 
         public Brush GenderColor {
             get {
@@ -82,6 +85,12 @@ namespace View.Global {
             }
         }
 
-        public IEnumerable<InformationPresentation> AdditionalInformation { get { return _additionalInformation; } }
+        public ObservableCollection<InformationPresentation> DetailedInformation { get { return _detailedInformation; } }
+
+        public void TryRemove(InformationPresentation infoPresentation) {
+            if (_person.Contains(infoPresentation.Information)) {
+                _person.Remove(infoPresentation.Information);
+            }            
+        }
     }
 }

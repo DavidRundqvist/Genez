@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 using Common.Enumerable;
 using Common.WPF.Presentation;
 using Model;
+using Model.PersonInformation;
 
 namespace View.Global {
     public class PersonNamePresentation {
@@ -21,9 +23,13 @@ namespace View.Global {
             get {
                 var maybe = _person.MainName;                
                 return maybe
-                    .Convert(m => new NamePresentation(m).ToString())
+                    .Convert(GetNameString)
                     .GetValueOrDefault("Unknown");
             }
+        }
+
+        private static string GetNameString(Name name) {
+            return name.TheName + (name.IsReliable ? "" : " (maybe)");
         }
 
         public string CompleteName {
@@ -32,9 +38,20 @@ namespace View.Global {
                     return "Unknown";
 
                 return _person.Names
-                    .Select(n => new NamePresentation(n))
-                    .Select(n => n.ToString())
+                    .Select(GetNameString)
                     .Join(Environment.NewLine);
+            }
+        }
+
+        public string FirstName {
+            get {
+                return _person.MainName.Convert(name => name.TheName.Given).GetValueOrDefault("Unknown");
+            }
+        }
+
+        public string LastName {
+            get {
+                return _person.MainName.Convert(name => name.TheName.Family).GetValueOrDefault("Unknown");
             }
         }
     }

@@ -7,8 +7,43 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance editor:DesignPersonEditorPresentation, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <TextBox Text="{Binding BirthDate.Value, Mode=OneWay}"></TextBox>
-            
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Resources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Visibility="{Binding EditorVisibility.Value}">
+        <ListView ItemsSource="{Binding Information}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Header.Value}">
+                        <GridViewColumnHeader>Type</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Value.Value}">
+                        <GridViewColumnHeader>Value</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Reliability.Value}">
+                        <GridViewColumnHeader>Reliability</GridViewColumnHeader>
+                    </GridViewColumn>                
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected.Value}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        
+        <StackPanel Orientation="Horizontal">
+            <Button DataContext="{Binding AddButton}"></Button>
+            <Button DataContext="{Binding RemoveButton}"></Button>            
+        </StackPanel>
+        
     </StackPanel>
+
 </UserControl>
