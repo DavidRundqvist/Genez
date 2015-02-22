@@ -87,10 +87,9 @@ namespace View.Global {
 
         public ObservableCollection<InformationPresentation> DetailedInformation { get { return _detailedInformation; } }
 
-        public void TryRemove(InformationPresentation infoPresentation) {
-            if (_person.Contains(infoPresentation.Information)) {
-                _person.Remove(infoPresentation.Information);
-            }            
+        public void TryRemove(IEnumerable<InformationPresentation> infos) {
+            var existingInfo = _person.Information.Join(infos, i => i, i => i.Information, (i, ip) => i).ToArray();
+            _person.Remove(existingInfo);
         }
     }
 }

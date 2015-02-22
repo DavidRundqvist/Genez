@@ -120,11 +120,11 @@ namespace Infrastructure.Data {
             throw new System.NotImplementedException();
         }
 
-        public void Remove(IEnumerable<PersonFile> people) {
+        public Task Remove(IEnumerable<PersonFile> people) {
             throw new System.NotImplementedException();
         }
 
-        public void Update(IEnumerable<PersonFile> people) {
+        public Task Update(IEnumerable<PersonFile> people) {
             throw new System.NotImplementedException();
         }
     }

@@ -67,7 +67,7 @@ namespace Model {
             _information.Add(information);
         }
 
-        public void Remove(Information information) {
+        public void Remove(params Information[] information) {
             _information.Remove(information);            
         }
 
@@ -75,8 +75,8 @@ namespace Model {
         /// Adds the information and removes all other information of the same type
         /// </summary>
         public void Set(Information information) {
-            var conflictingInformation = _information.Where(i => i.InformationType == information.InformationType).ToList();
-            conflictingInformation.ForEach(Remove);
+            var conflictingInformation = _information.Where(i => i.InformationType == information.InformationType).ToArray();
+            Remove(conflictingInformation);
             Add(information);
         }
 

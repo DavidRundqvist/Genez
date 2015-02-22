@@ -49,9 +49,7 @@ namespace View.Editor {
 
         private void Remove() {
             foreach (var person in _selectedPeople) {
-                foreach (var informationPresentation in _selectedInformation) {
-                    person.TryRemove(informationPresentation);
-                }
+                person.TryRemove(_selectedInformation);
             }
             SelectedPeopleChanged(); // hack
         }
