@@ -4,21 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:global="clr-namespace:View.Global"
+             xmlns:personInformation="clr-namespace:Model.PersonInformation;assembly=Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance global:DesignPersonPresentation, IsDesignTimeCreatable=True}">
-    <Border BorderThickness="3" CornerRadius="5" BorderBrush="{Binding GenderColor.Value}">        
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Resources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border BorderThickness="3" CornerRadius="5">        
         <Border.Style>
             <Style TargetType="Border">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsSelected.Value}" Value="True">
-                        <Setter Property="Background" Value="LightCyan"></Setter>
+                        <Setter Property="Background" Value="{StaticResource SelectionBrush}"></Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding IsSelected.Value}" Value="False">
                         <Setter Property="Background" Value="White"></Setter>
-                    </DataTrigger>                
+                    </DataTrigger>           
+                    <DataTrigger Binding="{Binding ShowInGraph.Value}" Value="True">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                    <DropShadowEffect ShadowDepth="3"
+                                          Color="Yellow"
+                                          Opacity="1"
+                                          BlurRadius="10"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Gender.Value}" Value="{x:Static personInformation:GenderType.Male}">
+                        <Setter Property="BorderBrush" Value="{StaticResource MaleBrush}"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Gender.Value}" Value="{x:Static personInformation:GenderType.Female}">
+                        <Setter Property="BorderBrush" Value="{StaticResource FemaleBrush}"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Gender.Value}" Value="{x:Static personInformation:GenderType.Other}">
+                        <Setter Property="BorderBrush" Value="{StaticResource UnknownBrush}"></Setter>
+                    </DataTrigger>                    
                 </Style.Triggers>
             </Style>
         </Border.Style>
+
+
         <StackPanel Orientation="Horizontal">
             
             <!-- Image -->

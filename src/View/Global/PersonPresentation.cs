@@ -9,14 +9,11 @@ using Common.Enumerable;
 using Common.WPF.Presentation;
 using GraphX;
 using Model;
+using Model.PersonInformation;
 using Model.PersonInformation.Events;
 
 namespace View.Global {
     public class PersonPresentation : VertexBase {
-
-        private static readonly SolidColorBrush _maleColor = new SolidColorBrush(Colors.Blue);
-        private static readonly SolidColorBrush _femaleColor = new SolidColorBrush(Colors.Red);
-        private static readonly SolidColorBrush _unknownGenderColor = new SolidColorBrush(Colors.Orange);
 
         private readonly PersonFile _person;
         private readonly Property<bool> _isSelected = new Property<bool>(false);
@@ -25,23 +22,31 @@ namespace View.Global {
         private readonly ObservableCollection<InformationPresentation> _detailedInformation = new ObservableCollection<InformationPresentation>();
         private readonly DelegatingProperty<ImageSource> _image;
         private readonly DelegatingProperty<string> _lifeTime;
-        private readonly DelegatingProperty<Brush> _genderColor;
+        private readonly DelegatingProperty<GenderType> _gender;
 
         public PersonPresentation(PersonFile person, Maybe<ImageSource> image) {
             _person = person;
             _name = new DelegatingProperty<PersonNamePresentation>(() => new PersonNamePresentation(person));
             _detailedInformation.BindTo(person.Information, i => new InformationPresentation(i));
             _image = new DelegatingProperty<ImageSource>(() => image.GetValueOrDefault());
-            _genderColor = new DelegatingProperty<Brush>(GetGenderColor);
+            _gender = new DelegatingProperty<GenderType>(GetGender);
             _lifeTime = new DelegatingProperty<string>(CalculateLifeTime);
             person.Changed += PersonChanged;
+        }
+
+        private GenderType GetGender() {
+            if (_person.IsMale)
+                return GenderType.Male;
+            if (_person.IsFemale)
+                return GenderType.Female;
+            return GenderType.Other;            
         }
 
         void PersonChanged(object sender, System.EventArgs e) {
             _image.RaisePropertyChanged();
             _lifeTime.RaisePropertyChanged();
             _name.RaisePropertyChanged();
-            _genderColor.RaisePropertyChanged();
+            _gender.RaisePropertyChanged();
         }
 
         private string CalculateLifeTime() {
@@ -65,20 +70,10 @@ namespace View.Global {
         public Property<bool> ShowInGraph { get { return _showInGraph; } }
         public IProperty<ImageSource> Image {get { return _image; }}
 
-        public IProperty<Brush> GenderColor {
+        public IProperty<GenderType> Gender {
             get {
-                return _genderColor;
+                return _gender;
             }
-        }
-
-        private Brush GetGenderColor() {
-            if (_person.IsMale) {
-                return _maleColor;
-            }
-            if (_person.IsFemale) {
-                return _femaleColor;
-            }
-            return _unknownGenderColor;
         }
 
 
@@ -96,5 +91,9 @@ namespace View.Global {
             var existingInfo = _person.Information.Join(infos, i => i, i => i.Information, (i, ip) => i).ToArray();
             _person.Remove(existingInfo);
         }
+
+
+
+
     }
 }

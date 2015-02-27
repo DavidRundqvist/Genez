@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
         Title="Genez" 
         d:DesignHeight="400" 
-        d:DesignWidth="600"
+        d:DesignWidth="900"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:controls="clr-namespace:GraphX.Controls;assembly=GraphX.Controls"
         xmlns:personList="clr-namespace:View.PersonList"
@@ -18,6 +18,27 @@
     <Window.InputBindings>
         <KeyBinding Command="{Binding Path=Commands.ExitCommand}" Key="E" Modifiers="Control"></KeyBinding>
     </Window.InputBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Resources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.FontSize>
+        <StaticResource ResourceKey="FontSize" />
+    </Window.FontSize>
+    <Window.FontFamily>
+        <StaticResource ResourceKey="Font" />
+    </Window.FontFamily>
+    <Window.Background>
+        <StaticResource ResourceKey="BackgroundBrush"></StaticResource>
+    </Window.Background>
+    <Window.Foreground>
+        <StaticResource ResourceKey="TextBrush"></StaticResource>
+    </Window.Foreground>
+
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">            
@@ -26,15 +47,15 @@
         
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="320"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
             <personList:PersonList Grid.Column="0" DataContext="{Binding PersonListPresentation}" ></personList:PersonList>
             <GridSplitter Width="5" Grid.Column="0" ></GridSplitter>
             <Grid Grid.Column="1"></Grid>
-            <ancestryGraph:AncestryGraphView Grid.Column="1" Margin="5" DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>
+            <ancestryGraph:AncestryGraphView Grid.Column="1"  DataContext="{Binding AncestryGraphPresentation}"></ancestryGraph:AncestryGraphView>
             <GridSplitter Width="5" Grid.Column="1" ></GridSplitter>
             <editor:PersonEditor Grid.Column="2" DataContext="{Binding EditorPresentation}" ></editor:PersonEditor>
 

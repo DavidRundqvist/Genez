@@ -6,7 +6,7 @@
              xmlns:editor="clr-namespace:View.Editor"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance editor:DesignPersonEditorPresentation, IsDesignTimeCreatable=True}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="350">
     
     <UserControl.Resources>
         <ResourceDictionary>
@@ -21,7 +21,7 @@
         <ListView ItemsSource="{Binding Information}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Header.Value}">
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Header.Value}">
                         <GridViewColumnHeader>Type</GridViewColumnHeader>
                     </GridViewColumn>
                     <GridViewColumn Width="150" DisplayMemberBinding="{Binding Value.Value}">
@@ -32,11 +32,6 @@
                     </GridViewColumn>                
                 </GridView>
             </ListView.View>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="IsSelected" Value="{Binding IsSelected.Value}"/>
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
         
         <StackPanel Orientation="Horizontal">

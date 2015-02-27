@@ -11,6 +11,11 @@
              xmlns:controls="clr-namespace:GraphX.Controls;assembly=GraphX.Controls"
              d:DesignHeight="400" d:DesignWidth="600">  
     <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Resources/Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        
 
         <!-- VERTEX CONTROL -->
         <Style TargetType="{x:Type gxl:VertexControl}">
@@ -76,10 +81,13 @@
             </Setter>
         </Style>
 
+        </ResourceDictionary>
+
     </UserControl.Resources>
+
     <DockPanel MouseDown="OnMouseDown">
         <ancestryGraph:GraphControls DockPanel.Dock="Top"></ancestryGraph:GraphControls>
-        <controls:ZoomControl ViewFinderVisibility="Collapsed" x:Name="_zoomControl" MinZoom="0.1" MaxZoom="2">
+        <controls:ZoomControl Margin="10" Background="Transparent"  ViewFinderVisibility="Collapsed" x:Name="_zoomControl" MinZoom="0.1" MaxZoom="2">
             <ancestryGraph:AncestryGraphArea DataContext="{Binding}" x:Name="_graphArea"></ancestryGraph:AncestryGraphArea>
         </controls:ZoomControl>
     </DockPanel>
