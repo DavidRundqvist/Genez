@@ -31,7 +31,7 @@ namespace View.Global {
         public bool Equals(InformationPresentation other) {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return _value.Equals(other._value) && _reliability.Equals(other._reliability);
+            return Equals(_header, other._header) && Equals(_reliability, other._reliability) && Equals(_value, other._value);
         }
 
         public override bool Equals(object obj) {
@@ -43,7 +43,10 @@ namespace View.Global {
 
         public override int GetHashCode() {
             unchecked {
-                return (_value.GetHashCode()*397) ^ _reliability.GetHashCode();
+                int hashCode = (_header != null ? _header.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (_reliability != null ? _reliability.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (_value != null ? _value.GetHashCode() : 0);
+                return hashCode;
             }
         }
     }

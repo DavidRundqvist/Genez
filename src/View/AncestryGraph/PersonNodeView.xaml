@@ -16,7 +16,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border BorderThickness="3" CornerRadius="5">        
+
+    <Border Name="GenderBorder" BorderThickness="3" CornerRadius="5" Margin="3">
         <Border.Style>
             <Style TargetType="Border">
                 <Style.Triggers>
@@ -25,16 +26,6 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding IsSelected.Value}" Value="False">
                         <Setter Property="Background" Value="White"></Setter>
-                    </DataTrigger>           
-                    <DataTrigger Binding="{Binding ShowInGraph.Value}" Value="True">
-                        <Setter Property="Effect">
-                            <Setter.Value>
-                                    <DropShadowEffect ShadowDepth="3"
-                                          Color="Yellow"
-                                          Opacity="1"
-                                          BlurRadius="10"/>
-                            </Setter.Value>
-                        </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Gender.Value}" Value="{x:Static personInformation:GenderType.Male}">
                         <Setter Property="BorderBrush" Value="{StaticResource MaleBrush}"></Setter>
@@ -44,30 +35,31 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Gender.Value}" Value="{x:Static personInformation:GenderType.Other}">
                         <Setter Property="BorderBrush" Value="{StaticResource UnknownBrush}"></Setter>
-                    </DataTrigger>                    
+                    </DataTrigger>
                 </Style.Triggers>
             </Style>
         </Border.Style>
 
 
         <StackPanel Orientation="Horizontal">
-            
+
             <!-- Image -->
             <Image MaxHeight="70" MaxWidth="100" Margin="5" Source="{Binding Image.Value}"></Image>
-            
+
             <!-- Information -->
-            <StackPanel Margin="5">       
+            <StackPanel Margin="5">
                 <TextBlock Text="{Binding Name.Value.CompleteName}" Margin="0"/>
                 <TextBlock Text="{Binding LifeTime.Value}" Margin="10,0,0,0"/>
             </StackPanel>
-            
+
             <!-- dead or alive? -->
-			<Viewbox VerticalAlignment="Top" Height="30" Margin="3" Visibility="{Binding DeathMarkVisibility}">
-				<Path Data="M0,0 L0,40 M-10, 10 L10,10" Fill="Black" Stretch="Fill" Stroke="Black" StrokeThickness="3" />            
-			</Viewbox>
+            <Viewbox VerticalAlignment="Top" Height="30" Margin="3" Visibility="{Binding DeathMarkVisibility}">
+                <Path Data="M0,0 L0,40 M-10, 10 L10,10" Fill="Black" Stretch="Fill" Stroke="Black" StrokeThickness="3" />
+            </Viewbox>
         </StackPanel>
     </Border>
-    
+
+
 
 
 </UserControl>

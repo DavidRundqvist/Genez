@@ -59,7 +59,7 @@ namespace View.Editor {
 
         private void SelectedPeopleChanged() {            
             _information.Clear();
-            _information.Add(_selectedPeople.SelectMany(p => p.DetailedInformation).Distinct().ToArray());
+            _information.Add(_selectedPeople.Select(p => p.DetailedInformation).IntersectMany().ToArray());
             _editorVisibility.RaisePropertyChanged();
             _removeEnabled.RaisePropertyChanged();
         }

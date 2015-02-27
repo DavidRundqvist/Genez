@@ -77,5 +77,17 @@ namespace Common.Enumerable
         public static IEnumerable<T2> SelectT2<T1, T2>(this IEnumerable<Tuple<T1, T2>> self) {
             return self.Select(item => item.Item2);
         }
+
+        public static IEnumerable<T> IntersectMany<T>(this IEnumerable<IEnumerable<T>> lists) {
+            lists = lists.ToList();
+            if (!lists.Any())
+                return System.Linq.Enumerable.Empty<T>();
+
+            var hashSet = new HashSet<T>(lists.First());
+            foreach (var list in lists.Skip(1)) {
+                hashSet.IntersectWith(list);
+            }
+            return hashSet;
+        }
     }
 }
